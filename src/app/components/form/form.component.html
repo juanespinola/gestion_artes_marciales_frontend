@@ -1,0 +1,19 @@
+<mat-card>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+    <mat-card-title>Editar</mat-card-title>
+    <mat-card-content>
+        <ng-container *ngFor="let field of fieldsForm" >
+            <mat-form-field>
+                <mat-label>{{field.title}}</mat-label>
+                <input matInput formControlName="{{field.key}}">
+            </mat-form-field>
+        </ng-container>    
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Guardar</button>
+            <button mat-button color="primary" class="button">Cancelar</button>
+        </mat-card-actions>
+    </form>
+    </mat-card>
