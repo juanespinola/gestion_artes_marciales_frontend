@@ -1,0 +1,16 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field class="form__input">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" >
+    </mat-form-field>
+
+    <mat-form-field class="form__input">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password">
+    </mat-form-field>
+    <div class="form-actions">
+        <button mat-button color="primary" type="submit" class="button">Login</button>
+        <button mat-button color="primary" type="submit" class="button" (click)="prueba()">Prueba</button>
+        <button mat-button color="primary" type="submit" class="button">Forget Password</button>
+    </div>
+</form>

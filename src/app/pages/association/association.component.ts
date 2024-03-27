@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentsModule } from '../../components/components.module';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-association',

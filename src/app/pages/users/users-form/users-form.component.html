@@ -1,0 +1,50 @@
+<mat-tab-group>
+    <mat-tab label="Editar Usuario"> 
+        <mat-card [formGroup]="formGroup">
+            <mat-card-header>
+                <mat-card-title>
+                    <h4 class="form-title">Editar</h4>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+    
+                <div class="input-wrapper">
+                    <p class="input-title">Name</p>
+                    <mat-form-field class="input-field">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" >
+                    </mat-form-field>
+                </div>
+
+                <div class="input-wrapper">
+                    <p class="input-title">Email</p>
+                    <mat-form-field class="input-field">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" >
+                    </mat-form-field>
+                </div>
+
+                <div class="input-wrapper">
+                    <p class="input-title">Rol</p>
+                    <mat-form-field class="input-field">
+                        <mat-label>Rol</mat-label>
+                        <input matInput formControlName="rol" >
+                    </mat-form-field>
+                </div>
+    
+                <mat-card-actions align="start">
+                    <button mat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
+                        (click)="onSubmit()">Guardar</button>
+                    <button mat-button color="primary" class="button">Cancelar</button>
+                </mat-card-actions>
+    
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Second"> Content 2 </mat-tab>
+    <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
+
+
+
+

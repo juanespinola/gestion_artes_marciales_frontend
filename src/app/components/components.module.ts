@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table/table.component';
 import { FormComponent } from './form/form.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
@@ -10,12 +11,14 @@ import { FormComponent } from './form/form.component';
   imports: [
     CommonModule,
     TableComponent,
-    FormComponent
+    FormComponent,
+    SidebarComponent
   ],
   exports: [
     CommonModule,
     TableComponent,
-    FormComponent
+    FormComponent,
+    SidebarComponent
   ]
 })
 export class ComponentsModule { }

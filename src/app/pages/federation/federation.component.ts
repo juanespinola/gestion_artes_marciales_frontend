@@ -13,7 +13,7 @@ export class FederationComponent {
   collection:any = "federation"
   headers = ['Id', "Descripcion", "actions"];
   columns = [
-      { title:"Id", key: 'id', order: true },
-      { title:"Descripcion", key: 'description', order:false }
-    ];
+    { title:"Id", key: 'id', order: true },
+    { title:"Descripcion", key: 'description', order:false }
+  ];
 }

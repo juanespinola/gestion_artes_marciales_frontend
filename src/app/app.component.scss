@@ -1,3 +1,21 @@
+  // regular style toast
+  // @import 'ngx-toastr/toastr';
+
+  // // bootstrap style toast
+  // // or import a bootstrap 4 alert styled design (SASS ONLY)
+  // // should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+  // @import 'ngx-toastr/toastr-bs4-alert';
+  
+  // // if you'd like to use it without importing all of bootstrap it requires
+  // @import 'bootstrap/scss/functions';
+  // @import 'bootstrap/scss/variables';
+  // @import 'bootstrap/scss/mixins';
+  // // bootstrap 4
+  // @import 'ngx-toastr/toastr-bs4-alert';
+  // // boostrap 5
+  // @import 'ngx-toastr/toastr-bs5-alert';
+  
+
 :host {
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
@@ -109,4 +127,6 @@
     display: block;
     overflow: hidden;
   }
+
+
   

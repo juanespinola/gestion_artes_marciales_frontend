@@ -9,6 +9,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { FormComponent } from '../form/form.component';
 import { ApiService } from '../../utils/api.service';
 import { Router } from '@angular/router';
+import { AlertsService } from '../../services/alerts.service';
 
 
 @Component({
@@ -42,7 +43,9 @@ export class TableComponent implements AfterViewInit {
   constructor(
     public dialog: MatDialog, 
     private apiService: ApiService,
-    private route: Router){
+    private route: Router,
+    private alertsService: AlertsService
+    ){
     
   }
 
@@ -82,8 +85,6 @@ export class TableComponent implements AfterViewInit {
 
   createAction(): void {
     this.route.navigate([this.collection + "/add"]);
-
-  
   }
 
   getAll() {
@@ -94,7 +95,10 @@ export class TableComponent implements AfterViewInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
-      error:(error) => console.log(error)
+      error:(error) => {
+        console.log(error)
+        this.alertsService.showAlert("Error!", error.statusText, 'error')
+      }
     });
   }
 }
