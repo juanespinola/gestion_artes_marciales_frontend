@@ -11,9 +11,9 @@ import { SessionService } from '../../services/session.service';
 })
 export class AssociationComponent {
   collection:any = "association"
-  headers = ['Id', "Descripcion", "actions"];
+  headers = ['#', "Descripcion", "actions"];
   columns = [
-      { title:"Id", key: 'id', order: true },
+      { title:"#", key: 'id', order: true },
       { title:"Descripcion", key: 'description', order:false }
     ];
 }

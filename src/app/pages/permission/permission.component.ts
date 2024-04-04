@@ -11,9 +11,9 @@ import { ComponentsModule } from '../../components/components.module';
 })
 export class PermissionComponent {
   collection:any = "permission"
-  headers = ['Id', "Descripcion", "Grupo", "actions"];
+  headers = ['#', "Descripcion", "Grupo", "actions"];
   columns = [
-    { title:"Id", key: 'id', order: true },
+    { title:"#", key: 'id', order: true },
     { title:"Descripcion", key: 'name', order:false },
     { title:"Grupo", key: 'group_name', order:false }
   ];

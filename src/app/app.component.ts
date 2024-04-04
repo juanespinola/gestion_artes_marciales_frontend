@@ -8,6 +8,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { RouterOutlet } from '@angular/router';
 import { ComponentsModule } from './components/components.module';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
+import { TranslateModule } from '@ngx-translate/core';
+
 
 
 @Component({
@@ -23,16 +26,18 @@ import { ComponentsModule } from './components/components.module';
     MatToolbarModule,
     RouterOutlet,  
     ComponentsModule,
-    
-    // ToastrModule.forRoot()
+    MatSlideToggleModule,
+    TranslateModule
   ],
   providers:[
   
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  
 })
 export class AppComponent {
   title = 'gestion_artes_marciales_frontend';
-  
+
+
 }

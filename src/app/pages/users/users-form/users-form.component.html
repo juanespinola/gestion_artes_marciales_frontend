@@ -1,50 +1,79 @@
 <mat-tab-group>
-    <mat-tab label="Editar Usuario"> 
-        <mat-card [formGroup]="formGroup">
-            <mat-card-header>
-                <mat-card-title>
-                    <h4 class="form-title">Editar</h4>
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-    
-                <div class="input-wrapper">
-                    <p class="input-title">Name</p>
-                    <mat-form-field class="input-field">
-                        <mat-label>Name</mat-label>
-                        <input matInput formControlName="name" >
-                    </mat-form-field>
-                </div>
+    <mat-tab label="Editar Usuario">
+        <div class="col-lg-6">
+            <mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+                <mat-card-header>
+                    <mat-card-title class="m-b-0">Editar</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="b-t-1">
 
-                <div class="input-wrapper">
-                    <p class="input-title">Email</p>
-                    <mat-form-field class="input-field">
-                        <mat-label>Email</mat-label>
-                        <input matInput formControlName="email" >
-                    </mat-form-field>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-12 d-flex align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Name</mat-label>
+                        </div>
+                        <div class="col-sm-12">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="John Deo" formControlName="name" />
+                            </mat-form-field>
+                        </div>
+                    </div>
 
-                <div class="input-wrapper">
-                    <p class="input-title">Rol</p>
-                    <mat-form-field class="input-field">
-                        <mat-label>Rol</mat-label>
-                        <input matInput formControlName="rol" >
-                    </mat-form-field>
-                </div>
-    
-                <mat-card-actions align="start">
-                    <button mat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
-                        (click)="onSubmit()">Guardar</button>
-                    <button mat-button color="primary" class="button">Cancelar</button>
-                </mat-card-actions>
-    
-            </mat-card-content>
-        </mat-card>
+                    <div class="row">
+                        <div class="col-sm-12 d-flex align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Email</mat-label>
+                        </div>
+                        <div class="col-sm-12">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="Pone tu Email aca" formControlName="email" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Roles</mat-label>
+                            <mat-chip-grid #userRoleArray aria-label="Seleccione un role">
+                                @for(role of userRoles; track role) {
+                                <mat-chip-row 
+                                    (removed)="remove(role)" 
+                                    class="f-s-14">
+                                    {{ role.name }}
+                                    <button matChipRemove>
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip-row>
+                                }
+
+                                <input placeholder="Nuevo Rol"
+                                    #userRoleArrayInput
+                                    [matChipInputFor]="userRoleArray"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur" 
+                                    [matAutocomplete]="auto" 
+                                    (matChipInputTokenEnd)="add($event)"
+                                    />
+                            </mat-chip-grid>
+                            <mat-autocomplete #auto="matAutocomplete" 
+                                (optionSelected)="selected($event)">
+                                @for (role of roles; track role) {
+                                <mat-option [value]="role.name">{{role.name}}</mat-option>
+                                }
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row justify-content-end">
+                        <div class="col-sm-12">
+                            <button mat-flat-button color="primary" [disabled]="!formGroup.valid"
+                                (click)="onSubmit()">Guardar</button>
+                            <button mat-flat-button color="warn" class="m-l-8">Cancel</button>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
     </mat-tab>
     <mat-tab label="Second"> Content 2 </mat-tab>
     <mat-tab label="Third"> Content 3 </mat-tab>
 </mat-tab-group>
-
-
-
-

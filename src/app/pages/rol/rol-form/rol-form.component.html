@@ -1,10 +1,8 @@
-<mat-card [formGroup]="formGroup">
+<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
     <mat-card-header>
-        <mat-card-title>
-            <h4 class="form-title">Editar</h4>
-        </mat-card-title>
+        <mat-card-title class="m-b-0">Editar</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="b-t-1">
 
         <div class="input-wrapper">
             <p class="input-title">Descripcion</p>
@@ -14,10 +12,118 @@
             </mat-form-field>
         </div>
 
-        <mat-card-actions align="start">
-            <button mat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid" (click)="onSubmit()">Guardar</button>
-            <button mat-button color="primary" class="button">Cancelar</button>
-        </mat-card-actions>
+        <mat-card class="b-1 shadow-none">
+            <mat-card-header>
+                <mat-card-title>
+                    Permisos
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <mat-selection-list formControlName="rolePermissionArray">
+                    @for(permission of permissions; track permission) {        
+                    <mat-list-option [value]="permission.name" [selected]="isSelected(permission)">
+                        {{ permission.name }}
+                    </mat-list-option>
+                    }
+                </mat-selection-list>
+                <!-- <mat-accordion> -->
+                <!-- @for(permission of permissions; track permission) {
+                    <mat-expansion-panel class="cardWithShadow" formArrayName="rolePermission" >
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="f-w-600 mat-body-1">
+                                {{permission.name}}
+                            </mat-panel-title>
+                            <mat-panel-description class="mat-body-1">
+
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        @for(role of roles.permissions; track role; let i=$index){
+                        
+                            @if(role.id === permission.id) {
+                            <mat-checkbox color="primary" formControlName="{{i}}" checked>
+                                {{permission.name}}
+                            </mat-checkbox>
+                            } @else {
+                            <mat-checkbox color="primary" formControlName="{{i}}">
+                                {{permission.name}}
+                            </mat-checkbox>
+                            }
+                        
+                        }
+                    </mat-expansion-panel>
+                    } -->
+
+                <!-- @for (permissionGroup of permissionsGroup; track permissionGroup){
+                    <mat-expansion-panel class="cardWithShadow">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="f-w-600 mat-body-1">
+                                {{permissionGroup.group_name }}
+                            </mat-panel-title>
+                            <mat-panel-description class="mat-body-1">
+
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        @for(permission of permissionGroup.permissions; track permission; let i=$index) {
+                        <div formArrayName="rolePermission">
+                            <mat-checkbox color="primary" formControlName="{{i}}" >
+                                {{permission.name}}
+                            </mat-checkbox>
+                        </div>
+
+                        <mat-checkbox color="primary" formControlName="{{i}}" >
+                            {{permission.name}}
+                        </mat-checkbox>
+                        }
+                        <ng-container formArrayName="rolePermission">
+                            <div *ngFor="let permission of permissionGroup.permissions; let i=index">
+                                <input type="checkbox" formControlName="{{i}}" value="{{permission.name}}" >
+                                {{permission.name}}
+                            </div>
+                        </ng-container>
+                    </mat-expansion-panel>
+                    } -->
+                <!-- </mat-accordion> -->
+                
+            </mat-card-content>
+        </mat-card>
+
+        <!-- <div class="permissions-wrapper">
+            @for (permissionGroup of permissionsGroup; track permissionGroup) {
+            <mat-card class="permission-card">
+                <mat-card-title>
+                    <mat-label>
+                        {{permissionGroup.group_name}}
+                    </mat-label>
+                </mat-card-title>
+                <ul>
+                    @for(permission of permissionGroup.permissions; track permission) {
+                    <li>
+                        <mat-checkbox>
+                            {{permission.name}}
+                        </mat-checkbox>
+                    </li>
+
+                    }
+                </ul>
+            </mat-card>
+            }
+        </div> -->
+
+
+
+        <!-- <mat-card-actions align="start">
+            <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
+                (click)="onSubmit()">Guardar</button>
+            <button mat-flat-button color="primary" class="button">Cancelar</button>
+        </mat-card-actions> -->
+
+        <div class="row justify-content-end">
+            <div class="col-sm-12">
+                <button mat-flat-button color="primary" [disabled]="!formGroup.valid"
+                    (click)="onSubmit()">Submit</button>
+                <button mat-flat-button color="warn" class="m-l-8">Cancel</button>
+            </div>
+        </div>
 
     </mat-card-content>
 </mat-card>

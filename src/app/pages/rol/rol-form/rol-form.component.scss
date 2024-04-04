@@ -20,3 +20,29 @@
 .form-title {
     margin-left: 18px;
 }
+
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+
+
+.permissions-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+@media (max-width: 1024px) {
+  .permissions-wrapper {
+    flex-wrap: wrap;
+  }
+}
+
+.permission-card {
+  display: flex;
+  height: 192px;
+  flex-direction: column;
+  justify-content: space-between;
+}

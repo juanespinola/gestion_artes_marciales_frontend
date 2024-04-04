@@ -1,28 +1,73 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar">
+<div
+  autosize
+  autoFocus
+  [ngClass]="{
+    'sidebarNav-mini': options.sidenavCollapsed && options.navPos !== 'top' &&  !resView,
+    'sidebarNav-horizontal': options.horizontal,
+    cardBorder: options.cardBorder,
+    orange_theme: options.activeTheme == 'orange_theme',
+    blue_theme: options.activeTheme == 'blue_theme',
+    aqua_theme: options.activeTheme == 'aqua_theme',
+    purple_theme: options.activeTheme == 'purple_theme',
+    green_theme: options.activeTheme == 'green_theme',
+    cyan_theme: options.activeTheme == 'cyan_theme'
+  }"
+  [dir]="options.dir!"
+>
+    <!-- <mat-toolbar color="primary" class="example-toolbar">
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
         <h1>Responsive App</h1>
-    </mat-toolbar>
+        <button mat-icon-button (click)="toggleTheme()">
+            @if(isDarkTheme){
+                <mat-icon>brightness_3</mat-icon>
+            } @else {
+                <mat-icon>brightness_7</mat-icon>
+            }            
+        </button>
+    </mat-toolbar> -->
+    <app-header
+    [showToggle]="!isOver"
+    (toggleCollapsed)="toggleCollapsed()"
+    (toggleMobileNav)="sidenav.toggle()"
+    ></app-header>
+
   
-    <mat-sidenav-container style="height: 100%;" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-            <mat-nav-list>
+    <mat-sidenav-container style="height: 100%;" class="mainWrapper">
+        <!-- ============================================================== -->
+        <!-- Vertical Sidebar -->
+        <!-- ============================================================== -->
+        <mat-sidenav
+            align="start"
+            #leftsidenav
+            [mode]="isOver ? 'over' : 'side'"
+            [opened]="options.navPos === 'side' && options.sidenavOpened && !isOver && !resView"
+            (openedChange)="onSidenavOpenedChange($event)"
+            (closedStart)="onSidenavClosedStart()"
+            class="sidebarNav"
+        >
+            <!-- <mat-nav-list>
                 <app-sidebar />
-  
-            </mat-nav-list>
+            </mat-nav-list> -->
+            <app-sidebar></app-sidebar>
+            <ng-scrollbar
+                class="position-relative mini-scroll"
+                style="height: calc(100vh - 90px)"
+            >
+            <mat-nav-list class="sidebar-list">
+                @for(item of navItems; track item) {
+                <app-nav-item [item]="item" (notify)="sidenav.toggle()">
+                </app-nav-item>
+                }
+              </mat-nav-list>
+            </ng-scrollbar>
         </mat-sidenav>
   
         <mat-sidenav-content>
-  
           <router-outlet></router-outlet>
-            
-            <!-- <main class="main">
-              <div>
-              </div>
-              </main> -->
         </mat-sidenav-content>
+        
     </mat-sidenav-container>
   </div>
   

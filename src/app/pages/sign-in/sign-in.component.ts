@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SessionService } from '../../services/session.service';
 import { AlertsService } from '../../services/alerts.service';
-
+import {MatButtonModule} from '@angular/material/button'; 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
@@ -16,7 +16,8 @@ import { AlertsService } from '../../services/alerts.service';
     MatFormFieldModule,
     MatCardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'

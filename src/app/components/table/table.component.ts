@@ -10,19 +10,17 @@ import { FormComponent } from '../form/form.component';
 import { ApiService } from '../../utils/api.service';
 import { Router } from '@angular/router';
 import { AlertsService } from '../../services/alerts.service';
+import { MaterialModule } from '../material.module';
+import { TablerIconsModule } from 'angular-tabler-icons';
 
 
 @Component({
   selector: 'app-table',
   standalone: true,
   imports: [
-    MatTableModule, 
-    MatSortModule,
-    MatPaginatorModule, 
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
     CommonModule,
+    MaterialModule,
+    TablerIconsModule
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
@@ -49,9 +47,11 @@ export class TableComponent implements AfterViewInit {
     
   }
 
-  ngOnInit() {
-    
-    
+  ngOnInit() {    
+  }
+
+  applyFilter(filterValue: string): void {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   
   ngAfterViewInit() {

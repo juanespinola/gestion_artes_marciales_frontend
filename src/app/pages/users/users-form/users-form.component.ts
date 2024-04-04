@@ -1,23 +1,19 @@
 
-import {MatTabsModule} from '@angular/material/tabs';
-import { Component } from '@angular/core';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCardModule} from '@angular/material/card'; 
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
+import { MaterialModule } from '../../../components/material.module';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { Observable, map, startWith } from 'rxjs';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-users-form',
   standalone: true,
   imports: [
-    MatTabsModule,
-    MatSelectModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatCardModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -25,27 +21,52 @@ import { ApiService } from '../../../utils/api.service';
   styleUrl: './users-form.component.scss'
 })
 export class UsersFormComponent {
+  @ViewChild('rolesUserInput') rolesUserInput: ElementRef<HTMLInputElement>;
+
   collection = "user"
   formGroup: FormGroup;
   
-  // fields
-  objeto: any
+  userRoles:any = [];
+  roles:any = [];
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  rol = new FormControl('');
+  filteredRoles: Observable<string[]>;
+  addOnBlur = true;
 
   constructor (
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private apiService: ApiService, 
     private router: Router
-  ){}
+  ){
+  
+  }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      rol: ['', Validators.required],
-      
+      rol: this.rol,
     });
+
+    this.filteredRoles = this.rol.valueChanges
+    .pipe(
+      startWith(null),
+      map((role: string | null) => (role ? this._filter(role) : this.roles.slice())),
+    );
+
     this.createForm();
+    this.getRoles();
+  }
+
+
+  getRoles(){
+    this.apiService.getData("rol")
+    .subscribe({
+      next: (res:any) => this.roles = res,
+      error: (err) => console.error(err)
+    })
 
   }
 
@@ -57,6 +78,7 @@ export class UsersFormComponent {
       .subscribe({
         next: (res:any) => {
           console.log(res)
+          this.userRoles = res.roles
           this.formGroup.patchValue(res)
         },
         error: (err) => console.log(err),
@@ -87,4 +109,36 @@ export class UsersFormComponent {
       });
     }
   }
+
+
+  // Mat Chip Functions
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.roles.push(value);
+    }
+    event.chipInput!.clear();
+  }
+
+  remove(fruit: any): void {
+    // const index = this.fruits.indexOf(fruit);
+    // if (index >= 0) {
+    //   this.fruits.splice(index, 1);
+    // }
+  }
+
+
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.roles.push(event.option.viewValue);
+    // this.rolesUserInput.nativeElement.value = '';
+    this.rol.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.roles.filter((role:any) => role.toLowerCase().includes(filterValue));
+  }
+
 }

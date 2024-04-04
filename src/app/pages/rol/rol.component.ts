@@ -11,9 +11,9 @@ import { PermissionFormComponent } from '../permission/permission-form/permissio
 })
 export class RolComponent {
   collection:any = "rol"
-  headers = ['Id', "Descripcion", "actions"];
+  headers = ['#', "Descripcion", "actions"];
   columns = [
-      { title:"Id", key: 'id', order: true },
+      { title:"#", key: 'id', order: true },
       { title:"Descripcion", key: 'name', order:false }
     ];
 }

@@ -5,15 +5,18 @@ import { FederationFormComponent } from './federation-form/federation-form.compo
 @Component({
   selector: 'app-federation',
   standalone: true,
-  imports: [ComponentsModule, FederationFormComponent],
+  imports: [
+    ComponentsModule, 
+    FederationFormComponent
+  ],
   templateUrl: './federation.component.html',
   styleUrl: './federation.component.scss'
 })
 export class FederationComponent {
   collection:any = "federation"
-  headers = ['Id', "Descripcion", "actions"];
+  headers = ['#', "Descripcion", "actions"];
   columns = [
-    { title:"Id", key: 'id', order: true },
+    { title:"#", key: 'id', order: true },
     { title:"Descripcion", key: 'description', order:false }
   ];
 }
