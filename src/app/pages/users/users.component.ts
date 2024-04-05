@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AlertsService } from '../../services/alerts.service';
 import { MaterialModule } from '../../components/material.module';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../../components/dialogs/delete-dialog/delete-dialog.component';
 
 
 
@@ -68,7 +69,23 @@ export class UsersComponent {
   }
 
   deleteAction(id:any): void {
-    console.log(id)
+    const dialogRef = this.dialog.open(DeleteDialogComponent)
+    dialogRef.afterClosed()
+      .subscribe((result: any) => {
+        if (result.event === 'success') {
+          this.apiService.deleteData(this.collection, id)
+            .subscribe({
+              next: (res: any) => {
+                this.dataSource.data = this.dataSource.data.filter((value: any) => value.id !== id);
+                this.alertsService.showAlert("Correcto!", res.messages, 'success')
+              },
+              error: (error) => {
+                console.log(error)
+                this.alertsService.showAlert("Error!", error.statusText, 'error')
+              }
+            })
+        }
+      })
   }
 
   createAction(): void {

@@ -1,20 +1,14 @@
 import { Component } from '@angular/core';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCardModule} from '@angular/material/card'; 
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
+import { MaterialModule } from '../../../components/material.module';
 
 @Component({
   selector: 'app-permission-form',
   standalone: true,
   imports: [
-    MatSelectModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatCardModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -78,5 +72,9 @@ export class PermissionFormComponent {
         this.router.navigate([this.collection])
       });
     }
+  }
+
+  onBack(){
+    this.router.navigate([this.collection]);
   }
 }

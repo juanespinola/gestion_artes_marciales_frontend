@@ -71,8 +71,7 @@ export class RolFormComponent {
           this.formGroup.addControl('rolePermissionArray', new FormControl(this.roles.permissions))
         },
         error: (err) => console.log(err),
-        complete: () => {
-        }
+        complete: () => {}
       });
     } else {
       this._apiService.getData('permission')
@@ -119,6 +118,10 @@ export class RolFormComponent {
         this.router.navigate([this.collection])
       });
     }
+  }
+
+  onBack(){
+    this.router.navigate([this.collection]);
   }
 
 

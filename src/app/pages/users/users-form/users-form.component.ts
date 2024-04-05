@@ -21,18 +21,18 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   styleUrl: './users-form.component.scss'
 })
 export class UsersFormComponent {
-  @ViewChild('rolesUserInput') rolesUserInput: ElementRef<HTMLInputElement>;
+  @ViewChild('userRoleArrayInput') userRoleArrayInput: ElementRef<HTMLInputElement>;
 
   collection = "user"
   formGroup: FormGroup;
   
-  userRoles:any = [];
-  roles:any = [];
+  selectedRolesArray:any = []; // roles seleccionados en el input
+  roles:any = []; // lista de roles disponible
+  userRoles:any = []; // los roles que el usuario posee 
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  rol = new FormControl('');
+  rolCtrl = new FormControl([]);
   filteredRoles: Observable<string[]>;
-  addOnBlur = true;
 
   constructor (
     private formBuilder: FormBuilder,
@@ -47,14 +47,13 @@ export class UsersFormComponent {
     this.formGroup = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      rol: this.rol,
+      password: ['', Validators.required],
+      rol: this.rolCtrl,
     });
 
-    this.filteredRoles = this.rol.valueChanges
-    .pipe(
-      startWith(null),
-      map((role: string | null) => (role ? this._filter(role) : this.roles.slice())),
-    );
+    // this.filteredRoles = this.rolCtrl.valueChanges.pipe(
+    //   startWith(null), map((role: string | null) => (role ? this._filter(role) : this.roles.slice())),
+    // );
 
     this.createForm();
     this.getRoles();
@@ -78,13 +77,16 @@ export class UsersFormComponent {
       .subscribe({
         next: (res:any) => {
           console.log(res)
-          this.userRoles = res.roles
-          this.formGroup.patchValue(res)
+          this.selectedRolesArray = res.roles
+          this.formGroup.patchValue({
+            name: res.name,
+            email: res.email,
+            password: res.password
+          });
+          this.formGroup.addControl('rol', new FormControl(this.selectedRolesArray))
         },
         error: (err) => console.log(err),
-        complete: () => {
-          console.log('finalizado')
-        }
+        complete: () => {}
       });
     } 
     
@@ -110,29 +112,34 @@ export class UsersFormComponent {
     }
   }
 
+  onBack(){
+    this.router.navigate(['users']);
+  }
+
+
 
   // Mat Chip Functions
-  add(event: MatChipInputEvent): void {
+  addRole(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     if (value) {
-      this.roles.push(value);
+      this.selectedRolesArray.push(value);
     }
     event.chipInput!.clear();
   }
 
-  remove(fruit: any): void {
-    // const index = this.fruits.indexOf(fruit);
-    // if (index >= 0) {
-    //   this.fruits.splice(index, 1);
-    // }
+  remove(role: any): void {
+    const index = this.selectedRolesArray.indexOf(role);
+    if (index >= 0) {
+      this.selectedRolesArray.splice(index, 1);
+    }
   }
 
 
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.roles.push(event.option.viewValue);
-    // this.rolesUserInput.nativeElement.value = '';
-    this.rol.setValue(null);
+    this.selectedRolesArray.push(event.option.value);
+    this.userRoleArrayInput.nativeElement.value = '';
+    this.rolCtrl.setValue(this.selectedRolesArray);
   }
 
   private _filter(value: string): string[] {
