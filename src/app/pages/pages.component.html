@@ -65,7 +65,9 @@
         </mat-sidenav>
   
         <mat-sidenav-content>
-          <router-outlet></router-outlet>
+            <main class="pageWrapper" [ngClass]="{ maxWidth: options.boxed }">
+                <router-outlet></router-outlet>
+            </main>
         </mat-sidenav-content>
         
     </mat-sidenav-container>

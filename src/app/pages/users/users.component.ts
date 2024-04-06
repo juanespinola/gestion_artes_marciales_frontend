@@ -44,7 +44,7 @@ export class UsersComponent {
     ){
     this.collection = "user"
     
-    this.headers = ["#","name", "email", "roles",  "permissions" ,"actions"];
+    this.headers = ["#","name", "email", "roles", "actions"];
     // this.columns = [];
   }
   ngOnInit() {

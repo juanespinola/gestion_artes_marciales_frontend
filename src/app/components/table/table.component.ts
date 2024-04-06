@@ -55,6 +55,11 @@ export class TableComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  getNestedValue(obj: any, path: string): any {
+    return path.split('.').reduce((acc, part) => acc ? acc[part] : null, obj);
+  }
+
+
   ngAfterViewInit() {
     this.getAll()
   }

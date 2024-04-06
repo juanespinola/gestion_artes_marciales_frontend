@@ -51,18 +51,6 @@
     color: var(--gray-700);
   }
 
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: inherit;
-    position: relative;
-  }
-
-
-  
 
   
 
@@ -95,18 +83,18 @@
     flex: 1 0 auto;
   }
 
-  mat-sidenav-content{
-    // margin-top: 64px;
-    padding: 36px;
-    box-sizing: border-box;
-  }
+  // mat-sidenav-content{
+  //   // margin-top: 64px;
+  //   padding: 36px;
+  //   box-sizing: border-box;
+  // }
 
-  mat-drawer-container {
-    position: relative;
-    z-index: 1;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch;
-    display: block;
-    overflow: hidden;
-  }
+  // mat-drawer-container {
+  //   position: relative;
+  //   z-index: 1;
+  //   box-sizing: border-box;
+  //   -webkit-overflow-scrolling: touch;
+  //   display: block;
+  //   overflow: hidden;
+  // }
   

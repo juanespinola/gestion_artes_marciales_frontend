@@ -1,7 +1,5 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { Inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
 
 
@@ -31,6 +29,7 @@ export const JwtInterceptor: HttpInterceptorFn = (req, next) => {
         } else {
           // Handle other HTTP error codes
           console.error('HTTP error:', err);
+          // alert.showAlert("HTTP error", err.message, "error")
         }
       } else {
         // Handle non-HTTP errors
