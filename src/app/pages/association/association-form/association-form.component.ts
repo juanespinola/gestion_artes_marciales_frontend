@@ -6,17 +6,15 @@ import {MatCardModule} from '@angular/material/card';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
+import { MaterialModule } from '../../../components/material.module';
 
 @Component({
   selector: 'app-association-form',
   standalone: true,
   imports: [ 
-    MatSelectModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatCardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   templateUrl: './association-form.component.html',
   styleUrl: './association-form.component.scss'
@@ -52,9 +50,7 @@ export class AssociationFormComponent {
           this.formGroup.patchValue(res)
         },
         error: (err) => console.log(err),
-        complete: () => {
-          console.log('finalizado')
-        }
+        complete: () => {}
       });
     } 
     
@@ -80,4 +76,7 @@ export class AssociationFormComponent {
     }
   }
 
+  onBack(){
+    this.router.navigate([this.collection]);
+  }
 }

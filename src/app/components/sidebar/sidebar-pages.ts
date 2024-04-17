@@ -34,5 +34,17 @@ export const navItems: NavItem[] = [
     route: '/groupcategory',
     permission: 'groupcategory.access'
   },
+  {
+    displayName: 'Federaciones',
+    iconName: 'aperture',
+    route: '/federation',
+    permission: 'federation.access'
+  },
+  {
+    displayName: 'Asociaciones',
+    iconName: 'aperture',
+    route: '/association',
+    permission: 'association.access'
+  },
   
 ];

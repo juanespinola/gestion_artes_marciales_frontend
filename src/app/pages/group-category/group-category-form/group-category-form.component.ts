@@ -19,6 +19,8 @@ export class GroupCategoryFormComponent {
   collection = "groupcategory"
   formGroup: FormGroup;
 
+  categories: any;
+
   constructor (
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -36,16 +38,14 @@ export class GroupCategoryFormComponent {
       initial_value: ['', Validators.required],
       final_value: ['', Validators.required],
       category_id:['', Validators.required],
-      federation_id: ['', Validators.required],
-      association_id: ['']
     });
+    this.getCategories()
     this.createForm();
 
   }
 
   createForm() {
     let id = this.route.snapshot.params['id']
-    
     if(id) {
       this.apiService.getData(this.collection+`/${id}`)
       .subscribe({
@@ -54,12 +54,22 @@ export class GroupCategoryFormComponent {
           this.formGroup.patchValue(res)
         },
         error: (err) => console.log(err),
-        complete: () => {
-          console.log('finalizado')
-        }
+        complete: () => {}
       });
     } 
     
+  }
+
+  getCategories() {
+    this.apiService.getData('category')
+      .subscribe({
+        next: (res:any) => {
+          console.log(res)
+          this.categories = res
+        },
+        error: (err) => console.log(err),
+        complete: () => {}
+      });
   }
 
 

@@ -42,7 +42,7 @@ export const routes: Routes = [
     component: PagesComponent,
     children: [
       {
-        path: 'associations',
+        path: 'association',
         children: [
           { path: "", component: AssociationComponent, },
           { path: 'edit/:id', component: AssociationFormComponent },
@@ -50,7 +50,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'federations',
+        path: 'federation',
         children: [
           { path: "", component: FederationComponent },
           { path: 'edit/:id', component: FederationFormComponent },
