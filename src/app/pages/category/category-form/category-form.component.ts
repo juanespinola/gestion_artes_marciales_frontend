@@ -29,7 +29,6 @@ export class CategoryFormComponent {
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       description: ['', Validators.required],
-      sport_id: ['', Validators.required]
     });
     this.createForm();
 

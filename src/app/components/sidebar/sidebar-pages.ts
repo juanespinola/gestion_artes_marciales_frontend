@@ -8,31 +8,31 @@ export const navItems: NavItem[] = [
     displayName: 'Permisos',
     iconName: 'chart-pie',
     route: '/permission',
+    permission: 'permission.access'
   },
   {
     displayName: 'Roles',
     iconName: 'coffee',
     route: '/rol',
+    permission: 'rol.access'
   },
   {
     displayName: 'Usuarios',
     iconName: 'cpu',
     route: '/users',
-  },
-  {
-    displayName: 'Deportes',
-    iconName: 'flag',
-    route: '/sport',
+    permission: 'user.access'
   },
   {
     displayName: 'Categorias',
     iconName: 'shopping-cart',
     route: '/category',
+    permission: 'category.access'
   },
   {
     displayName: 'Reglas Categorias',
     iconName: 'aperture',
     route: '/groupcategory',
+    permission: 'groupcategory.access'
   },
   
 ];

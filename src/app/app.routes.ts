@@ -23,13 +23,19 @@ import { GroupCategoryFormComponent } from './pages/group-category/group-categor
 
 
 export const routes: Routes = [
+  // {
+  //   path: 'auth',
+  //   children: [
+  //     { path: "", component: AuthComponent },
+  //     { path: "signin", component: SignInComponent },
+  //     { path: "signup", component: SignUpComponent }
+  //   ]
+  // },
   {
-    path: 'auth',
-    children: [
-      { path: "", component: AuthComponent },
-      { path: "signin", component: SignInComponent },
-      { path: "signup", component: SignUpComponent }
-    ]
+    path: 'signin',
+      children: [
+        { path: "", component: SignInComponent, },
+      ]
   },
   {
     path: "",

@@ -23,6 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../material.module';
 import { NavService } from '../../../services/nav.service';
+import { SessionService } from '../../../services/session.service';
 
 @Component({
   selector: 'app-nav-item',
@@ -57,11 +58,12 @@ export class NavItemComponent {
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: NavItem | any;
   @Input() depth: any;
-
-  constructor(public navService: NavService, public router: Router) {
+  permissions: any;
+  constructor(public navService: NavService, public router: Router, private sessionService: SessionService) {
     if (this.depth === undefined) {
       this.depth = 0;
     }
+    this.permissions = this.sessionService.getUser().permissions
   }
   
   ngOnChanges() {

@@ -2,22 +2,16 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../utils/api.service';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { SessionService } from '../../services/session.service';
 import { AlertsService } from '../../services/alerts.service';
-import {MatButtonModule} from '@angular/material/button'; 
+import { MaterialModule } from '../../components/material.module';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
   imports: [
-    MatInputModule,
-    MatFormFieldModule,
-    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MaterialModule
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'

@@ -15,10 +15,9 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 })
 export class CategoryComponent {
   collection:any = "category"
-  headers = ['#', "Descripcion", "Deporte", "actions"];
+  headers = ['#', "Descripcion",  "actions"];
   columns = [
       { title:"#", key: 'id', order: true },
       { title:"Descripcion", key: 'description', order:false },
-      { title:"Deporte", key: 'sport.description', order:false }
     ];
 }

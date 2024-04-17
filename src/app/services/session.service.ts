@@ -29,9 +29,12 @@ export class SessionService {
   }
 
   isAuthenticated() {
-    if(!localStorage.getItem('token')){
+    if (!localStorage.getItem('token')) {
       this.router.navigate(["auth"])
     }
   }
 
+  getUser(): any | null {
+    return JSON.parse(localStorage.getItem('user')!);
+  }
 }

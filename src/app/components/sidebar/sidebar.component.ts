@@ -40,10 +40,9 @@ import { TranslateModule } from '@ngx-translate/core';
 export class SidebarComponent {
   navopt = this.navService.showClass;
 
-  constructor(private sessionService: SessionService, public navService: NavService) {}
-  permissions: any;
+  constructor(public navService: NavService) {}
   ngOnInit(){
-    this.permissions = JSON.parse(this.sessionService.getItem('user')!).permissions
+    
     // console.log(JSON.parse(this.sessionService.getItem('user')!))
   }
 }
