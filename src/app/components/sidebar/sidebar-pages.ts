@@ -46,5 +46,11 @@ export const navItems: NavItem[] = [
     route: '/association',
     permission: 'association.access'
   },
+  {
+    displayName: 'Eventos',
+    iconName: 'aperture',
+    route: '/event',
+    permission: 'event.access'
+  },
   
 ];

@@ -10,6 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 export function HttpLoaderFactory(http: HttpClient): any {
@@ -30,8 +31,10 @@ export const appConfig: ApplicationConfig = {
         },
       }),
       TablerIconsModule,
-      TablerIconsModule.pick(TablerIcons)
-    ),  
+      TablerIconsModule.pick(TablerIcons),
+      MatNativeDateModule
+    ), 
+     
   ],
   
 };

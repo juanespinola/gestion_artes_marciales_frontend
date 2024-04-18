@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MaterialModule } from '../../../components/material.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
-import { MaterialModule } from '../../../components/material.module';
 
 @Component({
-  selector: 'app-association-form',
+  selector: 'app-event-form',
   standalone: true,
-  imports: [ 
+  imports: [
+    MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
-    MaterialModule
+    ReactiveFormsModule
   ],
-  templateUrl: './association-form.component.html',
-  styleUrl: './association-form.component.scss'
+  templateUrl: './event-form.component.html',
+  styleUrl: './event-form.component.scss'
 })
-export class AssociationFormComponent {
-  collection = "association"
+export class EventFormComponent {
+  collection = "event"
   formGroup: FormGroup;
-  
+
+  categories: any;
 
   constructor (
     private formBuilder: FormBuilder,
@@ -29,15 +30,21 @@ export class AssociationFormComponent {
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      location_id: ['', Validators.required],
+      initial_date: ['', Validators.required],
+      final_date: [''],
+      event_type_id: ['', Validators.required],
+      event_status_id: ['', Validators.required],
+      inscription_fee: ['', Validators.required],
+      available_slots: ['', Validators.required],
     });
+    
     this.createForm();
-
   }
 
   createForm() {
     let id = this.route.snapshot.params['id']
-    
     if(id) {
       this.apiService.getData(this.collection+`/${id}`)
       .subscribe({
@@ -50,6 +57,18 @@ export class AssociationFormComponent {
       });
     } 
     
+  }
+
+  getCategories() {
+    this.apiService.getData('category')
+      .subscribe({
+        next: (res:any) => {
+          console.log(res)
+          this.categories = res
+        },
+        error: (err) => console.log(err),
+        complete: () => {}
+      });
   }
 
 

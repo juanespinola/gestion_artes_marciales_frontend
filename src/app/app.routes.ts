@@ -20,6 +20,8 @@ import { CategoryComponent } from './pages/category/category.component';
 import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
 import { GroupCategoryComponent } from './pages/group-category/group-category.component';
 import { GroupCategoryFormComponent } from './pages/group-category/group-category-form/group-category-form.component';
+import { EventComponent } from './pages/event/event.component';
+import { EventFormComponent } from './pages/event/event-form/event-form.component';
 
 
 export const routes: Routes = [
@@ -104,6 +106,14 @@ export const routes: Routes = [
           { path: "", component: GroupCategoryComponent, },
           { path: "edit/:id", component: GroupCategoryFormComponent },
           { path: "add", component: GroupCategoryFormComponent },
+        ]
+      },
+      {
+        path: 'event',
+        children: [
+          { path: "", component: EventComponent, },
+          { path: "edit/:id", component: EventFormComponent },
+          { path: "add", component: EventFormComponent },
         ]
       }
     ]
