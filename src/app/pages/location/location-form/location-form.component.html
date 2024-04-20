@@ -5,7 +5,6 @@
     <mat-card-content class="b-t-1">
 
         <div class="row">
-
             <div class="col-lg-6 col-sm-6">
 
                 <div class="row">
@@ -29,14 +28,10 @@
                     </div>
                     <div class="col-sm-8">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-select formControlName="location_id" value="location_id" placeholder="Seleccione Opcion">
-                              <mat-option *ngFor="let location of locations" [value]="location.id">{{location.description}}</mat-option>
-                            </mat-select>
+                            <input matInput formControlName="location_id" />
                         </mat-form-field>
                     </div>
                 </div>
-
-
 
                 <div class="row">
                     <div class="col-sm-4 d-flex align-items-center">
@@ -82,83 +77,9 @@
                     </div>
                 </div>
 
-
             </div>
-
-            <div class="col-lg-6 col-sm-6">
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Tipo de Evento
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-select formControlName="type_event_id" value="type_event_id" placeholder="Seleccione Opcion">
-                              <mat-option *ngFor="let typeevent of typesevent" [value]="typeevent.id">{{typeevent.description}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Estado de Evento
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-select formControlName="status_event_id" value="status_event_id" placeholder="Seleccione Opcion">
-                              <mat-option *ngFor="let status of statusevent" [value]="status.id">{{status.description}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Hora Inicio
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="initial_time" type="time" min="07:00" max="22:00" />
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Hora Fin
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="final_time" type="time" min="07:00" max="22:00" />
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Cantidad Disponibles
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="available_slots" />
-                        </mat-form-field>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
+
         <div class="row justify-content-end">
             <div class="col-sm-12">
                 <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"

@@ -52,5 +52,22 @@ export const navItems: NavItem[] = [
     route: '/event',
     permission: 'event.access'
   },
+  {
+    displayName: 'Lugares',
+    iconName: 'aperture',
+    route: '/location',
+  },
+  {
+    displayName: 'Tipos de Eventos',
+    iconName: 'aperture',
+    route: '/typesevent',
+    permission: 'typesevent.access'
+  },
+  {
+    displayName: 'Estados de Eventos',
+    iconName: 'aperture',
+    route: '/statusevent',
+    permission: 'statusevent.access'
+  },
   
 ];

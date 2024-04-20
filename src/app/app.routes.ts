@@ -22,6 +22,12 @@ import { GroupCategoryComponent } from './pages/group-category/group-category.co
 import { GroupCategoryFormComponent } from './pages/group-category/group-category-form/group-category-form.component';
 import { EventComponent } from './pages/event/event.component';
 import { EventFormComponent } from './pages/event/event-form/event-form.component';
+import { LocationComponent } from './pages/location/location.component';
+import { LocationFormComponent } from './pages/location/location-form/location-form.component';
+import { TypesEventComponent } from './pages/types-event/types-event.component';
+import { TypesEventFormComponent } from './pages/types-event/types-event-form/types-event-form.component';
+import { StatusEventComponent } from './pages/status-event/status-event.component';
+import { StatusEventFormComponent } from './pages/status-event/status-event-form/status-event-form.component';
 
 
 export const routes: Routes = [
@@ -84,14 +90,14 @@ export const routes: Routes = [
           { path: "add", component: RolFormComponent },
         ]
       },
-      {
-        path: 'sport',
-        children: [
-          { path: "", component: SportComponent, },
-          { path: "edit/:id", component: SportFormComponent },
-          { path: "add", component: SportFormComponent },
-        ]
-      },
+      // {
+      //   path: 'sport',
+      //   children: [
+      //     { path: "", component: SportComponent, },
+      //     { path: "edit/:id", component: SportFormComponent },
+      //     { path: "add", component: SportFormComponent },
+      //   ]
+      // },
       {
         path: 'category',
         children: [
@@ -115,7 +121,31 @@ export const routes: Routes = [
           { path: "edit/:id", component: EventFormComponent },
           { path: "add", component: EventFormComponent },
         ]
-      }
+      },
+      {
+        path: 'location',
+        children: [
+          { path: "", component: LocationComponent, },
+          { path: "edit/:id", component: LocationFormComponent },
+          { path: "add", component: LocationFormComponent },
+        ]
+      },
+      {
+        path: 'typesevent',
+        children: [
+          { path: "", component: TypesEventComponent, },
+          { path: "edit/:id", component: TypesEventFormComponent },
+          { path: "add", component: TypesEventFormComponent },
+        ]
+      },
+      {
+        path: 'statusevent',
+        children: [
+          { path: "", component: StatusEventComponent, },
+          { path: "edit/:id", component: StatusEventFormComponent },
+          { path: "add", component: StatusEventFormComponent },
+        ]
+      },
     ]
   },
 
