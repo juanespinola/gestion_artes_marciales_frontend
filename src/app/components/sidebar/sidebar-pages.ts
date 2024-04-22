@@ -1,5 +1,6 @@
+import { APP_ROUTES } from '../../routes';
 import { NavItem } from './nav-item/nav-item';
-
+const admin_path = 'admin/';
 export const navItems: NavItem[] = [
   {
     navCap: 'Home',
@@ -7,66 +8,66 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Permisos',
     iconName: 'chart-pie',
-    route: '/permission',
+    route: admin_path+APP_ROUTES.PERMISSION,
     permission: 'permission.access'
   },
   {
     displayName: 'Roles',
     iconName: 'coffee',
-    route: '/rol',
+    route: admin_path+APP_ROUTES.ROL,
     permission: 'rol.access'
   },
   {
     displayName: 'Usuarios',
     iconName: 'cpu',
-    route: '/users',
+    route: admin_path+APP_ROUTES.USERS,
     permission: 'user.access'
   },
   {
     displayName: 'Categorias',
     iconName: 'shopping-cart',
-    route: '/category',
+    route: admin_path+APP_ROUTES.CATEGORY,
     permission: 'category.access'
   },
   {
     displayName: 'Reglas Categorias',
     iconName: 'aperture',
-    route: '/groupcategory',
+    route: admin_path+APP_ROUTES.GROUP_CATEGORY,
     permission: 'groupcategory.access'
   },
   {
     displayName: 'Federaciones',
     iconName: 'aperture',
-    route: '/federation',
+    route: admin_path+APP_ROUTES.FEDERATION,
     permission: 'federation.access'
   },
   {
     displayName: 'Asociaciones',
     iconName: 'aperture',
-    route: '/association',
+    route: admin_path+APP_ROUTES.ASSOCIATION,
     permission: 'association.access'
   },
   {
     displayName: 'Eventos',
     iconName: 'aperture',
-    route: '/event',
+    route: admin_path+APP_ROUTES.EVENT,
     permission: 'event.access'
   },
   {
     displayName: 'Lugares',
     iconName: 'aperture',
-    route: '/location',
+    route: admin_path+APP_ROUTES.LOCATION,
   },
   {
     displayName: 'Tipos de Eventos',
     iconName: 'aperture',
-    route: '/typesevent',
+    route: admin_path+APP_ROUTES.TYPE_EVENT,
     permission: 'typesevent.access'
   },
   {
     displayName: 'Estados de Eventos',
     iconName: 'aperture',
-    route: '/statusevent',
+    route: admin_path+APP_ROUTES.STATUS_EVENT,
     permission: 'statusevent.access'
   },
   

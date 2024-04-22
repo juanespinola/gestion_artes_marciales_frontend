@@ -2,81 +2,17 @@
   width: $sidenav-desktop;
   flex-shrink: 0;
   transition: swift-ease-out(width);
-  position: fixed !important;
-  top: $header-height !important;
+  position: absolute;
   overflow-x: hidden;
-  .mat-drawer-inner-container {
-    overflow: hidden;
-  }
 }
 
-
-
-// user profile
-.user-profile {
-  position: relative;
-  background-size: cover !important;
-
-  .profile-img {
-    width: 50px;
-    margin-left: 30px;
-    padding: 31px 0;
-    border-radius: 100%;
-
-    &::before {
-      -webkit-animation: 2.5s blow 0s linear infinite;
-      animation: 2.5s blow 0s linear infinite;
-      position: absolute;
-      content: "";
-      width: 50px;
-      height: 50px;
-      top: 31px;
-      margin: 0 auto;
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    img {
-      width: 100%;
-      border-radius: 100%;
-    }
-  }
-
-  .profile-text {
-    position: relative;
-    cursor: pointer;
-    > a {
-      padding: 6px 30px;
-      background: rgba(0, 0, 0, 0.5);
-      white-space: nowrap;
-      &:after {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-      }
-    }
-  }
+.branding {
+  padding: 20px;
 }
 
-.profile-dd {
-  margin-left: 26px !important;
-}
-
-// minisidebar
 .sidebarNav-mini {
-  .mini-scroll {
-    height: calc(100vh - 70px) !important;
-  }
-  .branding {
-    justify-content: center;
-    a {
-      width: 45px;
-      overflow: hidden;
-    }
-  }
   .sidebarNav {
     width: $sidenav-mini;
-    
     .profile-bar {
       display: none;
     }
@@ -94,13 +30,6 @@
     }
     &:hover {
       width: $sidenav-desktop;
-      .mini-scroll {
-        height: calc(100vh - 230px) !important;
-      }
-      .hide-menu {
-        overflow: hidden;
-        width: $sidenav-desktop;
-      }
       .profile-bar {
         display: block;
       }
@@ -108,11 +37,10 @@
         .menu-list-item {
           padding: 8px 10px;
           .mdc-list-item__content {
-            display: inline-block;
+            display: inline;
           }
           .mdc-list-item__start {
             margin-left: 0 !important;
-          
           }
         }
         &.mdc-list {
@@ -126,9 +54,14 @@
     }
   }
 
-  .hide-menu {
+  .hideMenu {
     overflow: hidden;
     width: $sidenav-mini;
+  }
+
+  .branding {
+    width: $sidenav-mini - 15px;
+    overflow: hidden;
   }
 
   .sidebar-list {
@@ -145,7 +78,6 @@
     transition: swift-ease-out(width);
   }
 }
-
 
 @media (min-width: 1024px) {
   .sidebarNav-mini {
@@ -168,8 +100,9 @@
 
     .mdc-list-group__subheader {
       margin: 12px 0;
+      text-transform: uppercase;
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 700;
       margin-top: 24px;
     }
 
@@ -241,27 +174,4 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-@keyframes blow {
-  0% {
-    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    -webkit-transform: scale3d(1, 1, 0.5);
-    transform: scale3d(1, 1, 0.5);
-  }
-
-  50% {
-    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    -webkit-transform: scale3d(1, 1, 0.5);
-    transform: scale3d(1, 1, 0.5);
-  }
-
-  100% {
-    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    -webkit-transform: scale3d(1, 1, 0.5);
-    transform: scale3d(1, 1, 0.5);
-  }
 }

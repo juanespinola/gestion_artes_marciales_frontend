@@ -11,6 +11,7 @@ import { CoreService } from '../../services/core.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { Router } from '@angular/router';
+import { SessionService } from '../../services/session.service';
 
 interface notifications {
   id: number;
@@ -89,7 +90,8 @@ export class HeaderComponent {
     private vsidenav: CoreService,
     // public dialog: MatDialog,
     private translate: TranslateService,
-    private route: Router
+    private route: Router,
+    private sessionService: SessionService
   ) {
     translate.setDefaultLang('en');
   }
@@ -198,6 +200,6 @@ export class HeaderComponent {
   ];
 
   logout(){
-    this.route.navigate(['signin']);
+    this.sessionService.logout();
   }
 }

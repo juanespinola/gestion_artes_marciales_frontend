@@ -1,6 +1,6 @@
 // card
 .mat-mdc-card {
-  margin-bottom: 24px;
+  margin-bottom: 30px;
   border-radius: $border-radius;
 }
 .mat-mdc-card-header {
@@ -21,16 +21,6 @@
 
 .mat-mdc-card-title {
   line-height: 1.6rem;
-  font-size: 18px;
-  font-weight: 500;
-  color: $textPrimary;
-}
-
-.mat-mdc-card-subtitle {
-  font-weight: 400;
-  font-size: 14px;
-  margin-top: 5px;
-  color: $textPrimary;
 }
 
 .mdc-card__actions {

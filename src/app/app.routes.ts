@@ -1,56 +1,65 @@
 import { Routes } from '@angular/router';
-import { AssociationComponent } from './pages/association/association.component';
-import { FederationComponent } from './pages/federation/federation.component';
-import { AssociationFormComponent } from './pages/association/association-form/association-form.component';
-import { FederationFormComponent } from './pages/federation/federation-form/federation-form.component';
-import { AuthComponent } from './templates/auth/auth.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { PagesComponent } from './pages/pages.component';
-import { UsersComponent } from './pages/users/users.component';
-import { UsersFormComponent } from './pages/users/users-form/users-form.component';
-import { UsersPermissionsComponent } from './pages/users/users-permissions/users-permissions.component';
-import { PermissionComponent } from './pages/permission/permission.component';
-import { PermissionFormComponent } from './pages/permission/permission-form/permission-form.component';
-import { RolComponent } from './pages/rol/rol.component';
-import { RolFormComponent } from './pages/rol/rol-form/rol-form.component';
-import { SportComponent } from './pages/sport/sport.component';
-import { SportFormComponent } from './pages/sport/sport-form/sport-form.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
-import { GroupCategoryComponent } from './pages/group-category/group-category.component';
-import { GroupCategoryFormComponent } from './pages/group-category/group-category-form/group-category-form.component';
-import { EventComponent } from './pages/event/event.component';
-import { EventFormComponent } from './pages/event/event-form/event-form.component';
-import { LocationComponent } from './pages/location/location.component';
-import { LocationFormComponent } from './pages/location/location-form/location-form.component';
-import { TypesEventComponent } from './pages/types-event/types-event.component';
-import { TypesEventFormComponent } from './pages/types-event/types-event-form/types-event-form.component';
-import { StatusEventComponent } from './pages/status-event/status-event.component';
-import { StatusEventFormComponent } from './pages/status-event/status-event-form/status-event-form.component';
+import { FederationComponent } from './pages/admin/federation/federation.component';
+import { FederationFormComponent } from './pages/admin/federation/federation-form/federation-form.component';
+import { SignInComponent } from './pages/admin/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/admin/sign-up/sign-up.component';
+import { PagesComponent } from './pages/admin/pages.component';
+import { UsersComponent } from './pages/admin/users/users.component';
+import { UsersFormComponent } from './pages/admin/users/users-form/users-form.component';
+import { UsersPermissionsComponent } from './pages/admin/users/users-permissions/users-permissions.component';
+import { PermissionComponent } from './pages/admin/permission/permission.component';
+import { PermissionFormComponent } from './pages/admin/permission/permission-form/permission-form.component';
+import { RolComponent } from './pages/admin/rol/rol.component';
+import { RolFormComponent } from './pages/admin/rol/rol-form/rol-form.component';
+
+import { GroupCategoryComponent } from './pages/admin/group-category/group-category.component';
+import { GroupCategoryFormComponent } from './pages/admin/group-category/group-category-form/group-category-form.component';
+import { EventComponent } from './pages/admin/event/event.component';
+import { EventFormComponent } from './pages/admin/event/event-form/event-form.component';
+import { LocationComponent } from './pages/admin/location/location.component';
+import { LocationFormComponent } from './pages/admin/location/location-form/location-form.component';
+import { TypesEventComponent } from './pages/admin/types-event/types-event.component';
+import { TypesEventFormComponent } from './pages/admin/types-event/types-event-form/types-event-form.component';
+import { StatusEventComponent } from './pages/admin/status-event/status-event.component';
+import { StatusEventFormComponent } from './pages/admin/status-event/status-event-form/status-event-form.component';
+import { APP_ROUTES } from './routes';
+import { AssociationComponent } from './pages/admin/association/association.component';
+import { AssociationFormComponent } from './pages/admin/association/association-form/association-form.component';
+import { CategoryComponent } from './pages/admin/category/category.component';
+import { CategoryFormComponent } from './pages/admin/category/category-form/category-form.component';
+import { OrganizationComponent } from './pages/organization/organization.component';
+import { EventsComponent } from './pages/organization/events/events.component';
+import { FederationsComponent } from './pages/organization/federations/federations.component';
 
 
 export const routes: Routes = [
-  // {
-  //   path: 'auth',
-  //   children: [
-  //     { path: "", component: AuthComponent },
-  //     { path: "signin", component: SignInComponent },
-  //     { path: "signup", component: SignUpComponent }
-  //   ]
-  // },
   {
-    path: 'signin',
+    path: "",
+    component: OrganizationComponent,
+    // redirectTo: "federations",
+    children: [
+      // { path: "events/:federation_id", component: EventsComponent}
+      // { path: "events", component: EventsComponent}
+    ]
+  },
+  {
+    path:"federations/:federation_id",
+    component : FederationsComponent
+    // { path: "federations/:federation_id", component: FederationsComponent },
+      // { path: "federations/:federation_id/events", component: EventsComponent}
+  },
+  {
+    path: APP_ROUTES.ADMIN_SIGNIN,
       children: [
         { path: "", component: SignInComponent, },
       ]
   },
   {
-    path: "",
+    path: "admin",
     component: PagesComponent,
     children: [
       {
-        path: 'association',
+        path: APP_ROUTES.ASSOCIATION,
         children: [
           { path: "", component: AssociationComponent, },
           { path: 'edit/:id', component: AssociationFormComponent },
@@ -58,7 +67,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'federation',
+        path: APP_ROUTES.FEDERATION,
         children: [
           { path: "", component: FederationComponent },
           { path: 'edit/:id', component: FederationFormComponent },
@@ -66,7 +75,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'users',
+        path: APP_ROUTES.USERS,
         children: [
           { path: "", component: UsersComponent },
           { path: "edit/:id", component: UsersFormComponent },
@@ -75,7 +84,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'permission',
+        path: APP_ROUTES.PERMISSION,
         children: [
           { path: "", component: PermissionComponent },
           { path: "edit/:id", component: PermissionFormComponent },
@@ -83,7 +92,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'rol',
+        path: APP_ROUTES.ROL,
         children: [
           { path: "", component: RolComponent, },
           { path: "edit/:id", component: RolFormComponent },
@@ -99,7 +108,7 @@ export const routes: Routes = [
       //   ]
       // },
       {
-        path: 'category',
+        path: APP_ROUTES.CATEGORY,
         children: [
           { path: "", component: CategoryComponent, },
           { path: "edit/:id", component: CategoryFormComponent },
@@ -107,7 +116,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'groupcategory',
+        path: APP_ROUTES.GROUP_CATEGORY,
         children: [
           { path: "", component: GroupCategoryComponent, },
           { path: "edit/:id", component: GroupCategoryFormComponent },
@@ -115,7 +124,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'event',
+        path: APP_ROUTES.EVENT,
         children: [
           { path: "", component: EventComponent, },
           { path: "edit/:id", component: EventFormComponent },
@@ -123,7 +132,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'location',
+        path: APP_ROUTES.LOCATION,
         children: [
           { path: "", component: LocationComponent, },
           { path: "edit/:id", component: LocationFormComponent },
@@ -131,7 +140,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'typesevent',
+        path: APP_ROUTES.TYPE_EVENT,
         children: [
           { path: "", component: TypesEventComponent, },
           { path: "edit/:id", component: TypesEventFormComponent },
@@ -139,7 +148,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'statusevent',
+        path: APP_ROUTES.STATUS_EVENT,
         children: [
           { path: "", component: StatusEventComponent, },
           { path: "edit/:id", component: StatusEventFormComponent },

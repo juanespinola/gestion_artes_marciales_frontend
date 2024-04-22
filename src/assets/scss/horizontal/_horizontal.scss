@@ -2,13 +2,11 @@
   .childBox {
     background: $white;
   }
-
+ 
   // header
   .horizontal-topbar {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 9px 17.5px;
-    .branding {
-      padding-left: 0;
-    }
+    .branding {padding-left: 0;}
     .container {
       max-width: 1200px;
       display: flex;
@@ -25,7 +23,6 @@
       position: relative;
       z-index: 5;
       margin: 5px 0;
-      
       &.mega-menu {
         position: static;
         &:hover {
@@ -36,7 +33,7 @@
         > .childBox {
           width: 100%;
           left: 0;
-          
+
           > .ddmenu {
             width: 24%;
           }
@@ -70,7 +67,7 @@
       &:hover > .activeMenu,
       .activeMenu {
         color: $white;
-        background-color: $accent;
+        background-color: $primary;
       }
       .down-icon .mat-icon {
         width: 18px;
@@ -82,13 +79,12 @@
         box-shadow: $cardshadow;
         position: absolute;
         width: 250px;
-        padding: 15px;
         // background-color: $white;
-        display: none;
+
         .ddmenu {
-          display: block;
-          border-radius: $border-radius;
-          margin: 0px 0 2px 0;
+          display: none;
+          padding: 10px;
+          margin: 10px;
           position: relative;
         }
       }
@@ -100,24 +96,24 @@
         }
       }
       &:hover > .childBox > .ddmenu:hover > .childBox {
-        left: 218px;
+        left: 230px;
         top: 0px;
         z-index: 9;
         > .ddmenu:hover > .childBox {
-          left: 222px;
+          left: 235px;
           top: 0;
         }
       }
 
-      &:hover > .childBox {
+      &:hover > .childBox > .ddmenu {
         display: block;
-        
-        > .ddmenu:hover > .childBox {
+        padding: 0;
+        &:hover > .childBox > .ddmenu {
           display: block;
-          
-          > .ddmenu:hover > .childBox {
+          padding: 0;
+          &:hover > .childBox > .ddmenu {
             display: block;
-            
+            padding: 0;
           }
         }
       }
@@ -126,6 +122,10 @@
 }
 
 .sidebarNav-horizontal {
+  .topbar,
+  .mainWrapper {
+    width: 100%;
+  }
   .horizontal-navbar {
     .parentBox {
       &.pactive > a, &.pactive > a:hover, &.pactive:hover > a{

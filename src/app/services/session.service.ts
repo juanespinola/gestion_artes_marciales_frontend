@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { APP_ROUTES } from '../routes';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +30,18 @@ export class SessionService {
   }
 
   isAuthenticated() {
-    if (!localStorage.getItem('token')) {
-      this.router.navigate(["auth"])
+    if (!localStorage.getItem('user')) {
+      this.logout()
     }
+    return false;
   }
 
   getUser(): any | null {
     return JSON.parse(localStorage.getItem('user')!);
+  }
+
+  logout(){
+    localStorage.clear()
+    this.router.navigate([APP_ROUTES.ADMIN_SIGNIN])
   }
 }

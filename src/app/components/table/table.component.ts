@@ -70,7 +70,7 @@ export class TableComponent implements AfterViewInit {
   }
 
   updateAction(id: any): void {
-    this.route.navigate([this.collection + "/edit", id]);
+    this.route.navigate(['admin/'+this.collection + "/edit", id]);
 
     // const dialogRef = this.dialog.open(FormComponent, {
     //   data: {
@@ -106,7 +106,7 @@ export class TableComponent implements AfterViewInit {
   }
 
   createAction(): void {
-    this.route.navigate([this.collection + "/add"]);
+    this.route.navigate(['admin',this.collection, "add"]);
   }
 
   getAll() {

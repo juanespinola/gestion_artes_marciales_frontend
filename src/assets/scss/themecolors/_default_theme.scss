@@ -1,7 +1,7 @@
 $mat-primary: (
   100: white,
-  500: #1e88e5,
-  700: #1e88e5,
+  500: #5d87ff,
+  700: #5d87ff,
   contrast: (
     100: white,
     500: white,
@@ -10,8 +10,8 @@ $mat-primary: (
 );
 $mat-secondary: (
   100: white,
-  500: #26c6da,
-  700: #26c6da,
+  500: #44b7f7,
+  700: #5d87ff,
   contrast: (
     100: white,
     500: white,
@@ -21,8 +21,8 @@ $mat-secondary: (
 
 $mat-warn: (
   100: FDEDE8,
-  500: #e91e63,
-  700: #e91e63,
+  500: #fa896b,
+  700: #f3704d,
   contrast: (
     100: white,
     500: white,
@@ -43,10 +43,10 @@ $bluetheme: mat.define-light-theme(
     ),
     typography:
       mat.define-typography-config(
-        $font-family: "Poppins",
+        $font-family: "Plus Jakarta Sans",
         $subtitle-2: mat.define-typography-level(14px, 14px, 400),
         $subtitle-1: mat.define-typography-level(21px, 26px, 500),
-         $headline-6: mat.define-typography-level(18px, 26px, 500),
+        $headline-6: mat.define-typography-level(18px, 26px, 600),
         $headline-5: mat.define-typography-level(24px, 30px, 700),
         $button: mat.define-typography-level(14px, 14px, 400),
         $body-1: mat.define-typography-level(14px, 20px, 400),
@@ -64,10 +64,10 @@ $darkbluetheme: mat.define-dark-theme(
     ),
     typography:
       mat.define-typography-config(
-        $font-family: "Poppins",
+        $font-family: "Plus Jakarta Sans",
         $subtitle-2: mat.define-typography-level(14px, 14px, 400),
         $subtitle-1: mat.define-typography-level(21px, 26px, 500),
-         $headline-6: mat.define-typography-level(18px, 26px, 500),
+        $headline-6: mat.define-typography-level(18px, 26px, 600),
         $headline-5: mat.define-typography-level(24px, 30px, 700),
         $button: mat.define-typography-level(14px, 14px, 400),
         $body-1: mat.define-typography-level(14px, 20px, 400),
@@ -76,36 +76,30 @@ $darkbluetheme: mat.define-dark-theme(
   )
 );
 
-.bg-primary,
-.topbar {
+.bg-primary {
   background: mat.get-color-from-palette($theme-primary, 500) !important;
-}
-
-.topbar .mat-mdc-icon-button,
-.topbar .mat-mdc-button {
-  color: $white !important;
 }
 
 .horizontal-navbar .parentBox.pactive > a,
 .horizontal-navbar .parentBox.pactive > a:hover,
 .horizontal-navbar .parentBox.pactive:hover > a {
-  background-color: mat.get-color-from-palette($theme-accent, 500) !important;
+  background-color: mat.get-color-from-palette($theme-primary, 500) !important;
 }
 
 .activeMenu {
-  background-color: mat.get-color-from-palette($theme-accent, 500) !important;
+  background-color: mat.get-color-from-palette($theme-primary, 500) !important;
 }
 
 
-// outline button border
+
 .mat-mdc-outlined-button {
-  &.mat-primary{
+  &.mat-primary {
     border-color: mat.get-color-from-palette($theme-primary, 500) !important;
   }
-  &.mat-accent{
+  &.mat-accent {
     border-color: mat.get-color-from-palette($theme-accent, 500) !important;
   }
-  &.mat-warn{
+  &.mat-warn {
     border-color: mat.get-color-from-palette($theme-warn, 500) !important;
   }
 }

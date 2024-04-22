@@ -11,8 +11,7 @@
   .mat-button-toggle-button,
   .mat-drawer-container,
   .mdc-data-table__header-cell,
-  .breadcrumb-item a,
-  .mat-mdc-card-title {
+  .breadcrumb-item a {
     color: $textPrimary;
   }
 
@@ -30,7 +29,6 @@
   .mdc-data-table__cell,
   .mat-mdc-icon-button,
   .mdc-list-item__secondary-text,
-  .mat-mdc-card-subtitle,
   .mat-mdc-menu-item,
   .mat-mdc-menu-item:visited,
   .mat-mdc-menu-item:link {
@@ -45,11 +43,6 @@
 
   .mat-drawer-container {
     background-color: $darkbackground;
-  }
-
-  .mdc-list-item:hover::before,
-  .bg-light {
-    background-color: $darkhoverbgcolor !important;
   }
 
   .mat-mdc-card,
@@ -223,12 +216,6 @@
     }
   }
 
-  #vector-map {
-    .dxm-layer path {
-      fill: $darkthemelightprimary;
-    }
-  }
-
   // dialog
   .mat-mdc-dialog-container {
     --mdc-dialog-container-color: #2a3447;
@@ -312,7 +299,7 @@ html.dark-theme {
   .sidebarNav-horizontal .horizontal-navbar .parentBox {
     &:hover > .activeMenu,
     .activeMenu {
-      color: $white !important;
+      color: $white;
     }
     .menuLink {
       color: #7c8fac;

@@ -10,6 +10,7 @@ import { RouterOutlet } from '@angular/router';
 import { ComponentsModule } from './components/components.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import { TranslateModule } from '@ngx-translate/core';
+import { MaterialModule } from './components/material.module';
 
 
 
@@ -17,16 +18,9 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-root',
   standalone: true,
   imports: [
-    MatSidenavModule, 
-    MatFormFieldModule, 
-    MatSelectModule, 
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatToolbarModule,
+    MaterialModule,
     RouterOutlet,  
     ComponentsModule,
-    MatSlideToggleModule,
     TranslateModule
   ],
   providers:[
