@@ -64,7 +64,6 @@ export class OrganizationComponent {
       error: (err) => console.log(err),
       complete: () => {}
     });
-
   }
 
   selectedFederation(federation_id: number) {

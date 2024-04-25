@@ -30,24 +30,30 @@ import { CategoryFormComponent } from './pages/admin/category/category-form/cate
 import { OrganizationComponent } from './pages/organization/organization.component';
 import { EventsComponent } from './pages/organization/events/events.component';
 import { FederationsComponent } from './pages/organization/federations/federations.component';
+import { FederationsLandingPageComponent } from './pages/organization/federations-landing-page/federations-landing-page.component';
 
 
 export const routes: Routes = [
   {
     path: "",
     component: OrganizationComponent,
-    // redirectTo: "federations",
     children: [
-      // { path: "events/:federation_id", component: EventsComponent}
+      { path: "federations", component: FederationsComponent },
+      { path: "federations/:federation_id", component: FederationsLandingPageComponent },
+      { path: "federations/:federation_id/events", component: EventsComponent}
       // { path: "events", component: EventsComponent}
     ]
   },
-  {
-    path:"federations/:federation_id",
-    component : FederationsComponent
-    // { path: "federations/:federation_id", component: FederationsComponent },
-      // { path: "federations/:federation_id/events", component: EventsComponent}
-  },
+  // {
+  //   path:"federations/:federation_id",
+  //   component : FederationsComponent,
+  //   children: [
+  //     { path: "events", component: EventsComponent }
+  //   ]
+  // },
+  // {
+  //   path:"federations/:federation_id/events", component : EventsComponent,
+  // },
   {
     path: APP_ROUTES.ADMIN_SIGNIN,
       children: [

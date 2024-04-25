@@ -20,9 +20,32 @@ export class FederationsComponent {
   constructor(
     private apiService: ApiService, 
     private router: Router,
-    private activatedRoute: ActivatedRoute){
-    
+    private activatedRoute: ActivatedRoute){  
   }
 
+
+  federations: any;
+
+  ngOnInit() {
+    this.getFederations()
+  }
+
+  getFederations(){
+    this.apiService.getData('federations')
+    .subscribe({
+      next: (res:any) => {
+        // console.log(res)
+        this.federations = res
+      },
+      error: (err) => console.log(err),
+      complete: () => {}
+    });
+
+  }
+
+  selectedFederation(federation_id: number) {
+    // this.router.navigate(['/events', federation_id]);
+    this.router.navigate(['federations', federation_id], {state: { federation_id }});
+  }
 
 }

@@ -26,10 +26,11 @@
                     <!-- --------------------------------------------------------------- -->
                     <!--  Links -->
                     <!-- --------------------------------------------------------------- -->
-                    <button mat-button class="m-x-8 f-s-16 f-w-500" >
-                        Demos
-                    </button>
-
+                    @if(federation_id){
+                        <button mat-button class="m-x-8 f-s-16 f-w-500" (click)="goToEvents()">
+                            Eventos
+                        </button>
+                    }
                     <!-- --------------------------------------------------------------- -->
                     <!--  Links -->
                     <!-- --------------------------------------------------------------- -->
@@ -45,26 +46,7 @@
                             <div class="col-sm-8 b-r-1 p-r-0">
                                 <div class="p-32 p-b-0">
                                     <div class="row">
-                                        <!-- @for(appdd of apps; track appdd.title) {
-                                        <div class="col-sm-6 text-hover-primary">
-                                            <a 
-                                                class="d-flex align-items-center text-decoration-none m-b-24">
-                                                <button mat-mini-fab
-                                                    class="text-primary bg-light-primary shadow-none rounded">
-                                                    <img [src]="appdd.img" width="20" />
-                                                </button>
-
-                                                <div class="m-l-16">
-                                                    <h5 class="f-s-14 f-w-600 m-0 textprimary mat-body-1 hover-text">
-                                                        {{ appdd.title }}
-                                                    </h5>
-                                                    <span class="mat-body-1 f-s-12">{{
-                                                        appdd.subtitle
-                                                        }}</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        } -->
+                                 
                                     </div>
                                 </div>
                             </div>
