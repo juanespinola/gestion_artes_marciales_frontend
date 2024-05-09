@@ -36,9 +36,9 @@
     @for(event of events; track event) {
         <div class="row">
         @if( this.comingEvent(event.initial_date) < 7) { 
-            <div class="col-12 col-lg-12 col-xl-12" [class.col-lg-12]="this.comingEvent(event?.initial_date) < 7">
+            <div class="col-12 col-lg-12 col-xl-12" [class.col-lg-12]="this.comingEvent(event?.initial_date) < 7" >
                 <mat-card
-                    class="cardWithShadow card2 position-relative card-hover featured-card overflow-hidden cursor-pointer">
+                    class="cardWithShadow card2 position-relative card-hover featured-card overflow-hidden cursor-pointer" (click)="selectEvent(event.id)">
                     <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu" /> -->
                     <div></div>
                     <div class="featured-overlay h-100 p-24 d-flex flex-column align-items-end justify-content-start">
@@ -69,11 +69,11 @@
         <div class="row">
             @if( this.comingEvent(event.initial_date) > 7) { 
             <div class="col-sm-6 col-lg-4">
-                <mat-card class="cardWithShadow card2 position-relative card-hover cursor-pointer">
+                <mat-card class="cardWithShadow card2 position-relative card-hover cursor-pointer" (click)="selectEvent(event.id)">
                     <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu" /> -->
                     <div class="card-overlay h-100 d-flex p-16 p-y-0 align-items-end justify-content-between">
                         <mat-chip class="f-s-12 m-y-16 f-w-600 bg-white">{{ event.association_id ? 'Asociacion':'Federacion'}}</mat-chip>
-                        <mat-chip class="f-s-12 f-w-600 m-y-16 bg-white">tiempo</mat-chip>
+                        <mat-chip class="f-s-12 f-w-600 m-y-16 bg-white">Estado del Evento</mat-chip>
                     </div>
 
                     <mat-card-content class="p-y-24">

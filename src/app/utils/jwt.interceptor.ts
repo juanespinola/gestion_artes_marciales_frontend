@@ -24,7 +24,7 @@ export const JwtInterceptor: HttpInterceptorFn = (req, next) => {
         if (err.status === 401) {
           // Specific handling for unauthorized errors         
           console.error('Unauthorized request:', err);
-          router.navigate(["signin"]);
+          router.navigate(["admin/signin"]);
           // You might trigger a re-authentication flow or redirect the user here
         } else {
           // Handle other HTTP error codes

@@ -43,6 +43,7 @@ export class HeaderComponent {
 
 
   goToEvents(){
-    this.router.navigate(['federations', this.federation_id, 'events'], {state: { federation_id: this.federation_id}})
+    // this.router.navigate(['federations', this.federation_id, 'events'], {state: { federation_id: this.federation_id}})
+    this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
   }
 }

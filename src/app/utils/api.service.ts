@@ -14,9 +14,9 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  postData(collection:string, data: any) {
+  postData(collection:string, data: any, options: any = {}) {
     let url = this.urlApi+collection;
-    return this.http.post(url, data);
+    return this.http.post(url, data, options);
   }
 
   putData(collection: string, id:any, data:any) {

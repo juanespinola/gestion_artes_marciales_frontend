@@ -31,6 +31,7 @@ import { OrganizationComponent } from './pages/organization/organization.compone
 import { EventsComponent } from './pages/organization/events/events.component';
 import { FederationsComponent } from './pages/organization/federations/federations.component';
 import { FederationsLandingPageComponent } from './pages/organization/federations-landing-page/federations-landing-page.component';
+import { EventDetailComponent } from './pages/organization/events/event-detail/event-detail.component';
 
 
 export const routes: Routes = [
@@ -40,20 +41,10 @@ export const routes: Routes = [
     children: [
       { path: "federations", component: FederationsComponent },
       { path: "federations/:federation_id", component: FederationsLandingPageComponent },
-      { path: "federations/:federation_id/events", component: EventsComponent}
-      // { path: "events", component: EventsComponent}
+      { path: "events", component: EventsComponent}, 
+      { path: "event/:event_id", component: EventDetailComponent }
     ]
   },
-  // {
-  //   path:"federations/:federation_id",
-  //   component : FederationsComponent,
-  //   children: [
-  //     { path: "events", component: EventsComponent }
-  //   ]
-  // },
-  // {
-  //   path:"federations/:federation_id/events", component : EventsComponent,
-  // },
   {
     path: APP_ROUTES.ADMIN_SIGNIN,
       children: [

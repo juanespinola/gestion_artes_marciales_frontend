@@ -1,0 +1,77 @@
+
+<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Agregar Imagenes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1 p-24">
+            <div class="table-responsive w-100">
+                <table class="table table-hover b-1 no-wrap w-100 rounded">
+                    <thead>
+                        <tr>
+                            <th class="p-16">#</th>
+                            <th class="p-16">Archivo</th>
+                            <th class="p-16">Tipo</th>
+                            <th class="p-16">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(row of formGroup.get('rows')['controls']; track row; let index = $index) {                            
+                            <tr>
+                                <td class="p-16">
+                                    {{ index + 1 }}
+                                </td>
+
+                                <td class="p-16">
+                                    <button mat-flat-button color="primary"
+                                        class="m-l-16 input-file-button w-100 hide-hint">
+                                        <input type="file" [formControl]="row.get('file')" (change)="selectFile($event, index)" />
+                                    </button>
+                                </td>
+
+                                <td class="p-16">
+                                    <mat-form-field appearance="outline" class="w-100 hide-hint">
+                                        <mat-select [formControl]="row.get('type')" placeholder="Seleccione Opcion">
+                                            <mat-option value="banner_principal">Banner Principal</mat-option>
+                                            <mat-option value="banner_secundario">Banner Secundario</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+
+                                <td class="action-link">
+                                    <button mat-icon-button (click)="onAddRow()" class="m-r-10 cursor-pointer" >
+                                        <i-tabler name="plus" class="icon-18"></i-tabler>
+                                    </button>
+                                    @if(index > 0) {
+                                    <button mat-icon-button (click)="onRemoveRow(index)" class="m-r-10 cursor-pointer">
+                                        <i-tabler name="trash" class="icon-18"></i-tabler>
+                                    </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        <div class="row justify-content-end p-t-12">
+            <div class="col-sm-12">
+                <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
+                    (click)="onSubmit()">Guardar</button>
+                <button mat-flat-button color="warn" class="button" class="m-l-8" (click)="onBack()">Cancelar</button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
+<!-- <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div formArrayName="rows">
+      <div *ngFor="let row of rows.controls; let i = index" [formGroupName]="i">
+        <input type="file" (change)="selectFile($event, i)">
+        <input type="text" formControlName="type" placeholder="Type">
+        <button type="button" (click)="onRemoveRow(i)">Eliminar</button>
+      </div>
+    </div>
+    <button type="button" (click)="onAddRow()">Agregar Imagen</button>
+    <button type="submit">Subir Imágenes</button>
+  </form> -->
+  

@@ -30,7 +30,8 @@ export class OrganizationComponent {
   ) {
     this.htmlElement = document.querySelector('html')!;
      // Initialize project theme with options
-     this.receiveOptions(this.options);
+    this.receiveOptions(this.options);
+    // this.router.navigate(['federations'])
   }
 
   receiveOptions(options: AppSettings): void {

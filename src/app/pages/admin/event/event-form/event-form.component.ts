@@ -6,6 +6,7 @@ import { ApiService } from '../../../../utils/api.service';
 import moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { EventFormImagesComponent } from '../event-form-images/event-form-images.component';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
   imports: [
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EventFormImagesComponent
   ],
   templateUrl: './event-form.component.html',
   styleUrl: './event-form.component.scss',
@@ -33,7 +35,7 @@ export class EventFormComponent {
 
   constructor (
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     private apiService: ApiService, 
     private router: Router
   ){}
@@ -62,9 +64,7 @@ export class EventFormComponent {
     if(id) {
       this.apiService.getData(this.collection+`/${id}`)
       .subscribe({
-        next: (res:any) => {
-          console.log(res.initial_date)
-          
+        next: (res:any) => {          
           this.formGroup.patchValue({
             description: res.description,
             location_id: res.location_id,
@@ -90,7 +90,6 @@ export class EventFormComponent {
     this.apiService.getData('location')
       .subscribe({
         next: (res:any) => {
-          console.log(res)
           this.locations = res
         },
         error: (err) => console.log(err),
@@ -102,7 +101,6 @@ export class EventFormComponent {
     this.apiService.getData('typesevent')
       .subscribe({
         next: (res:any) => {
-          console.log(res)
           this.typesevent = res
         },
         error: (err) => console.log(err),
@@ -114,7 +112,6 @@ export class EventFormComponent {
     this.apiService.getData('statusevent')
       .subscribe({
         next: (res:any) => {
-          console.log(res)
           this.statusevent = res
         },
         error: (err) => console.log(err),
@@ -128,14 +125,12 @@ export class EventFormComponent {
     if(id){
       this.apiService.putData(this.collection, id, this.formGroup.value)
       .subscribe((res:any) => {
-        console.log(res)
         this.router.navigate([this.collection])
       });
       
     } else {
       this.apiService.postData(this.collection, this.formGroup.value)
       .subscribe((res:any) => {
-        console.log(res)
         this.router.navigate([this.collection])
       });
     }

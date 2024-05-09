@@ -1,171 +1,190 @@
-<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
-    <mat-card-header>
-        <mat-card-title class="m-b-0">Editar</mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="b-t-1">
-
-        <div class="row">
-
-            <div class="col-lg-6 col-sm-6">
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
+    <mat-tab label="Evento">
+        <mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Editar</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
 
                 <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Descripcion
-                        </mat-label>
+
+                    <div class="col-lg-6 col-sm-6">
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Descripcion
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput formControlName="description" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Locacion
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-select formControlName="location_id" value="location_id"
+                                        placeholder="Seleccione Opcion">
+                                        <mat-option *ngFor="let location of locations"
+                                            [value]="location.id">{{location.description}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Fecha Inicio
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput [matDatepicker]="initial_date_picker"
+                                        formControlName="initial_date" />
+                                    <mat-datepicker-toggle matIconSuffix
+                                        [for]="initial_date_picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #initial_date_picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Fecha Fin
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput [matDatepicker]="final_date_picker" formControlName="final_date"
+                                        placeholder=" - " />
+                                    <mat-datepicker-toggle matIconSuffix
+                                        [for]="final_date_picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #final_date_picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Costo de Inscripcion
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput formControlName="inscription_fee" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="description" />
-                        </mat-form-field>
+
+                    <div class="col-lg-6 col-sm-6">
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Tipo de Evento
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-select formControlName="type_event_id" value="type_event_id"
+                                        placeholder="Seleccione Opcion">
+                                        <mat-option *ngFor="let typeevent of typesevent"
+                                            [value]="typeevent.id">{{typeevent.description}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Estado de Evento
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-select formControlName="status_event_id" value="status_event_id"
+                                        placeholder="Seleccione Opcion">
+                                        <mat-option *ngFor="let status of statusevent"
+                                            [value]="status.id">{{status.description}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Hora Inicio
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput formControlName="initial_time" type="time" min="07:00"
+                                        max="22:00" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Hora Fin
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput formControlName="final_time" type="time" min="07:00" max="22:00" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                    Cantidad Disponibles
+                                </mat-label>
+                            </div>
+                            <div class="col-sm-8">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input matInput formControlName="available_slots" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-sm-12">
+                        <button mat-flat-button color="primary" type="submit" class="button"
+                            [disabled]="!formGroup.valid" (click)="onSubmit()">Guardar</button>
+                        <button mat-flat-button color="warn" class="button" class="m-l-8"
+                            (click)="onBack()">Cancelar</button>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Locacion
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-select formControlName="location_id" value="location_id" placeholder="Seleccione Opcion">
-                              <mat-option *ngFor="let location of locations" [value]="location.id">{{location.description}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Fecha Inicio
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput [matDatepicker]="initial_date_picker" formControlName="initial_date" />
-                            <mat-datepicker-toggle matIconSuffix [for]="initial_date_picker"></mat-datepicker-toggle>
-                            <mat-datepicker #initial_date_picker></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Fecha Fin
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput [matDatepicker]="final_date_picker" formControlName="final_date"
-                                placeholder=" - " />
-                            <mat-datepicker-toggle matIconSuffix [for]="final_date_picker"></mat-datepicker-toggle>
-                            <mat-datepicker #final_date_picker></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Costo de Inscripcion
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="inscription_fee" />
-                        </mat-form-field>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <div class="col-lg-6 col-sm-6">
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Tipo de Evento
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-select formControlName="type_event_id" value="type_event_id" placeholder="Seleccione Opcion">
-                              <mat-option *ngFor="let typeevent of typesevent" [value]="typeevent.id">{{typeevent.description}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Estado de Evento
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-select formControlName="status_event_id" value="status_event_id" placeholder="Seleccione Opcion">
-                              <mat-option *ngFor="let status of statusevent" [value]="status.id">{{status.description}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Hora Inicio
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="initial_time" type="time" min="07:00" max="22:00" />
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Hora Fin
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="final_time" type="time" min="07:00" max="22:00" />
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 d-flex align-items-center">
-                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                            Cantidad Disponibles
-                        </mat-label>
-                    </div>
-                    <div class="col-sm-8">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="available_slots" />
-                        </mat-form-field>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="row justify-content-end">
-            <div class="col-sm-12">
-                <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
-                    (click)="onSubmit()">Guardar</button>
-                <button mat-flat-button color="warn" class="button" class="m-l-8" (click)="onBack()">Cancelar</button>
-            </div>
-        </div>
-
-    </mat-card-content>
-</mat-card>
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+    
+        <mat-tab label="Imagenes" disabled="{{!this.route.snapshot.params['id']}}">
+            <app-event-form-images></app-event-form-images>
+        </mat-tab>
+    

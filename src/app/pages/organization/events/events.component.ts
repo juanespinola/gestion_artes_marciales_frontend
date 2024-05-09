@@ -28,7 +28,9 @@ export class EventsComponent {
     private router: Router,
     private apiService: ApiService
   ){
-    this.federation_id = this.activatedRoute.snapshot.paramMap.get('federation_id')
+    // this.federation_id = this.activatedRoute.snapshot.paramMap.get('federation_id')
+    this.federation_id = history.state?.federation_id
+    console.log(history.state)
   }
 
   ngOnInit() {
@@ -58,9 +60,14 @@ export class EventsComponent {
     });
   }
 
-
   comingEvent(dateEvent: any) : any {
     return moment().diff(dateEvent, 'day')
   }
+
+  selectEvent(event_id:any) {
+    this.router.navigate(['event', event_id], {state: { federation_id: this.federation_id }})
+  }
+
+
 
 }
