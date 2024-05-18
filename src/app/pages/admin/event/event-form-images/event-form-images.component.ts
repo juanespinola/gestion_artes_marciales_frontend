@@ -110,7 +110,7 @@ export class EventFormImagesComponent {
       this.apiService.postData(this.collection, formData, options)
       .subscribe((res:any) => {
         console.log(res)
-        // this.router.navigate(['admin','event']);
+        this.router.navigate(['admin','event']);
       });
     }
   }

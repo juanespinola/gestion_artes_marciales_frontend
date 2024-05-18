@@ -43,7 +43,7 @@
                     <div></div>
                     <div class="featured-overlay h-100 p-24 d-flex flex-column align-items-end justify-content-start">
                         <div class="d-flex align-items-center justify-content-between w-100">
-                            <mat-chip class="f-s-12 m-y-16 f-w-600 bg-white">{{ event.association_id ? 'Asociacion':'Federacion'}}</mat-chip>
+                            <mat-chip class="f-s-12 m-y-16 f-w-600 bg-white">{{ event.association ? 'Asociacion':'Federacion'}}</mat-chip>
                             <mat-chip class="f-s-12 f-w-600 m-y-16 bg-white">Proximamente</mat-chip>
                         </div>
                         <div class="m-t-auto w-100">
@@ -72,8 +72,8 @@
                 <mat-card class="cardWithShadow card2 position-relative card-hover cursor-pointer" (click)="selectEvent(event.id)">
                     <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu" /> -->
                     <div class="card-overlay h-100 d-flex p-16 p-y-0 align-items-end justify-content-between">
-                        <mat-chip class="f-s-12 m-y-16 f-w-600 bg-white">{{ event.association_id ? 'Asociacion':'Federacion'}}</mat-chip>
-                        <mat-chip class="f-s-12 f-w-600 m-y-16 bg-white">Estado del Evento</mat-chip>
+                        <mat-chip class="f-s-12 m-y-16 f-w-600 bg-white">{{ event?.association ? 'Asociacion':'Federacion'}}</mat-chip>
+                        <mat-chip class="f-s-12 f-w-600 m-y-16 bg-white">{{event?.status_event.description}}</mat-chip>
                     </div>
 
                     <mat-card-content class="p-y-24">

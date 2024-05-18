@@ -7,6 +7,7 @@ import moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { EventFormImagesComponent } from '../event-form-images/event-form-images.component';
+import { EventFormContentComponent } from '../event-form-content/event-form-content.component';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { EventFormImagesComponent } from '../event-form-images/event-form-images
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    EventFormImagesComponent
+    EventFormImagesComponent,
+    EventFormContentComponent
   ],
   templateUrl: './event-form.component.html',
   styleUrl: './event-form.component.scss',
@@ -45,7 +47,7 @@ export class EventFormComponent {
       description: ['', Validators.required],
       location_id: ['', Validators.required],
       initial_date: ['', Validators.required],
-      final_date: [''],
+      final_date: ['', Validators.required],
       initial_time: ['', Validators.required],
       final_time: [''],
       type_event_id: ['', Validators.required],

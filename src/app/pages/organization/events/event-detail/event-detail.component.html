@@ -1,70 +1,267 @@
 
 <mat-card class="cardWithShadow">
     <mat-card-content>
-        <div class="row">
-            <div class="col-sm-8">
-                <img mat-card-image src="" alt="Photo of a Shiba Inu" />
-            </div>
-            <div class="col-sm-4">
-                <div class="d-flex align-items-center ">
-                    prueba
-                </div>
-                <div class="d-flex align-items-center ">
-                    prueba
-                </div>
-                <div class="d-flex align-items-center ">
-                    prueba
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <mat-card-title class="m-b-0">{{event?.description}}</mat-card-title>
+                        <button mat-flat-button color="primary" type="submit" class="button">Registrarse</button>
+                    </div>
                 </div>
             </div>
         </div>
     </mat-card-content>
 </mat-card>
 
-<div class="row">
-    <div class="col-sm-8">
-        <mat-card class="cardWithShadow">
-            <mat-card-content>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <img mat-card-image src="" alt="Photo of a Shiba Inu" />
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="col-12">
+                        <img src='{{ event?.media_event[0]?.route_file ? event?.media_event[0]?.route_file:"https://cloudfront-us-east-1.images.arcpublishing.com/metroworldnews/DR4BZQ466JFDFPWA5R3J5LTIY4.jpg"}}' class="w-100" height="290px" />
                     </div>
-                    <div class="col-sm-4">
-                        <div class="d-flex align-items-center ">
-                            prueba
+                </div>
+                <div class="schedule">
+                    <div class="schedule-item">
+                        <span class="title">
+                            Detalles del Evento
+                        </span>
+                        <div class="info">
+                            <strong>
+                                {{event?.initial_date}}
+                            </strong>
+                            <small>
+                                {{event?.initial_time}}
+                            </small>
                         </div>
-                        <div class="d-flex align-items-center ">
-                            prueba
-                        </div>
-                        <div class="d-flex align-items-center ">
-                            prueba
+                    </div>
+                    <div class="schedule-item">
+                        <span class="title">
+                            Costo
+                        </span>
+                        <div class="info">
+                            <strong>
+                                Gs. {{event?.inscription_fee}}
+                            </strong>
+                            <small>
+                            </small>
                         </div>
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
+    <mat-tab label="Informacion">
+        <div class="row">
+            <div class="col-sm-8">
+                <mat-card class="cardWithShadow">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div innerHTML="{{event?.content}}"></div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
 
-    <div class="col-sm-4">
-        <mat-card class="cardWithShadow">
-            <mat-card-content>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <img mat-card-image src="" alt="Photo of a Shiba Inu" />
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="d-flex align-items-center ">
-                            prueba
+            <div class="col-sm-4">
+                <mat-card class="cardWithShadow">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="d-flex align-items-center ">
+                                    Contactos
+                                </div>
+                                <div>
+                                    <mat-list>
+                                        <!--Federation-->
+                                        @if(event?.federation && !event?.association){
+                                        @if(event?.federation?.facebook) {
+                                        <mat-list-item>
+                                            <a href="{{event?.federation?.facebook}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-facebook" class="icon-18"></i-tabler>
+                                                    <span>Facebook</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.federation?.instagram) {
+                                        <mat-list-item>
+                                            <a href="{{event?.federation?.instagram}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-instagram" class="icon-18"></i-tabler>
+                                                    <span>Instagram</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.federation?.twitter) {
+                                        <mat-list-item>
+                                            <a href="{{event?.federation?.twitter}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-twitter" class="icon-18"></i-tabler>
+                                                    <span>Twitter</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.federation?.email) {
+                                        <mat-list-item>
+                                            <a href="{{event?.federation?.email}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="mail" class="icon-18"></i-tabler>
+                                                    <span>Email</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.federation?.whatsapp) {
+                                        <mat-list-item>
+                                            <a href="{{event?.federation?.whatsapp}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-whatsapp" class="icon-18"></i-tabler>
+                                                    <span>Whatsapp</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        }
+                                        }
+
+                                        <!--Association-->
+                                        @if(event?.federation && event?.association){
+                                        @if(event?.association?.facebook) {
+                                        <mat-list-item>
+                                            <a href="{{event?.association?.facebook}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-facebook" class="icon-18"></i-tabler>
+                                                    <span>Facebook</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.association?.instagram) {
+                                        <mat-list-item>
+                                            <a href="{{event?.association?.instagram}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-instagram" class="icon-18"></i-tabler>
+                                                    <span>Instagram</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.association?.twitter) {
+                                        <mat-list-item>
+                                            <a href="{{event?.association?.twitter}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-twitter" class="icon-18"></i-tabler>
+                                                    <span>Twitter</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.association?.email) {
+                                        <mat-list-item>
+                                            <a href="{{event?.association?.email}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="mail" class="icon-18"></i-tabler>
+                                                    <span>Email</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        }
+                                        @if(event?.association?.whatsapp) {
+                                        <mat-list-item>
+                                            <a href="{{event?.association?.whatsapp}}" target="_blank" rel="noopener"
+                                                class="mat-mdc-list-item-unscoped-content mdc-list-item__primary-text">
+                                                <div class="d-flex align-items-center">
+                                                    <i-tabler name="brand-whatsapp" class="icon-18"></i-tabler>
+                                                    <span>Whatsapp</span>
+                                                </div>
+                                            </a>
+                                        </mat-list-item>
+                                        }
+                                        }
+                                    </mat-list>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex align-items-center ">
-                            prueba
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="cardWithShadow">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="d-flex align-items-center ">
+                                    <strong>Locacion</strong>
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    {{event?.location.address}}
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    {{event?.location.description}}
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    {{event?.location.city_id}} - Pais
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex align-items-center ">
-                            prueba
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="cardWithShadow">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="d-flex align-items-center ">
+                                    Categorias
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="d-flex align-items-center ">
+                                    colocamos
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    categorias
+                                </div>
+                                <div class="d-flex align-items-center ">
+                                    de este evento
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
-    
-</div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Atletas"></mat-tab>
+    <mat-tab label="Combates"></mat-tab>
+    <mat-tab label="Llaves y Cronograma"></mat-tab>
+    <mat-tab label="Resultados"></mat-tab>
+
+</mat-tab-group>

@@ -1,0 +1,100 @@
+.schedule {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    z-index: 1;
+    .schedule-item {
+        display: flex;
+        gap: $spacing-8;
+        align-items: center;
+        width: 100%;
+        border-radius: $spacing-8;
+        padding: $spacing-8 $spacing-12;
+        .active{
+            background: #f4f6fb
+        }
+        .passed {
+            text-decoration: line-through;
+            -webkit-text-decoration-color: rgba(255, 255, 255, .3);
+            text-decoration-color: rgba(255, 255, 255, .3);
+            opacity: .5
+        }
+        .title {
+            width: 50%;
+            small {
+                color: #f4f6fb;
+                font-size: $font-size-tiny;
+              }
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            gap: 0;
+            font-size: $font-size-medium;
+            white-space: nowrap;
+            small {
+                font-size: $font-size-extratiny;
+            }
+        }
+    }
+  }
+
+  @media(min-width:576px) {
+    button.register {
+      display: none
+    }
+  
+    .schedule {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+  
+    .schedule .schedule-item {
+      flex-direction: column;
+      gap: 0;
+      text-align: center;
+      width: 25%
+    }
+  
+    .schedule .schedule-item .title {
+      width: unset
+    }
+  
+    .schedule .schedule-item .info {
+      text-align: center
+    }
+  
+    .sc-card-body {
+      padding: $spacing-16
+    }
+  }
+  
+  @media(min-width:992px) {
+    .sc-card-body {
+      flex-direction: row;
+      align-items: center;
+      gap: $spacing-24
+    }
+  
+    .schedule {
+      flex-direction: column
+    }
+  
+    .schedule .schedule-item {
+      align-items: flex-start;
+      width: unset
+    }
+  
+    .schedule .schedule-item .info {
+      flex-direction: row;
+      align-items: baseline;
+      gap: $spacing-6;
+      text-align: left
+    }
+  
+    .sc-card-body {
+      padding: $spacing-24
+    }
+  }

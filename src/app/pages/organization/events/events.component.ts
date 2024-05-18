@@ -53,6 +53,7 @@ export class EventsComponent {
     this.apiService.getData(`federations/${this.federation_id}/events`)
     .subscribe({
       next: (res:any) => {
+        console.log(res)
         this.events = res;        
       },
       error: (err) => console.log(err),

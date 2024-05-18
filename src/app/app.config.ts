@@ -11,7 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { NgxEditorModule } from 'ngx-editor';
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,7 +32,8 @@ export const appConfig: ApplicationConfig = {
       }),
       TablerIconsModule,
       TablerIconsModule.pick(TablerIcons),
-      MatNativeDateModule
+      MatNativeDateModule,
+      NgxEditorModule
     ), 
      
   ],
