@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
 import { SessionService } from '../../../services/session.service';
 import { AlertsService } from '../../../services/alerts.service';
-import { MaterialModule } from '../../../components/material.module';
+import { MaterialModule } from '../components/material.module';
 import { APP_ROUTES } from '../../../routes';
 @Component({
   selector: 'app-sign-in',

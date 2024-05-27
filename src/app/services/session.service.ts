@@ -44,4 +44,9 @@ export class SessionService {
     localStorage.clear()
     this.router.navigate([APP_ROUTES.ADMIN_SIGNIN])
   }
+
+  logoutAthlete(){
+    localStorage.clear()
+    this.router.navigate([APP_ROUTES.ATHLETE_SIGNIN])
+  }
 }

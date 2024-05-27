@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { FederationComponent } from './pages/admin/federation/federation.component';
 import { FederationFormComponent } from './pages/admin/federation/federation-form/federation-form.component';
 import { SignInComponent } from './pages/admin/sign-in/sign-in.component';
+import { SignInComponent as AthleteSignInComponent } from './pages/athlete/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/admin/sign-up/sign-up.component';
 import { PagesComponent } from './pages/admin/pages.component';
 import { UsersComponent } from './pages/admin/users/users.component';
@@ -28,28 +29,49 @@ import { AssociationFormComponent } from './pages/admin/association/association-
 import { CategoryComponent } from './pages/admin/category/category.component';
 import { CategoryFormComponent } from './pages/admin/category/category-form/category-form.component';
 import { OrganizationComponent } from './pages/organization/organization.component';
-import { EventsComponent } from './pages/organization/events/events.component';
-import { FederationsComponent } from './pages/organization/federations/federations.component';
-import { FederationsLandingPageComponent } from './pages/organization/federations-landing-page/federations-landing-page.component';
-import { EventDetailComponent } from './pages/organization/events/event-detail/event-detail.component';
-
+import { EventsComponent } from './pages/athlete/events/events.component';
+import { FederationsComponent } from './pages/athlete/federations/federations.component';
+import { EventDetailComponent } from './pages/athlete/events/event-detail/event-detail.component';
+import { EventListEntryCategoriesComponent } from './pages/admin/event/event-list-entry-categories/event-list-entry-categories.component';
+import { EventListClassCategoriesComponent } from './pages/admin/event/event-list-class-categories/event-list-class-categories.component';
+import { RegisterEventComponent } from './pages/athlete/register-event/register-event.component';
+import { PagesComponent as AthletePagesComponent } from './pages/athlete/pages.component';
+import { FederationDetailComponent } from './pages/athlete/federations/federation-detail/federation-detail.component';
 
 export const routes: Routes = [
+  // {
+  //   path: "",
+  //   component: OrganizationComponent,
+  //   children: [
+  //     { path: "federations", component: FederationsComponent },
+  //     { path: "federations/:federation_id", component: FederationsLandingPageComponent },
+  //     { path: "events", component: EventsComponent}, 
+  //     { path: "event/:event_id", component: EventDetailComponent }
+  //   ]
+  // },
+
+  { path: "signin", component: AthleteSignInComponent },
   {
     path: "",
-    component: OrganizationComponent,
+    component: AthletePagesComponent,
     children: [
       { path: "federations", component: FederationsComponent },
-      { path: "federations/:federation_id", component: FederationsLandingPageComponent },
-      { path: "events", component: EventsComponent}, 
-      { path: "event/:event_id", component: EventDetailComponent }
+      { path: "federation/:federation_id", component: FederationDetailComponent },
+      { path: "events", component: EventsComponent },
+      { path: "event/:event_id", component: EventDetailComponent },
+      { path: "registerevent", component: RegisterEventComponent },
+      { path: '', redirectTo: 'federations', pathMatch: 'full' },
+      // { path: '**', redirectTo: 'federations' },
     ]
+    
   },
+ 
+  // path admin
   {
     path: APP_ROUTES.ADMIN_SIGNIN,
-      children: [
-        { path: "", component: SignInComponent, },
-      ]
+    children: [
+      { path: "", component: SignInComponent, },
+    ]
   },
   {
     path: "admin",
@@ -124,10 +146,28 @@ export const routes: Routes = [
         path: APP_ROUTES.EVENT,
         children: [
           { path: "", component: EventComponent, },
-          { path: "edit/:id", component: EventFormComponent },
           { path: "add", component: EventFormComponent },
+          {
+            path: "edit/:id",
+            children: [
+              { path: "", component: EventFormComponent },
+              {
+                path: APP_ROUTES.ENTRY_CATEGORIES,
+                children: [
+                  { path: "", component: EventListEntryCategoriesComponent, },
+                  {
+                    path: ":id/" + APP_ROUTES.CLASS_CATEGORIES,
+                    children: [
+                      { path: "", component: EventListClassCategoriesComponent, },
+                    ]
+                  }
+                ]
+              },
+            ]
+          },
         ]
       },
+
       {
         path: APP_ROUTES.LOCATION,
         children: [
@@ -153,7 +193,9 @@ export const routes: Routes = [
         ]
       },
     ]
-  },
 
+  },
+  { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  { path: '**', redirectTo: 'admin' },
 
 ];

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,  FormsModule, ReactiveFormsModule, Validators  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../utils/api.service';
-import { MaterialModule } from '../../../../components/material.module';
+import { MaterialModule } from '../../components/material.module';
 import { FederationFormAuthoritiesComponent } from '../federation-form-authorities/federation-form-authorities.component';
 import { FederationFormContactsComponent } from '../federation-form-contacts/federation-form-contacts.component';
 @Component({

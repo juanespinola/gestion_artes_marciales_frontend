@@ -12,5 +12,12 @@ export const APP_ROUTES = {
     LOCATION: 'location',
     TYPE_EVENT: 'typesevent',
     STATUS_EVENT: 'statusevent',
-    DASHBOARD: "admin"
+    DASHBOARD: "admin",
+    ENTRY_CATEGORIES: 'entrycategories',
+    CLASS_CATEGORIES: 'classcategories',
+
+    //athlete routes
+    DASHBOARD_ATHLETE: "",
+    ATHLETE_SIGNIN: 'signin',
+    ATHLETE_REGISTER_EVENT: 'registerevent',
 }

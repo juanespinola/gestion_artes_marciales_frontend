@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StatusEventFormComponent } from './status-event-form/status-event-form.component';
-import { ComponentsModule } from '../../../components/components.module';
+import { ComponentsModule } from '../components/components.module';
 
 @Component({
   selector: 'app-status-event',

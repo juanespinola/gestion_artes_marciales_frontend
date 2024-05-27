@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentsModule } from '../../../components/components.module';
+import { ComponentsModule } from '../components/components.module';
 import { GroupCategoryFormComponent } from './group-category-form/group-category-form.component';
 
 @Component({

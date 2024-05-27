@@ -22,8 +22,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../material.module';
-import { NavService } from '../../../services/nav.service';
-import { SessionService } from '../../../services/session.service';
+import { NavService } from '../../../../../services/nav.service';
+import { SessionService } from '../../../../../services/session.service';
 
 @Component({
   selector: 'app-nav-item',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../../utils/api.service';
-import { MaterialModule } from '../../../components/material.module';
+import { MaterialModule } from '../../admin/components/material.module';
 import {  ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../components/header/header.component';
 

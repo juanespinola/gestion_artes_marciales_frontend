@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MaterialModule } from '../../../../components/material.module';
+import { MaterialModule } from '../../components/material.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../utils/api.service';
 import moment from 'moment';
@@ -8,6 +8,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { EventFormImagesComponent } from '../event-form-images/event-form-images.component';
 import { EventFormContentComponent } from '../event-form-content/event-form-content.component';
+import { EventListEntryCategoriesComponent } from '../event-list-entry-categories/event-list-entry-categories.component';
+
 
 
 @Component({
@@ -18,7 +20,8 @@ import { EventFormContentComponent } from '../event-form-content/event-form-cont
     FormsModule,
     ReactiveFormsModule,
     EventFormImagesComponent,
-    EventFormContentComponent
+    EventFormContentComponent,
+    EventListEntryCategoriesComponent
   ],
   templateUrl: './event-form.component.html',
   styleUrl: './event-form.component.scss',

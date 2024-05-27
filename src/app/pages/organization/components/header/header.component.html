@@ -63,8 +63,12 @@
                     <a mat-button class="m-x-8 f-s-16 f-w-500">Documentation</a>
                     <a mat-button class="m-x-8 f-s-16 f-w-500" >Support</a>
                     <button mat-button color="primary" class="m-l-10">Sign Up</button>
-                    @if(federation_id){
-                        <button mat-flat-button color="primary" class="m-l-10" (click)="loginFederation()">Login</button>
+                    @if(federation_id && !athlete){
+                        <button mat-flat-button color="primary" class="m-l-10" (click)="navigateLoginAthlete()">Login</button>
+                    }
+
+                    @if(athlete){
+                        <button mat-flat-button color="primary" class="m-l-10" (click)="navigateProfileAthlete(athlete)">Mi Perfil</button>
                     }
                    
                 </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PermissionFormComponent } from './permission-form/permission-form.component';
-import { ComponentsModule } from '../../../components/components.module';
+import { ComponentsModule } from '../components/components.module';
 
 @Component({
   selector: 'app-permission',

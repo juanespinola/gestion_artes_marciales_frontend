@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../../components/material.module';
+import { MaterialModule } from '../../components/material.module';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../utils/api.service';

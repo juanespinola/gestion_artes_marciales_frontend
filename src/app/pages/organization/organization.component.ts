@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CoreService } from '../../services/core.service';
 import { AppSettings } from '../../app.config';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { MaterialModule } from '../../components/material.module';
+import { MaterialModule } from '../admin/components/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { ApiService } from '../../utils/api.service';
 

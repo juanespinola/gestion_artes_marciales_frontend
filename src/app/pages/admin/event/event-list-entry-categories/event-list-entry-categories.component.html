@@ -1,0 +1,107 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title>Categorias</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+
+        <mat-accordion multi>
+
+            <div *ngFor="let entrycategory of entriescategories | keyvalue">
+
+                <mat-expansion-panel class="cardWithShadow">
+
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="f-w-600">
+                           Cinturon: {{entrycategory.key}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <!-- {{ entrycategory.value | json}} -->
+
+                    <div *ngFor="let entry of asArray(entrycategory.value)">
+                        <mat-list>
+                            <mat-list-item>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="d-flex align-items-center w-100 h-100">
+                                            <label class="w-100 text-center ">
+                                                Nombre: {{entry.name}}
+                                            </label> 
+                                            <label class="w-100 text-center">
+                                                Peso: {{entry.weight ?  entry.weight : "Sin Limites"}} 
+                                            </label>
+                                            <label class="w-100 text-center">
+                                                Sexo: {{entry.sex == 'm' ? "Masculino" : "Femenino"}}
+                                            </label>
+                                            <label class="w-100 text-center">
+                                                Edad Hasta: {{entry.age}}
+                                            </label>
+                                            <label class="w-100 text-center">
+                                                Indumentaria: {{entry.clothes}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="d-flex justify-content-between">
+                                            <button mat-icon-button (click)="openDialog('update', entry)"
+                                                class="m-r-10 cursor-pointer">
+                                                <i-tabler name="edit" class="icon-18"></i-tabler>
+                                            </button>
+                                            <button mat-icon-button (click)="deleteAction(entry.id)"
+                                                class="m-r-10 cursor-pointer">
+                                                <i-tabler name="trash" class="icon-18"></i-tabler>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-list>
+
+                    </div>
+
+                </mat-expansion-panel>
+            </div>
+
+        </mat-accordion>
+        <!-- <mat-list>
+            @for(entrycategory of entriescategories; track entrycategory){
+            <mat-list-item>
+                <div class="col-12 d-flex align-items-center justify-content-between">
+                    <div class="col-sm-2 d-flex flex-column align-items-start">
+                        <div>
+                            <label matListItemTitle>{{entrycategory.name}}</label>
+                        </div>
+                        <div>
+                            <label matListItemLine>Costo {{entrycategory.normal_price}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="d-flex justify-content-between">
+                            <button mat-flat-button color="primary" (click)="navigateClasses(entrycategory)" type="submit"
+                                class="button" style="margin-right: 3px;">Clases</button>
+                            <button mat-flat-button color="primary" (click)="openDialog('update', entrycategory)" type="submit"
+                                class="button">Editar</button>
+                            <button mat-icon-button (click)="openDialog('update', entrycategory)" class="m-r-10 cursor-pointer">
+                                <i-tabler name="edit" class="icon-18"></i-tabler>
+                            </button>
+                            <button mat-icon-button (click)="deleteAction(entrycategory.id)" class="m-r-10 cursor-pointer">
+                                <i-tabler name="trash" class="icon-18"></i-tabler>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            }
+        </mat-list> -->
+    </mat-card-content>
+    <mat-card-footer class="p-24">
+        <div class="col-sm-2">
+            <div class="d-flex justify-content-between">
+                <button mat-flat-button color="primary" (click)="openDialog('add', {})" type="submit"
+                    class="button">Nueva
+                    Entrada</button>
+            </div>
+        </div>
+    </mat-card-footer>
+</mat-card>

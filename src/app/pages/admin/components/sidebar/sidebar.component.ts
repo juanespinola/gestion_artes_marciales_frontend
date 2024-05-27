@@ -1,7 +1,7 @@
 import { MatListModule } from '@angular/material/list';
-import { SessionService } from '../../services/session.service';
+import { SessionService } from '../../../../services/session.service';
 import { CommonModule } from '@angular/common';
-import { NavService } from '../../services/nav.service';
+import { NavService } from '../../../../services/nav.service';
 import {
   Component,
   HostBinding,

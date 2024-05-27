@@ -1,0 +1,142 @@
+<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Inscribirse</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+
+        <div class="row">
+
+            <div class="col-lg-6 col-sm-6">
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Name</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="name" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo Documento</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="type_document_id" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Pais</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="location_id" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Peso</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="weight" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="phone" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-6">
+
+              
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Email</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="email" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nro Documento</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="document" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Ciudad</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="city_id" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Género</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="gender" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de Nacimiento</mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="birthdate" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row justify-content-end">
+            <div class="col-sm-12">
+                <button mat-flat-button color="primary" type="submit" class="button"
+                [disabled]="!formGroup.valid" (click)="onSubmit()">Inscribirse</button>
+                <button mat-flat-button color="warn" class="button" class="m-l-8"
+                (click)="onBack()">Cancelar</button>
+            </div>
+        </div>
+        
+    </mat-card-content>
+</mat-card>

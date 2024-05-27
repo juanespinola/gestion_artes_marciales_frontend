@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentsModule } from '../../../components/components.module';
+import { ComponentsModule } from '../components/components.module';
 import { PermissionFormComponent } from '../permission/permission-form/permission-form.component';
 
 @Component({

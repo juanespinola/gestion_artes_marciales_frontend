@@ -3,7 +3,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../utils/api.service';
-import { MaterialModule } from '../../../../components/material.module';
+import { MaterialModule } from '../../components/material.module';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { Observable, map, startWith } from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';

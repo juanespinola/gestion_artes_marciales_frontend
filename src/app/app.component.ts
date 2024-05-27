@@ -7,10 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { RouterOutlet } from '@angular/router';
-import { ComponentsModule } from './components/components.module';
+import { ComponentsModule } from './pages/admin/components/components.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import { TranslateModule } from '@ngx-translate/core';
-import { MaterialModule } from './components/material.module';
+import { MaterialModule } from './pages/admin/components/material.module';
 
 
 
@@ -24,7 +24,6 @@ import { MaterialModule } from './components/material.module';
     TranslateModule
   ],
   providers:[
-  
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

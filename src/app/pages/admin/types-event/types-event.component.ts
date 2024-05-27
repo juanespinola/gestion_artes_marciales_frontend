@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentsModule } from '../../../components/components.module';
+import { ComponentsModule } from '../components/components.module';
 import { TypesEventFormComponent } from './types-event-form/types-event-form.component';
 
 @Component({

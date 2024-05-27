@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../components/material.module';
+import { MaterialModule } from '../../admin/components/material.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
 import { HeaderComponent } from '../components/header/header.component';
 import moment from 'moment';
+import { SessionService } from '../../../services/session.service';
 
 
 
@@ -20,16 +21,19 @@ import moment from 'moment';
 export class EventsComponent {
   federation_id: any;
   federation: any;
-
+  athlete: any;
   events: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private sessionService: SessionService
   ){
     // this.federation_id = this.activatedRoute.snapshot.paramMap.get('federation_id')
     this.federation_id = history.state?.federation_id
+    // this.athlete = history.state?.athlete
+    this.athlete = this.sessionService.getUser()
     console.log(history.state)
   }
 
@@ -66,7 +70,7 @@ export class EventsComponent {
   }
 
   selectEvent(event_id:any) {
-    this.router.navigate(['event', event_id], {state: { federation_id: this.federation_id }})
+    this.router.navigate(['event', event_id], {state: { federation_id: this.federation_id, athlete: this.athlete }})
   }
 
 

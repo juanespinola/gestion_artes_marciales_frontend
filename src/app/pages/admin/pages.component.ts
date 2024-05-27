@@ -2,16 +2,16 @@ import { ChangeDetectorRef, Component, ViewChild, ViewEncapsulation } from '@ang
 
 import {BreakpointObserver, MediaMatcher} from '@angular/cdk/layout';
 import { RouterOutlet } from '@angular/router';
-import { ComponentsModule } from '../../components/components.module';
+import { ComponentsModule } from './components/components.module';
 import { SessionService } from '../../services/session.service';
-import { MaterialModule } from '../../components/material.module';
+import { MaterialModule } from './components/material.module';
 import { AppSettings } from '../../app.config';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
 import { CoreService } from '../../services/core.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NavService } from '../../services/nav.service';
-import { navItems } from '../../components/sidebar/sidebar-pages';
+import { navItems } from './components/sidebar/sidebar-pages';
 
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';

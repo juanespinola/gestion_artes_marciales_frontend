@@ -1,4 +1,4 @@
-import { APP_ROUTES } from '../../routes';
+import { APP_ROUTES } from '../../../../routes';
 import { NavItem } from './nav-item/nav-item';
 const admin_path = 'admin/';
 export const navItems: NavItem[] = [
@@ -23,18 +23,18 @@ export const navItems: NavItem[] = [
     route: admin_path+APP_ROUTES.USERS,
     permission: 'user.access'
   },
-  {
-    displayName: 'Categorias',
-    iconName: 'shopping-cart',
-    route: admin_path+APP_ROUTES.CATEGORY,
-    permission: 'category.access'
-  },
-  {
-    displayName: 'Reglas Categorias',
-    iconName: 'aperture',
-    route: admin_path+APP_ROUTES.GROUP_CATEGORY,
-    permission: 'groupcategory.access'
-  },
+  // {
+  //   displayName: 'Categorias',
+  //   iconName: 'shopping-cart',
+  //   route: admin_path+APP_ROUTES.CATEGORY,
+  //   permission: 'category.access'
+  // },
+  // {
+  //   displayName: 'Reglas Categorias',
+  //   iconName: 'aperture',
+  //   route: admin_path+APP_ROUTES.GROUP_CATEGORY,
+  //   permission: 'groupcategory.access'
+  // },
   {
     displayName: 'Federaciones',
     iconName: 'aperture',

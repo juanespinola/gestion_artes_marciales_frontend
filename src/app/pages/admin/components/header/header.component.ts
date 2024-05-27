@@ -7,11 +7,11 @@ import {
 } from '@angular/core';
 import { MaterialModule } from '../material.module';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreService } from '../../services/core.service';
+import { CoreService } from '../../../../services/core.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { Router } from '@angular/router';
-import { SessionService } from '../../services/session.service';
+import { SessionService } from '../../../../services/session.service';
 
 interface notifications {
   id: number;

@@ -6,9 +6,9 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { ApiService } from '../../../utils/api.service';
 import { Router } from '@angular/router';
 import { AlertsService } from '../../../services/alerts.service';
-import { MaterialModule } from '../../../components/material.module';
+import { MaterialModule } from '../components/material.module';
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteDialogComponent } from '../../../components/dialogs/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '../components/dialogs/delete-dialog/delete-dialog.component';
 
 
 
@@ -65,7 +65,7 @@ export class UsersComponent {
 
   updateAction(id:any): void {
     console.log(id)
-    this.route.navigate(["users/edit", id]);
+    this.route.navigate(["admin","users","edit", id]);
   }
 
   deleteAction(id:any): void {
@@ -89,12 +89,12 @@ export class UsersComponent {
   }
 
   createAction(): void {
-    this.route.navigate(["users/add"]);
+    this.route.navigate(["admin","users","add"]);
   }
 
   permissionsAction(id:any):void {
     console.log(id)
-    this.route.navigate(["users/permissions", id])
+    this.route.navigate(["admin","users","permissions", id])
   }
 
   getAll() {
