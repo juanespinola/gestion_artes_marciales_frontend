@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MaterialModule } from '../components/material.module';
+import { APP_ROUTES } from '../../../routes';
 
 @Component({
   selector: 'app-event',
@@ -120,11 +121,11 @@ export class EventComponent {
     }
 
     categoryAction(id:any): void {
-      this.route.navigate(["admin","event","edit", id, 'entrycategories']);
+      this.route.navigate(["admin","event","edit", id, APP_ROUTES.ENTRY_CATEGORIES]);
     }
 
     athletesRegistrationAction(id:any): void {
-      this.route.navigate(["admin","event","edit", id, 'athletesregistration']);
+      this.route.navigate(["admin","event","edit", id, APP_ROUTES.INSCRIPTIONS]);
     }
 
     

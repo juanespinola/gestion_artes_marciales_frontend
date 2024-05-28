@@ -153,23 +153,21 @@ export class HeaderComponent {
     },
   ];
 
-  profiledd: profiledd[] = [
+  profiledd: any[] = [
     {
-      id: 1,
       img: '/assets/images/svgs/icon-account.svg',
-      title: 'My Profile',
-      subtitle: 'Account Settings',
-      link: '/',
+      title: 'Mi Perfil',
+      subtitle: 'Configuración Cuenta',
+      link: '/profile',
     },
     {
-      id: 2,
+     
       img: '/assets/images/svgs/icon-inbox.svg',
       title: 'My Inbox',
       subtitle: 'Messages & Email',
       link: '/apps/email/inbox',
     },
     {
-      id: 3,
       img: '/assets/images/svgs/icon-tasks.svg',
       title: 'My Tasks',
       subtitle: 'To-do and Daily Tasks',

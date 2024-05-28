@@ -37,6 +37,8 @@ import { EventListClassCategoriesComponent } from './pages/admin/event/event-lis
 import { RegisterEventComponent } from './pages/athlete/register-event/register-event.component';
 import { PagesComponent as AthletePagesComponent } from './pages/athlete/pages.component';
 import { FederationDetailComponent } from './pages/athlete/federations/federation-detail/federation-detail.component';
+import { ProfileComponent } from './pages/athlete/profile/profile.component';
+import { EventFormListInscriptionComponent } from './pages/admin/event/event-form-list-inscription/event-form-list-inscription.component';
 
 export const routes: Routes = [
   // {
@@ -60,6 +62,7 @@ export const routes: Routes = [
       { path: "events", component: EventsComponent },
       { path: "event/:event_id", component: EventDetailComponent },
       { path: "registerevent", component: RegisterEventComponent },
+      { path: "profile", component: ProfileComponent },
       { path: '', redirectTo: 'federations', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },
     ]
@@ -155,14 +158,20 @@ export const routes: Routes = [
                 path: APP_ROUTES.ENTRY_CATEGORIES,
                 children: [
                   { path: "", component: EventListEntryCategoriesComponent, },
-                  {
-                    path: ":id/" + APP_ROUTES.CLASS_CATEGORIES,
-                    children: [
-                      { path: "", component: EventListClassCategoriesComponent, },
-                    ]
-                  }
+                  // {
+                  //   path: ":id/" + APP_ROUTES.CLASS_CATEGORIES,
+                  //   children: [
+                  //     { path: "", component: EventListClassCategoriesComponent, },
+                  //   ]
+                  // }
                 ]
               },
+              {
+                path: APP_ROUTES.INSCRIPTIONS,
+                children: [
+                  { path: "", component: EventFormListInscriptionComponent }
+                ]
+              }
             ]
           },
         ]
