@@ -54,7 +54,7 @@ export class EventDetailComponent {
   }
 
   navigateEventRegister(){
-    this.router.navigate([APP_ROUTES.ATHLETE_REGISTER_EVENT]);
+    this.router.navigate(["event",this.event_id,APP_ROUTES.ATHLETE_REGISTER_EVENT]);
   }
 
 }

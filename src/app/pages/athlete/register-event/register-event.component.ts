@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../admin/components/material.module';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
 import { SessionService } from '../../../services/session.service';
+import { APP_ROUTES } from '../../../routes';
 
 @Component({
   selector: 'app-register-event',
@@ -18,10 +19,17 @@ import { SessionService } from '../../../services/session.service';
 })
 export class RegisterEventComponent {
   
-  collection = "event"
+  collection = APP_ROUTES.ATHLETE_ENTRYCATEGORIES
   formGroup: FormGroup;
 
+  entriescategories:any = [];
+  entry:any = [];
+
   athlete:any;
+
+
+  selectEntry: any = [];
+  selectEntryForPayment: any = [];
 
   constructor (
     private formBuilder: FormBuilder,
@@ -31,24 +39,38 @@ export class RegisterEventComponent {
     private sessionService: SessionService
   ){
     this.athlete = this.sessionService.getUser()
-    console.log(this.athlete)
+    
   }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      name: [this.athlete.name, Validators.required],
-      email: [this.athlete.email, Validators.required],
-      location_id: [this.athlete.location_id],
-      city_id: [this.athlete.city_id],
-      type_document_id: [this.athlete.type_document_id, Validators.required],
-      document: [this.athlete.document, Validators.required],
-      phone: [this.athlete.phone, Validators.required],
-      gender: [this.athlete.gender, Validators.required],
-      birthdate: [this.athlete.birthdate, Validators.required],
-      weight: [this.athlete.weight, Validators.required],
+      // name: [this.athlete.name, Validators.required],
+      // email: [this.athlete.email, Validators.required],
+      // location_id: [this.athlete.location_id],
+      // city_id: [this.athlete.city_id],
+      // type_document_id: [this.athlete.type_document_id, Validators.required],
+      // document: [this.athlete.document, Validators.required],
+      // phone: [this.athlete.phone, Validators.required],
+      // gender: [this.athlete.gender, Validators.required],
+      // birthdate: [this.athlete.birthdate, Validators.required],
+      // weight: [this.athlete.weight, Validators.required],
+      selectEntryForPayment: [ [], Validators.required]
     });
 
+    this.getEntriesCategories()
     // this.createForm();
+  }
+
+  getEntriesCategories(){
+    this.apiService.getData(this.collection)
+    .subscribe({
+      next: (res:any) => {
+        console.log( res )
+        this.entriescategories = res;
+      },
+      error: (err) => console.log(err),
+      complete: () => {}
+    });
   }
 
 
@@ -100,4 +122,20 @@ export class RegisterEventComponent {
   onBack(){
     this.router.navigate(['admin',this.collection]);
   }
+
+
+  asArray(array: any): any {
+    return array
+  }
+
+
+  getSelectEntry(entry:any){
+    console.log(entry)
+
+
+    // this.selectEntry.push(event.source.value)
+  }
+
+
+
 }

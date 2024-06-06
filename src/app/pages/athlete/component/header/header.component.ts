@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { CoreService } from '../../../../services/core.service';
 import { APP_ROUTES } from '../../../../routes';
+import { SessionService } from '../../../../services/session.service';
 
 
 interface notifications {
@@ -101,7 +102,8 @@ export class HeaderComponent {
     private vsidenav: CoreService,
     public dialog: MatDialog,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private sessionService: SessionService
   ) {
     translate.setDefaultLang('en');
     
@@ -290,6 +292,10 @@ export class HeaderComponent {
   navigateProfileAthlete(athlete:any){
     // this.router.navigate(['athlete', 'sign-in']);
     console.log(athlete)
+  }
+
+  logout(){
+    this.sessionService.logoutAthlete();
   }
 }
 

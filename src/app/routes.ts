@@ -20,4 +20,5 @@ export const APP_ROUTES = {
     DASHBOARD_ATHLETE: "",
     ATHLETE_SIGNIN: 'signin',
     ATHLETE_REGISTER_EVENT: 'registerevent',
+    ATHLETE_ENTRYCATEGORIES: 'athlete/entrycategories',
 }

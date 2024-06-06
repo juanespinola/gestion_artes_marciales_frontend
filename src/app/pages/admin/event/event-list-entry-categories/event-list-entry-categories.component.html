@@ -15,7 +15,6 @@
                            Cinturon: {{entrycategory.key}}
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <!-- {{ entrycategory.value | json}} -->
 
                     <div *ngFor="let entry of asArray(entrycategory.value)">
                         <mat-list>
@@ -30,7 +29,7 @@
                                                 Peso: {{entry.weight ?  entry.weight : "Sin Limites"}} 
                                             </label>
                                             <label class="w-100 text-center">
-                                                Sexo: {{entry.sex == 'm' ? "Masculino" : "Femenino"}}
+                                                Sexo: {{entry.gender == 'masculino' ? "Masculino" : "Femenino"}}
                                             </label>
                                             <label class="w-100 text-center">
                                                 Edad Hasta: {{entry.age}}

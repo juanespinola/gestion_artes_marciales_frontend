@@ -60,8 +60,14 @@ export const routes: Routes = [
       { path: "federations", component: FederationsComponent },
       { path: "federation/:federation_id", component: FederationDetailComponent },
       { path: "events", component: EventsComponent },
-      { path: "event/:event_id", component: EventDetailComponent },
-      { path: "registerevent", component: RegisterEventComponent },
+      { 
+        path: "event/:event_id", 
+        // component: EventDetailComponent,
+        children: [
+          { path: "", component: EventDetailComponent },
+          { path: "registerevent", component: RegisterEventComponent },
+        ]
+       },
       { path: "profile", component: ProfileComponent },
       { path: '', redirectTo: 'federations', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },

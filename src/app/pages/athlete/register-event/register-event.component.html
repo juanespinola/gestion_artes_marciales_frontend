@@ -1,10 +1,101 @@
-<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+<mat-card class="cardWithShadow theme-card">
     <mat-card-header>
         <mat-card-title class="m-b-0">Inscribirse</mat-card-title>
     </mat-card-header>
     <mat-card-content class="b-t-1">
 
         <div class="row">
+
+            <div class="col-lg-8 col-sm-8">
+
+                <mat-accordion multi>
+
+                    <div *ngFor="let entrycategory of entriescategories | keyvalue">
+
+                        <mat-expansion-panel class="cardWithShadow">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="f-w-600">
+                                    Cinturon: {{entrycategory.key}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div *ngFor="let entry of asArray(entrycategory.value)">
+                                @if(entry.max_weight){
+                                <mat-list>
+                                    <mat-list-item>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="d-flex align-items-center w-100 h-100">
+                                                    <mat-radio-button value="{{entry.id}}" (change)="getSelectEntry(entry)">
+                                                        <label class="w-100 text-center ">
+                                                            Nombre: {{entry.name}} |
+                                                        </label>
+                                                        <label class="w-100 text-center">
+                                                            Peso: - {{entry.max_weight ? entry.max_weight : "Sin Limites"}} |
+                                                        </label>
+                                                        <label class="w-100 text-center">
+                                                            Sexo: {{entry.gender == 'masculino' ? "Masculino" : "Femenino"}} |
+                                                        </label>
+                                                        <label class="w-100 text-center">
+                                                            Edad: - {{entry.max_age}} |
+                                                        </label>
+                                                        <label class="w-100 text-center">
+                                                            Indumentaria: {{entry.clothes}}
+                                                        </label>
+                                                    </mat-radio-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-list-item>
+                                    <mat-divider></mat-divider>
+                                </mat-list>
+                                }
+                            </div>
+
+                        </mat-expansion-panel>
+                    </div>
+
+                </mat-accordion>
+
+            </div>
+
+            <div class="col-lg-4 col-sm-4">
+                <mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+                    <mat-card-header>
+                        <mat-card-title class="m-b-0">Registro</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="b-t-1">
+                        <div *ngFor="let selectEntry of selectEntryForPayment">
+                            <mat-list>
+                                <mat-list-item>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <label class="w-100 text-center ">
+                                                Nombre: {{selectEntry.name}} |
+                                            </label>
+                                        </div>
+                                    </div>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>    
+                    </mat-card-content>
+                    <mat-card-footer class="p-24">
+                        <div class="row justify-content-end">
+                            <div class="col-sm-12">
+                                <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
+                                    (click)="onSubmit()">Inscribirse</button>
+                                <button mat-flat-button color="warn" class="button" class="m-l-8" (click)="onBack()">Cancelar</button>
+                            </div>
+                        </div>
+                    </mat-card-footer>
+                </mat-card>
+
+            </div>
+
+        </div>
+
+        <!-- <div class="row">
 
             <div class="col-lg-6 col-sm-6">
 
@@ -37,7 +128,7 @@
                     </div>
                     <div class="col-sm-8">
                         <mat-form-field appearance="outline" class="w-100">
-                            <input matInput formControlName="location_id" />
+                            <input matInput formControlName="country_id" />
                         </mat-form-field>
                     </div>
                 </div>
@@ -127,16 +218,18 @@
 
             </div>
 
-        </div>
+        </div> -->
 
+
+
+    </mat-card-content>
+
+    <!-- <mat-card-footer class="p-24">
         <div class="row justify-content-end">
             <div class="col-sm-12">
-                <button mat-flat-button color="primary" type="submit" class="button"
-                [disabled]="!formGroup.valid" (click)="onSubmit()">Inscribirse</button>
-                <button mat-flat-button color="warn" class="button" class="m-l-8"
-                (click)="onBack()">Cancelar</button>
+                <button mat-flat-button color="primary" type="submit" class="button" (click)="addForPayment()">Inscribirse</button>
+                <button mat-flat-button color="warn" class="button" class="m-l-8" >Cancelar</button>
             </div>
         </div>
-        
-    </mat-card-content>
+    </mat-card-footer> -->
 </mat-card>
