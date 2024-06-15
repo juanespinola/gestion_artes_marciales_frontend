@@ -38,7 +38,8 @@ import { RegisterEventComponent } from './pages/athlete/register-event/register-
 import { PagesComponent as AthletePagesComponent } from './pages/athlete/pages.component';
 import { FederationDetailComponent } from './pages/athlete/federations/federation-detail/federation-detail.component';
 import { ProfileComponent } from './pages/athlete/profile/profile.component';
-import { EventFormListInscriptionComponent } from './pages/admin/event/event-form-list-inscription/event-form-list-inscription.component';
+import { PaymentComponent } from './pages/athlete/payment/payment.component';
+import { EventListAthleteInscriptionComponent } from './pages/admin/event/event-list-athlete-inscription/event-list-athlete-inscription.component';
 
 export const routes: Routes = [
   // {
@@ -66,6 +67,7 @@ export const routes: Routes = [
         children: [
           { path: "", component: EventDetailComponent },
           { path: "registerevent", component: RegisterEventComponent },
+          { path: "payment", component: PaymentComponent },
         ]
        },
       { path: "profile", component: ProfileComponent },
@@ -173,9 +175,9 @@ export const routes: Routes = [
                 ]
               },
               {
-                path: APP_ROUTES.INSCRIPTIONS,
+                path: APP_ROUTES.ATHLETE_INSCRIPTIONS,
                 children: [
-                  { path: "", component: EventFormListInscriptionComponent }
+                  { path: "", component: EventListAthleteInscriptionComponent }
                 ]
               }
             ]

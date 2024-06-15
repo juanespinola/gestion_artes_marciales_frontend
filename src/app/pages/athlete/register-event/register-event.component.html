@@ -21,36 +21,36 @@
                             </mat-expansion-panel-header>
 
                             <div *ngFor="let entry of asArray(entrycategory.value)">
-                                @if(entry.max_weight){
+                                <!-- @if(entry.max_weight){ -->
                                 <mat-list>
                                     <mat-list-item>
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <div class="d-flex align-items-center w-100 h-100">
-                                                    <mat-radio-button value="{{entry.id}}" (change)="getSelectEntry(entry)">
+                                                <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+                                                    
                                                         <label class="w-100 text-center ">
-                                                            Nombre: {{entry.name}} |
+                                                            {{entry.name}} / 
+                                                            - {{entry.max_weight ? entry.max_weight : "Sin Limites"}} Kg / 
+                                                            {{entry.gender == 'masculino' ? "Masculino" : "Femenino"}} /
+                                                            - {{entry.max_age}} Años / 
+                                                            {{entry.clothes}} /
+
                                                         </label>
-                                                        <label class="w-100 text-center">
-                                                            Peso: - {{entry.max_weight ? entry.max_weight : "Sin Limites"}} |
-                                                        </label>
-                                                        <label class="w-100 text-center">
-                                                            Sexo: {{entry.gender == 'masculino' ? "Masculino" : "Femenino"}} |
-                                                        </label>
-                                                        <label class="w-100 text-center">
-                                                            Edad: - {{entry.max_age}} |
-                                                        </label>
-                                                        <label class="w-100 text-center">
-                                                            Indumentaria: {{entry.clothes}}
-                                                        </label>
-                                                    </mat-radio-button>
+                                                        
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-sm-2">
+                                                                <button mat-icon-button (click)="getSelectEntry(entry)" class="m-r-10 cursor-pointer">
+                                                                    <i-tabler name="plus" class="icon-18"></i-tabler>
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
                                 </mat-list>
-                                }
+                                <!-- } -->
                             </div>
 
                         </mat-expansion-panel>
@@ -67,25 +67,44 @@
                     </mat-card-header>
                     <mat-card-content class="b-t-1">
                         <div *ngFor="let selectEntry of selectEntryForPayment">
-                            <mat-list>
-                                <mat-list-item>
+                            <!-- <mat-list>
+                                <mat-list-item> -->
                                     <div class="row">
-                                        <div class="col-sm-8">
-                                            <label class="w-100 text-center ">
-                                                Nombre: {{selectEntry.name}} |
-                                            </label>
+                                        <div class="col-sm-12">
+                                            <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+                                                <button mat-icon-button (click)="deleteSelectEntry(selectEntry)" class="m-r-2 cursor-pointer">
+                                                    <i-tabler name="trash" class="icon-18"></i-tabler>
+                                                </button>
+                                                <label>
+                                                    Categoria: {{selectEntry.name}}
+                                                </label>
+                                                <label>
+                                                    {{selectEntry.tariff_inscription.price}}
+                                                </label> 
+                                            </div>
                                         </div>
                                     </div>
-                                </mat-list-item>
-                            </mat-list>
-                        </div>    
+                                <!-- </mat-list-item>
+                            </mat-list> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+                                    <label for="">Total: </label> 
+                                    <label for="">{{total}} gs</label> 
+                                </div>
+                            </div>
+                        </div>
                     </mat-card-content>
                     <mat-card-footer class="p-24">
-                        <div class="row justify-content-end">
+                    
+                        <div class="row justify-content-center align-items-center">
                             <div class="col-sm-12">
-                                <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
-                                    (click)="onSubmit()">Inscribirse</button>
-                                <button mat-flat-button color="warn" class="button" class="m-l-8" (click)="onBack()">Cancelar</button>
+                                
+                                    <button mat-flat-button color="primary" type="submit" class="button"
+                                    [disabled]="!formGroup.valid" (click)="confirmPayment()">Ir a Pagar</button>
+                                    <button mat-flat-button color="warn" class="button" class="m-l-8"
+                                    (click)="onBack()">Cancelar</button>
                             </div>
                         </div>
                     </mat-card-footer>

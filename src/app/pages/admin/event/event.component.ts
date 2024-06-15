@@ -125,7 +125,7 @@ export class EventComponent {
     }
 
     athletesRegistrationAction(id:any): void {
-      this.route.navigate(["admin","event","edit", id, APP_ROUTES.INSCRIPTIONS]);
+      this.route.navigate(["admin","event","edit", id, APP_ROUTES.ATHLETE_INSCRIPTIONS]);
     }
 
     

@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
 import { SessionService } from '../../../services/session.service';
 import { APP_ROUTES } from '../../../routes';
+import { AlertsService } from '../../../services/alerts.service';
+import { ConfirmInscriptionDialogComponent } from './confirm-inscription-dialog/confirm-inscription-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register-event',
@@ -27,38 +30,31 @@ export class RegisterEventComponent {
 
   athlete:any;
 
-
-  selectEntry: any = [];
   selectEntryForPayment: any = [];
+  entryForPaymentCtrl = new FormControl([], Validators.required);
+
+  total: number = 0;
 
   constructor (
     private formBuilder: FormBuilder,
     public route: ActivatedRoute,
     private apiService: ApiService, 
     private router: Router,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private alertsService: AlertsService,
+    public dialog: MatDialog
   ){
     this.athlete = this.sessionService.getUser()
     
   }
 
   ngOnInit() {
-    this.formGroup = this.formBuilder.group({
-      // name: [this.athlete.name, Validators.required],
-      // email: [this.athlete.email, Validators.required],
-      // location_id: [this.athlete.location_id],
-      // city_id: [this.athlete.city_id],
-      // type_document_id: [this.athlete.type_document_id, Validators.required],
-      // document: [this.athlete.document, Validators.required],
-      // phone: [this.athlete.phone, Validators.required],
-      // gender: [this.athlete.gender, Validators.required],
-      // birthdate: [this.athlete.birthdate, Validators.required],
-      // weight: [this.athlete.weight, Validators.required],
-      selectEntryForPayment: [ [], Validators.required]
+    this.formGroup = this.formBuilder.group({ 
+      selectEntryForPayment : this.entryForPaymentCtrl
     });
 
     this.getEntriesCategories()
-    // this.createForm();
+    
   }
 
   getEntriesCategories(){
@@ -73,54 +69,23 @@ export class RegisterEventComponent {
     });
   }
 
-
-  createForm() {
-    let id = this.route.snapshot.params['id']
-    if(id) {
-      this.apiService.getData(this.collection+`/${id}`)
-      .subscribe({
-        next: (res:any) => {          
-          this.formGroup.patchValue({
-            name: res.name,
-            email: res.email,
-            password: res.password,
-            location_id: res.location_id,
-            city_id: res.city_id,
-            type_document_id: res.type_document_id,
-            document: res.document,
-            phone: res.phone,
-            gender: res.gender,
-            birthdate: res.birthdate,
-            weight: res.weight,
-          })
-          
-        },
-        error: (err) => console.log(err),
-        complete: () => {}
-      });
-    } 
-    
-  }
+  
 
   onSubmit() {
     console.log(this.formGroup.value)
-    let id = this.route.snapshot.params['id']
-    if(id){
-      this.apiService.putData(this.collection, id, this.formGroup.value)
-      .subscribe((res:any) => {
-        // this.router.navigate([this.collection])
+      this.apiService.postData("athlete/inscription/create", this.formGroup.value)
+      .subscribe({
+        next: (res:any) => {
+          this.alertsService.showAlert("Correcto!", "Registro correcto!", 'success')
+          this.router.navigate(['event', this.route.snapshot.params['event_id'], 'payment']);
+        },
+        error: (err) =>  err.status == 400 && this.alertsService.showAlert("Error!", err.error.messages, 'error'),
       });
-      
-    } else {
-      this.apiService.postData(this.collection, this.formGroup.value)
-      .subscribe((res:any) => {
-        // this.router.navigate([this.collection])
-      });
-    }
+    // }
   }
 
   onBack(){
-    this.router.navigate(['admin',this.collection]);
+    this.router.navigate(['event', this.route.snapshot.params['event_id']]);
   }
 
 
@@ -130,11 +95,57 @@ export class RegisterEventComponent {
 
 
   getSelectEntry(entry:any){
-    console.log(entry)
+
+    const count = this.selectEntryForPayment.length;
+    const hasAbsoluto = this.selectEntryForPayment.some( (e:any) => (e.name).toLowerCase() === 'absoluto');
+
+    
+    // Si ya hay un entry y el nuevo entry no tiene name "absoluto", no lo agrega
+    if(hasAbsoluto){
+      this.alertsService.showAlert("Error!", "Ya te encuentras Registrado en Absoluto", 'warning')
+      return;
+    }
+
+    if (count >= 1 && (entry.name).toLowerCase() !== 'absoluto') {
+      this.alertsService.showAlert("Error!", "Ya te encuentras registrado en una Categoría", 'warning')
+        return;
+    }
+
+    this.selectEntryForPayment.push(entry);
+    this.total += entry.tariff_inscription.price;
+    this.entryForPaymentCtrl.setValue(this.selectEntryForPayment)
 
 
-    // this.selectEntry.push(event.source.value)
   }
+
+  deleteSelectEntry(entry:any){
+    const index = this.selectEntryForPayment.findIndex((e:any) => e.id === entry.id);
+    
+    console.log(index)
+
+    if (index !== -1) {
+        this.selectEntryForPayment.splice(index, 1);
+        this.total -= entry.tariff_inscription.price;
+        this.entryForPaymentCtrl.setValue(this.selectEntryForPayment)
+        this.alertsService.showAlert("Correcto!", "Categoría eliminada correctamente!", 'success')
+    } else {
+      this.alertsService.showAlert("Error!", "ategoría no encontrada", 'error')
+    }
+
+  }
+
+  confirmPayment(){
+    const dialogRef = this.dialog.open(ConfirmInscriptionDialogComponent)
+    dialogRef.afterClosed()
+      .subscribe((result: any) => {
+        if (result.event === 'confirm') {
+          this.onSubmit()
+        }
+      })
+  }
+
+
+
 
 
 

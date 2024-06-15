@@ -10,7 +10,7 @@ export class AlertsService {
   showAlert(title: string, body: string, type: string) {
     switch (type) {
       case 'success':
-        this.toastr.success(body, title, );
+        this.toastr.success(body, title );
         break;
       case 'error':
         this.toastr.error(body, title);
