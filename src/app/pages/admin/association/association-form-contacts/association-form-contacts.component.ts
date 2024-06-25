@@ -5,18 +5,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../utils/api.service';
 
 @Component({
-  selector: 'app-federation-form-contacts',
+  selector: 'app-association-form-contacts',
   standalone: true,
   imports: [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './federation-form-contacts.component.html',
-  styleUrl: './federation-form-contacts.component.scss'
+  templateUrl: './association-form-contacts.component.html',
+  styleUrl: './association-form-contacts.component.scss'
 })
-export class FederationFormContactsComponent {
-  collection = "federation"
+export class AssociationFormContactsComponent {
+  collection = "association"
   formGroup: FormGroup;
   
   constructor (
@@ -61,7 +61,7 @@ export class FederationFormContactsComponent {
 
 
   onSubmit() {
-    console.log(this.formGroup.value)
+    
     let id = this.route.snapshot.params['id']
     if(id){
       this.apiService.putData('federationcontact', id, this.formGroup.value)
@@ -71,13 +71,6 @@ export class FederationFormContactsComponent {
       });
       
     } 
-    // else {
-    //   this.apiService.postData(this.collection, this.formGroup.value)
-    //   .subscribe((res:any) => {
-    //     console.log(res)
-    //     this.router.navigate([this.collection])
-    //   });
-    // }
   }
 
   onBack(){

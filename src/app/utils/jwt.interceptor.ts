@@ -20,6 +20,7 @@ export const JwtInterceptor: HttpInterceptorFn = (req, next) => {
   return next(authReq).pipe(
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
+        console.log(err)
         // Handle HTTP errors
         if (err.status === 401) {
           // Specific handling for unauthorized errors         
@@ -29,7 +30,6 @@ export const JwtInterceptor: HttpInterceptorFn = (req, next) => {
         } else {
           // Handle other HTTP error codes
           console.error('HTTP error:', err);
-          // alert.showAlert("HTTP error", err.message, "error")
         }
       } else {
         // Handle non-HTTP errors

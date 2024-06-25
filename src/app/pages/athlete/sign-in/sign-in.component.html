@@ -16,6 +16,15 @@
                         <mat-form-field appearance="outline" class="w-100" color="primary">
                             <input matInput type="password" formControlName="password" />
                         </mat-form-field>
+                        <!-- Federation -->
+                        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Federacion</mat-label>
+                        
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="federation_id" value="federation_id" placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let federation of federations" [value]="federation.id">{{federation.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        
 
                         <div class="d-flex align-items-center m-b-12">
                             <!-- <mat-checkbox color="primary">Remember this Device</mat-checkbox> -->

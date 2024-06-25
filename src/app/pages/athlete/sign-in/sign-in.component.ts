@@ -5,7 +5,6 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
 import { SessionService } from '../../../services/session.service';
 import { AlertsService } from '../../../services/alerts.service';
-import { APP_ROUTES } from '../../../routes';
 import { Location } from '@angular/common';
 
 @Component({
@@ -23,6 +22,8 @@ export class SignInComponent {
 
   formGroup: FormGroup;
   collection: string = 'athlete/login'
+  federations: any = [];
+  federation_id: any = ""
 
   constructor (
     private formBuilder: FormBuilder,
@@ -36,9 +37,12 @@ export class SignInComponent {
   ){}
 
   ngOnInit() {
+    this.getFederations();
+
     this.formGroup = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      federation_id: [this.federation_id, Validators.required]
     });
   }
 
@@ -50,10 +54,24 @@ export class SignInComponent {
         this.sessionService.setItem('token', res.token)
         this.sessionService.setItem('user', JSON.stringify(res.user) )
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        this.alertsService.showAlert("Error!", err.error.message, 'error')
+      },
       complete: () => this.location.back()
       
     });
+  }
+
+  getFederations(){
+    this.apiService.getData("athlete/federations")
+    .subscribe({
+      next: (res:any) => {
+        console.log(res)
+        this.federations = res
+      },
+      error: (err) => console.log(err),
+      complete: () => {}
+    })
   }
   
 }

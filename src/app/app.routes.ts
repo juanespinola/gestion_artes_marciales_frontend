@@ -40,6 +40,8 @@ import { FederationDetailComponent } from './pages/athlete/federations/federatio
 import { ProfileComponent } from './pages/athlete/profile/profile.component';
 import { PaymentComponent } from './pages/athlete/payment/payment.component';
 import { EventListAthleteInscriptionComponent } from './pages/admin/event/event-list-athlete-inscription/event-list-athlete-inscription.component';
+import { NewComponent } from './pages/admin/new/new.component';
+import { NewFormComponent } from './pages/admin/new/new-form/new-form.component';
 
 export const routes: Routes = [
   // {
@@ -207,6 +209,14 @@ export const routes: Routes = [
           { path: "", component: StatusEventComponent, },
           { path: "edit/:id", component: StatusEventFormComponent },
           { path: "add", component: StatusEventFormComponent },
+        ]
+      },
+      {
+        path: APP_ROUTES.NEW,
+        children: [
+          { path: "", component: NewComponent, },
+          { path: "edit/:id", component: NewFormComponent },
+          { path: "add", component: NewFormComponent },
         ]
       },
     ]

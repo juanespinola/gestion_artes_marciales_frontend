@@ -96,10 +96,14 @@ export class TableComponent implements AfterViewInit {
                 this.alertsService.showAlert("Correcto!", res.messages, 'success')
               },
               error: (error) => {
-                console.log(error)
-                this.alertsService.showAlert("Error!", error.statusText, 'error')
+                console.log(error.error.errorInfo)
+                if(error.error.errorInfo[0] == "23503"){
+                  this.alertsService.showAlert("Error!", "Registro relacionados a otro Registro", 'error')
+                }else {
+                  this.alertsService.showAlert("Error!", error.statusText, 'error')
+                }
               }
-            })
+          })
         }
       })
 

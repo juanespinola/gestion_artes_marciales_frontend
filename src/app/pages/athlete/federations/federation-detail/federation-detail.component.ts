@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { MaterialModule } from '../../component/material.module';
 import { HeaderComponent } from '../../component/header/header.component';
 import { ApiService } from '../../../../utils/api.service';
+import moment from 'moment';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { ApiService } from '../../../../utils/api.service';
 export class FederationDetailComponent {
   federation_id: any;
   federation: any;
+  news: any = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,6 +29,7 @@ export class FederationDetailComponent {
   ){
     this.federation_id = this.activatedRoute.snapshot.paramMap.get('federation_id')
     this.getFederation()
+    this.getNews()
   }
 
   getFederation(){
@@ -39,5 +42,22 @@ export class FederationDetailComponent {
       error: (err) => console.log(err),
       complete: () => {}
     });
+  }
+
+
+  getNews(){
+    this.apiService.getData(`federations/${this.federation_id}/news`)
+      .subscribe({
+        next: (res:any) => {
+          this.news = res
+        },
+        error: (err) => console.log(err),
+        complete: () => {}
+      })
+  }
+
+  comingNews(dateNew: any) : any {
+    console.log(dateNew)
+    return moment().diff(dateNew, 'day')
   }
 }

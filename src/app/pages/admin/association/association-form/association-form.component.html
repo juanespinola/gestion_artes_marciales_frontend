@@ -1,3 +1,5 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
+    <mat-tab label="Contenido">
 <mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
     <mat-card-header>
         <mat-card-title class="m-b-0">Editar</mat-card-title>
@@ -27,3 +29,15 @@
 
     </mat-card-content>
 </mat-card>
+
+</mat-tab>
+
+<mat-tab label="Autoridades">
+    <app-association-form-authorities></app-association-form-authorities>
+</mat-tab>
+
+<mat-tab label="Contactos">
+    <app-association-form-contacts></app-association-form-contacts>
+</mat-tab>
+
+</mat-tab-group>

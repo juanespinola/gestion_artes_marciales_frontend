@@ -16,6 +16,7 @@ export const APP_ROUTES = {
     ENTRY_CATEGORIES: 'entrycategories',
     CLASS_CATEGORIES: 'classcategories',
     ATHLETE_INSCRIPTIONS: 'athlete_inscriptions',
+    NEW: 'new',
     //athlete routes
     DASHBOARD_ATHLETE: "",
     ATHLETE_SIGNIN: 'signin',
