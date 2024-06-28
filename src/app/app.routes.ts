@@ -42,6 +42,7 @@ import { PaymentComponent } from './pages/athlete/payment/payment.component';
 import { EventListAthleteInscriptionComponent } from './pages/admin/event/event-list-athlete-inscription/event-list-athlete-inscription.component';
 import { NewComponent } from './pages/admin/new/new.component';
 import { NewFormComponent } from './pages/admin/new/new-form/new-form.component';
+import { NewDetailComponent } from './pages/athlete/federations/new-detail/new-detail.component';
 
 export const routes: Routes = [
   // {
@@ -61,11 +62,17 @@ export const routes: Routes = [
     component: AthletePagesComponent,
     children: [
       { path: "federations", component: FederationsComponent },
-      { path: "federation/:federation_id", component: FederationDetailComponent },
+      { 
+        path: "federation/:federation_id", 
+        children: [
+          { path: "", component: FederationDetailComponent },
+          { path: "news/:new_id", component: NewDetailComponent }
+        ]
+      },
+
       { path: "events", component: EventsComponent },
       { 
         path: "event/:event_id", 
-        // component: EventDetailComponent,
         children: [
           { path: "", component: EventDetailComponent },
           { path: "registerevent", component: RegisterEventComponent },

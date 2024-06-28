@@ -56,8 +56,15 @@ export class FederationDetailComponent {
       })
   }
 
+  selectedNew(new_id: number){
+    this.router.navigate(['federation',this.federation_id,'news', new_id])
+  }
+
   comingNews(dateNew: any) : any {
-    console.log(dateNew)
     return moment().diff(dateNew, 'day')
+  }
+
+  formatDate(dateNew: any) : any {
+    return moment(dateNew).format('L');
   }
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Editor, NgxEditorModule } from 'ngx-editor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../utils/api.service';
+import { NewFormImagesComponent } from '../new-form-images/new-form-images.component';
 
 @Component({
   selector: 'app-new-form',
@@ -12,7 +13,8 @@ import { ApiService } from '../../../../utils/api.service';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxEditorModule
+    NgxEditorModule,
+    NewFormImagesComponent
   ],
   templateUrl: './new-form.component.html',
   styleUrl: './new-form.component.scss'

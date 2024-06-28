@@ -1,0 +1,43 @@
+<mat-card class="cardWithShadow">
+    <img
+      mat-card-image
+      height="440"
+      src="{{new?.media_new_detail?.route_file}}"
+    />
+    <!-- <div class="card-overlay h-100 d-flex align-items-end justify-content-end">
+      <mat-chip class="f-s-12 f-w-600 m-y-16 m-r-16 bg-white">2 mins Read</mat-chip>
+    </div> -->
+    <mat-card-content class="p-24 b-b-1">
+      <div class="user-category">
+        <!-- <div>
+          <img src="{{ blogPost?.user }}" class="rounded-circle" width="40" />
+        </div> -->
+        <mat-chip class="f-s-12 m-y-16 f-w-600">{{new?.category_new?.description}}</mat-chip>
+      </div>
+  
+      <mat-card-title class="m-t-16 m-b-24 blog-title"
+        >{{ new?.title }}
+      </mat-card-title>
+      <div class="d-flex align-items-center justify-content-center m-t-24">
+        <div class="d-flex align-items-center">
+          <!-- <span class="m-r-12 f-s-14 mat-subtitle-2 d-flex align-items-center">
+                <i-tabler name="eye" class="icon-18 m-r-4"></i-tabler>360
+            </span> -->
+            <!-- <span class="f-s-14 mat-subtitle-2 d-flex align-items-center">
+                <i-tabler name="message-2" class="icon-18 m-r-4"></i-tabler>4
+            </span> -->
+        </div>
+        <span class="m-l-auto f-s-14 mat-subtitle-2 d-flex align-items-center">
+          <i-tabler name="point" class="icon-14 m-r-4"></i-tabler>
+          {{this.formatDate(new?.created_at)}}
+        </span>
+      </div>
+    </mat-card-content>
+    <mat-card-content class="p-24">
+      <h2 class="mat-headline-5 f-w-600 f-s-30">{{new?.title}}</h2>
+      <p class="mat-body-1 m-t-16" innerHTML="{{new?.content}}"></p>
+      
+      <mat-divider class="m-y-32"></mat-divider>
+  
+    </mat-card-content>
+  </mat-card>
