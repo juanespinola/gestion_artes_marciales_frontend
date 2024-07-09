@@ -4,11 +4,12 @@ import { ComponentsModule } from '../../components/components.module';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../../../../utils/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertsService } from '../../../../services/alerts.service';
 import moment from 'moment';
 import { WeightDialogComponent } from './weight-dialog/weight-dialog.component';
 import { MatAccordion } from '@angular/material/expansion';
+import { GenerateMatchBracketDialogComponent } from './generate-match-bracket-dialog/generate-match-bracket-dialog.component';
 
 @Component({
   selector: 'app-event-list-athlete-inscription',
@@ -24,6 +25,7 @@ export class EventListAthleteInscriptionComponent {
   // accordion = viewChild.required(MatAccordion);
   collection:any = ""
   headers: any[] = [];
+  footers: any[] = [];
   filters: any[] = [];
 
   elements:any;
@@ -34,8 +36,9 @@ export class EventListAthleteInscriptionComponent {
   constructor(
     public dialog: MatDialog, 
     private apiService: ApiService,
-    private route: Router,
-    private alertsService: AlertsService
+    private router: Router,
+    private alertsService: AlertsService,
+    public route: ActivatedRoute,
     ){
       this.collection = "inscription"
     
@@ -47,6 +50,11 @@ export class EventListAthleteInscriptionComponent {
         'weight',
         "actions"
       ];
+
+      this.footers = [
+        'athlete',
+        'actions'
+      ]
 
     }
 
@@ -65,7 +73,7 @@ export class EventListAthleteInscriptionComponent {
 
     updateAction(id:any): void {
       console.log(id)
-      this.route.navigate(["admin","event","edit", id]);
+      this.router.navigate(["admin","event","edit", id]);
     }
 
     deleteAction(id:any): void {
@@ -89,7 +97,7 @@ export class EventListAthleteInscriptionComponent {
     }
 
     createAction(): void {
-      this.route.navigate(["admin","event","add"]);
+      this.router.navigate(["admin","event","add"]);
     }
     
 
@@ -97,7 +105,7 @@ export class EventListAthleteInscriptionComponent {
       this.apiService.getData(this.collection)
       .subscribe({
         next:(res:any) => {
-          console.log(res)
+          // console.log(res)
           this.entriescategories = res;
         },
         error:(error) => {
@@ -136,6 +144,24 @@ export class EventListAthleteInscriptionComponent {
         })
     }
 
+    getTotalAthlete(athlete: any){
+      return athlete.length
+    }
 
+    generateMatchBrackets(athlete: any) {
+      let event_id = this.route.snapshot.params['id'];
+      const dialogRef = this.dialog.open(GenerateMatchBracketDialogComponent, {
+        data: {
+          athlete,
+          event_id, 
+        }
+      })
+      dialogRef.afterClosed()
+        .subscribe((result: any) => {
+          // if (result.event == 'success') {
+          //   this.getAll();
+          // }
+        })
+    }
 
 }

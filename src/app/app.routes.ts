@@ -40,9 +40,11 @@ import { FederationDetailComponent } from './pages/athlete/federations/federatio
 import { ProfileComponent } from './pages/athlete/profile/profile.component';
 import { PaymentComponent } from './pages/athlete/payment/payment.component';
 import { EventListAthleteInscriptionComponent } from './pages/admin/event/event-list-athlete-inscription/event-list-athlete-inscription.component';
+import { EventListAthleteInscriptionComponent as AthleteEventListAthleteInscriptionComponent } from './pages/athlete/events/event-list-athlete-inscription/event-list-athlete-inscription.component';
 import { NewComponent } from './pages/admin/new/new.component';
 import { NewFormComponent } from './pages/admin/new/new-form/new-form.component';
 import { NewDetailComponent } from './pages/athlete/federations/new-detail/new-detail.component';
+import { EventBracketComponent } from './pages/athlete/events/event-bracket/event-bracket.component';
 
 export const routes: Routes = [
   // {
@@ -77,11 +79,14 @@ export const routes: Routes = [
           { path: "", component: EventDetailComponent },
           { path: "registerevent", component: RegisterEventComponent },
           { path: "payment", component: PaymentComponent },
+          { path: "prueba", component: EventBracketComponent },
+          { path: "pruebaa", component: AthleteEventListAthleteInscriptionComponent }
         ]
        },
       { path: "profile", component: ProfileComponent },
       { path: '', redirectTo: 'federations', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },
+      
     ]
     
   },

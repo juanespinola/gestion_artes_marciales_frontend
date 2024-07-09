@@ -12,6 +12,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxEditorModule } from 'ngx-editor';
+import { BracketsManager } from 'brackets-manager';
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

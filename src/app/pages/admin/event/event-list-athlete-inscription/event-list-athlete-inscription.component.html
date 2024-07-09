@@ -36,6 +36,7 @@
                                                 <th mat-header-cell *matHeaderCellDef mat-sort-header
                                                     class="f-s-16 f-w-600"> Atleta </th>
                                                 <td mat-cell *matCellDef="let element"> {{ element.athlete.name }} </td>
+                                                <td mat-footer-cell *matFooterCellDef class="p-l-0 f-w-600">Total Atletas: {{ getTotalAthlete(subentry.value) }}</td>
                                             </ng-container>
 
                                             <ng-container matColumnDef="age">
@@ -83,11 +84,18 @@
                                                         }
                                                     </button>
                                                 </td>
+                                                <td mat-footer-cell *matFooterCellDef class="p-l-0 f-w-600">
+                                                    <button mat-flat-button color="primary" (click)="generateMatchBrackets(subentry.value)">
+                                                        Generar Llaves
+                                                    </button>
+                                                </td>
                                             </ng-container>
 
 
                                             <tr mat-header-row *matHeaderRowDef="headers"></tr>
                                             <tr mat-row *matRowDef="let row; columns: headers"></tr>
+
+                                            <tr mat-footer-row *matFooterRowDef="footers; sticky: true"></tr>
                                         </table>
                                     </div>
                                 </div>

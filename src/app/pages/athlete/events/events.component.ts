@@ -8,7 +8,6 @@ import { SessionService } from '../../../services/session.service';
 import { HeaderComponent } from '../component/header/header.component';
 
 
-
 @Component({
   selector: 'app-events',
   standalone: true,
