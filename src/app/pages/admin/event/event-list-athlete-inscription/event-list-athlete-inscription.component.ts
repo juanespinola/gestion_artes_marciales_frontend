@@ -32,6 +32,7 @@ export class EventListAthleteInscriptionComponent {
   dataSource: any;
 
   entriescategories:any = [];
+  listAthletes:any = [];
 
   constructor(
     public dialog: MatDialog, 
@@ -102,7 +103,10 @@ export class EventListAthleteInscriptionComponent {
     
 
     getAll() {
-      this.apiService.getData(this.collection)
+      let event_id = this.route.snapshot.params['id'];
+      this.apiService.postData(`${this.collection}`,{
+        event_id
+      })
       .subscribe({
         next:(res:any) => {
           // console.log(res)
@@ -116,9 +120,10 @@ export class EventListAthleteInscriptionComponent {
     }
     
     asArray(array: any): any {
-      
-      this.dataSource = new MatTableDataSource(array)
-      return array
+      console.log(array)
+      // this.dataSource = new MatTableDataSource(array)
+      this.listAthletes = array
+      return this.listAthletes
     }
 
 
@@ -162,6 +167,10 @@ export class EventListAthleteInscriptionComponent {
           //   this.getAll();
           // }
         })
+    }
+
+    chargeResults(athlete: any){
+      console.log(athlete)
     }
 
 }
