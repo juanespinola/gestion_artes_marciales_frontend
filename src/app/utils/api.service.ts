@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
   constructor(private http: HttpClient) { }
-  urlApi = 'http://localhost:8001/api/';
+  urlApi = 'http://localhost:8000/api/';
 
   getData(collection:string) {
     let url = this.urlApi+collection;

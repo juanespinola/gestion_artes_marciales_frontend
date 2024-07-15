@@ -10,6 +10,9 @@ import moment from 'moment';
 import { WeightDialogComponent } from './weight-dialog/weight-dialog.component';
 import { MatAccordion } from '@angular/material/expansion';
 import { GenerateMatchBracketDialogComponent } from './generate-match-bracket-dialog/generate-match-bracket-dialog.component';
+import { CdkColumnDef } from '@angular/cdk/table';
+import { SelectionModel } from '@angular/cdk/collections';
+
 
 @Component({
   selector: 'app-event-list-athlete-inscription',
@@ -19,7 +22,9 @@ import { GenerateMatchBracketDialogComponent } from './generate-match-bracket-di
     ComponentsModule,
   ],
   templateUrl: './event-list-athlete-inscription.component.html',
-  styleUrl: './event-list-athlete-inscription.component.scss'
+  styleUrl: './event-list-athlete-inscription.component.scss',
+  providers: [
+  ]
 })
 export class EventListAthleteInscriptionComponent {
   // accordion = viewChild.required(MatAccordion);
@@ -32,8 +37,9 @@ export class EventListAthleteInscriptionComponent {
   dataSource: any;
 
   entriescategories:any = [];
-  listAthletes:any = [];
-
+  listEntryCategories:any = [];
+  listFilterAthlete: any = [];
+  selection = new SelectionModel<any>(true, []);
   constructor(
     public dialog: MatDialog, 
     private apiService: ApiService,
@@ -59,8 +65,33 @@ export class EventListAthleteInscriptionComponent {
 
     }
 
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected(): any {
+      const numSelected = this.selection.selected.length;
+      const numRows = this.dataSource.data.length;
+      return numSelected === numRows;
+    }
+
+    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    masterToggle(): void {
+      this.isAllSelected()
+        ? this.selection.clear()
+        : this.dataSource.data.forEach((row: any) => this.selection.select(row));
+    }
+
+    /** The label for the checkbox on the passed row */
+    checkboxLabel(row?:any): string {
+      if (!row) {
+        return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+      }
+      return `${this.selection.isSelected( row ) ? 'deselect' : 'select'} row ${
+        row?.position + 1
+      }`;
+    }
+
     ngOnInit(){
       // accordion().openAll()
+      
     }
 
     ngAfterViewInit() {
@@ -77,26 +108,6 @@ export class EventListAthleteInscriptionComponent {
       this.router.navigate(["admin","event","edit", id]);
     }
 
-    deleteAction(id:any): void {
-      // const dialogRef = this.dialog.open(DeleteDialogComponent)
-      // dialogRef.afterClosed()
-      //   .subscribe((result: any) => {
-      //     if (result.event === 'success') {
-      //       this.apiService.deleteData(this.collection, id)
-      //         .subscribe({
-      //           next: (res: any) => {
-      //             this.dataSource.data = this.dataSource.data.filter((value: any) => value.id !== id);
-      //             this.alertsService.showAlert("Correcto!", res.messages, 'success')
-      //           },
-      //           error: (error) => {
-      //             console.log(error)
-      //             this.alertsService.showAlert("Error!", error.statusText, 'error')
-      //           }
-      //         })
-      //     }
-      //   })
-    }
-
     createAction(): void {
       this.router.navigate(["admin","event","add"]);
     }
@@ -109,7 +120,7 @@ export class EventListAthleteInscriptionComponent {
       })
       .subscribe({
         next:(res:any) => {
-          // console.log(res)
+          console.log(res)
           this.entriescategories = res;
         },
         error:(error) => {
@@ -118,14 +129,23 @@ export class EventListAthleteInscriptionComponent {
         }
       });
     }
+
+    convertMatTable(inscriptions:any){
+      this.dataSource = new MatTableDataSource(inscriptions)
+      return this.dataSource
+    }
     
-    asArray(array: any): any {
-      console.log(array)
-      // this.dataSource = new MatTableDataSource(array)
-      this.listAthletes = array
-      return this.listAthletes
+    filterArray(listCategories:any, inscriptions:any) {
+      inscriptions = inscriptions.filter( (ins:any) => ins.tariff_inscription.entry_category_id == listCategories.id)
+      this.dataSource = new MatTableDataSource(inscriptions)
+      return this.dataSource
     }
 
+    asArray(array:any){
+      this.listEntryCategories = array
+      return this.listEntryCategories
+    }
+    // @if(listAthlete.id == inscription.tariff_inscription.entry_category_id){
 
     getSubKeys(key: any): any {
       return key;
@@ -153,7 +173,8 @@ export class EventListAthleteInscriptionComponent {
       return athlete.length
     }
 
-    generateMatchBrackets(athlete: any) {
+    generateMatchBrackets(athlete:any) {
+
       let event_id = this.route.snapshot.params['id'];
       const dialogRef = this.dialog.open(GenerateMatchBracketDialogComponent, {
         data: {
