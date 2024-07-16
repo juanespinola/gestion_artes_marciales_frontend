@@ -47,13 +47,13 @@ export class GenerateMatchBracketDialogComponent {
       quadrilateral: ['', Validators.required],
       type_bracket: ['', Validators.required],
       athlete: [this.data.athlete],
-      event_id: this.data.event_id
+      event_id: this.data.event_id,
+      entry_category_id: this.data.entry_category_id,
+      match_timer: ['', Validators.required]
     });
   }
 
   onSubmit(){
-    console.log(this.data)
-    console.log(this.formGroup.value)
     this.apiService.postData('matchbracket/generate', this.formGroup.value)
     .subscribe({
       next:(res:any) => {

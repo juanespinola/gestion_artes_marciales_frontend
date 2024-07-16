@@ -1,0 +1,58 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Lista de Combates</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+
+        <div class="tournament-bracket tournament-bracket--rounded">
+            @for(matchbracket of matchbrackets; track matchbracket) {
+            <div class="tournament-bracket__round tournament-bracket__round--bronze" >
+                <h3 class="tournament-bracket__round-title">{{ matchbracket.bracket.phase }}</h3>
+                <ul class="tournament-bracket__list">
+                    <li class="tournament-bracket__item" (click)="chargeResult(matchbracket)">
+                        <div class="tournament-bracket__match" tabindex="0">
+                            <table class="tournament-bracket__table">
+                                <caption class="tournament-bracket__caption">
+                                    <time datetime="1998-02-21">{{matchbracket.match_day ? matchbracket.match_day:"Sin definir"}} - {{matchbracket.match_time ? matchbracket.match_time : "Sin definir"}}</time>
+                                </caption>
+                                <thead class="sr-only">
+                                    <tr>
+                                        <th>Country</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tournament-bracket__content">
+                                    @if(!matchbracket.athlete_id_winner || !matchbracket.athlete_id_loser){
+                                        <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                                            <td class="tournament-bracket__country">
+                                                <abbr class="tournament-bracket__code" title="Canada">{{matchbracket?.athlete_one?.name ? matchbracket?.athlete_one?.name : "BYE"}}</abbr>
+                                                <span class="tournament-bracket__flag flag-icon flag-icon-ca"
+                                                    aria-label="Flag"></span>
+                                            </td>
+                                            <td class="tournament-bracket__score">
+                                                <span class="tournament-bracket__number">{{matchbracket.score_one_athlete}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tournament-bracket__team">
+                                            <td class="tournament-bracket__country">
+                                                <abbr class="tournament-bracket__code" title="Kazakhstan">{{matchbracket?.athlete_two?.name ? matchbracket?.athlete_two?.name : "BYE"}}</abbr>
+                                                <span class="tournament-bracket__flag flag-icon flag-icon-kz"
+                                                    aria-label="Flag"></span>
+                                            </td>
+                                            <td class="tournament-bracket__score">
+                                                <span class="tournament-bracket__number">{{matchbracket.score_two_athlete}}</span>
+                                            </td>
+                                        </tr>
+                                        }
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            }
+        </div>
+
+
+    </mat-card-content>
+</mat-card>

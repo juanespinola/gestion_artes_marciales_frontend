@@ -12,6 +12,8 @@ import { MatAccordion } from '@angular/material/expansion';
 import { GenerateMatchBracketDialogComponent } from './generate-match-bracket-dialog/generate-match-bracket-dialog.component';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { UpdateMatchBracketDialogComponent } from './update-match-bracket-dialog/update-match-bracket-dialog.component';
+import { ViewMatchBracketDialogComponent } from './view-match-bracket-dialog/view-match-bracket-dialog.component';
 
 
 @Component({
@@ -120,7 +122,7 @@ export class EventListAthleteInscriptionComponent {
       })
       .subscribe({
         next:(res:any) => {
-          console.log(res)
+          // console.log(res)
           this.entriescategories = res;
         },
         error:(error) => {
@@ -174,11 +176,11 @@ export class EventListAthleteInscriptionComponent {
     }
 
     generateMatchBrackets(athlete:any) {
-
       let event_id = this.route.snapshot.params['id'];
       const dialogRef = this.dialog.open(GenerateMatchBracketDialogComponent, {
         data: {
-          athlete,
+          athlete: athlete.inscriptions,
+          entry_category_id: athlete.entry_category_id,
           event_id, 
         }
       })
@@ -190,8 +192,22 @@ export class EventListAthleteInscriptionComponent {
         })
     }
 
-    chargeResults(athlete: any){
-      console.log(athlete)
+    viewMatchBrackets(athlete: any){
+      let event_id = this.route.snapshot.params['id'];
+      const dialogRef = this.dialog.open(ViewMatchBracketDialogComponent, {
+        data: {
+          entry_category_id: athlete.entry_category_id,
+          event_id, 
+        },
+        width: "80%",
+        height: "60%"
+      })
+      dialogRef.afterClosed()
+        .subscribe((result: any) => {
+          // if (result.event == 'success') {
+          //   this.getAll();
+          // }
+        })
     }
 
 }

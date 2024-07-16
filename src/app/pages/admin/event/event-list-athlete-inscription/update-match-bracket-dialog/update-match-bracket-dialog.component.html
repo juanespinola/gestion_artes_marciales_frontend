@@ -1,0 +1,129 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header class="d-flex align-items-center justify-content-center">
+        <mat-card-title class="m-b-0">{{matchbracket?.athlete_one?.name}} vs
+            {{matchbracket?.athlete_two?.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1" [formGroup]="formGroup">
+
+        <div class="row">
+
+            <div class="col-lg-6 col-sm-6">
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                            Puntaje Atleta 1
+                        </mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="number" matInput formControlName="score_one_athlete" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                            Cuadrilatero
+                        </mat-label>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="quadrilateral" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-6">
+
+                <div class="row">
+
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="number" matInput formControlName="score_two_athlete" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                            Puntaje Atleta 2
+                        </mat-label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="time" matInput formControlName="match_timer" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                           Timer
+                        </mat-label>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-6">
+
+                <div class="row">
+
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                            Tipo de Victoria
+                        </mat-label>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="victory_type_id" value="victory_type_id" placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let typevictory of typesvictory" [value]="typevictory.id">{{typevictory.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-6">
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <!-- <button mat-flat-button color="primary" (click)="setWinner(matchbracket?.athlete_one?.id, matchbracket?.athlete_one?.name)" >{{matchbracket?.athlete_one?.name ? matchbracket?.athlete_one?.name : "BYE"}}</button> -->
+                        <!-- <button mat-flat-button color="primary" class="m-l-2" (click)="setWinner(matchbracket?.athlete_two?.id, matchbracket?.athlete_two?.name)" >{{matchbracket?.athlete_two?.name ? matchbracket?.athlete_two?.name : "BYE"}}</button> -->
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="athlete_id_winner" value="athlete_id_winner" placeholder="Seleccione Opcion">
+                                <mat-option value="{{matchbracket?.athlete_one?.id}}">{{matchbracket?.athlete_one?.name ? matchbracket?.athlete_one?.name : "BYE"}}</mat-option>
+                                <mat-option value="{{matchbracket?.athlete_two?.id}}">{{matchbracket?.athlete_two?.name ? matchbracket?.athlete_two?.name : "BYE"}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                            Ganador
+                        </mat-label>
+                    </div>
+                </div>
+                <!-- <small>El ganador es: {{athlete_name}}</small> -->
+                    
+            </div>
+
+        </div>
+
+    </mat-card-content>
+
+    <div mat-dialog-actions class="p-24 p-t-0">
+        <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>
+        <button mat-flat-button color="primary" mat-dialog-close cdkFocusInitial (click)="onSubmit()">
+            Aceptar
+        </button>
+    </div>
+</mat-card>
