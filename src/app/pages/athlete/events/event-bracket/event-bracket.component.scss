@@ -149,7 +149,6 @@ $breakpoint-lg: 72em;
 
         .tournament-bracket__round:last-child & {
             padding-right: 0;
-
             &::after {
                 display: none;
                 border-radius: 0;
@@ -157,12 +156,6 @@ $breakpoint-lg: 72em;
             }
         }
 
-        // .tournament-bracket__round:nth-last-child(2) & {
-        //     &::after {
-        //         border-radius: 0;
-        //         border-right: 0;
-        //     }
-        // }
     }
 
     @media (min-width: $breakpoint-lg) {
@@ -228,7 +221,7 @@ $breakpoint-lg: 72em;
             transform: translate(0, -1px);
 
             .tournament-bracket--rounded & {
-                border-top-left-radius: 0.6em;
+                border-top-left-radius: 0.6em;      
             }
         }
     }
@@ -247,22 +240,14 @@ $breakpoint-lg: 72em;
             transform: translate(0, -1px);
         }
     }
+
+    &:hover {
+        .bracket-match-dropdown-container {
+            display: flex;
+        }
+
+    }
 }
-
-// .tournament-bracket__round:last-child .tournament-bracket__match {
-//     &::before,
-//     &::after {
-//         border-left: 0;
-//     }
-
-//     &::before {
-//         border-bottom-left-radius: 0;
-//     }
-
-//     &::after {
-//         display: none;
-//     }
-// }
 
 .tournament-bracket__round:first-child .tournament-bracket__match {
     &::before,
@@ -275,7 +260,7 @@ $breakpoint-lg: 72em;
     display: flex;
 
     &::after {
-        content: ':';
+        content: '|';
         width: 1em;
         text-align: center;
         padding: 0.2em 0.1em;
@@ -385,6 +370,8 @@ $breakpoint-lg: 72em;
             margin-top: 0.2em;
         }
     }
+
+    
 }
 
 .tournament-bracket__code {
@@ -403,6 +390,11 @@ $breakpoint-lg: 72em;
 
     @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
         padding: 0;
+    }
+
+    .tournament-bracket__team--winner & {
+        background-color: #FFF176;
+        border-color: spin(shade(#FFF176, 2%), -10);
     }
 }
 
@@ -448,4 +440,42 @@ $breakpoint-lg: 72em;
 
 .tournament-bracket__medal--bronze {
     color: #CD7F32;
+}
+
+.bracket-match-dropdown-container {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(50%) translateY(-25%);
+    padding: 10px;
+    z-index: 1000;
+}
+
+.bracket-match-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: calc(2 / 15 * 1rem);
+    padding: calc(8 / 15 * 1rem) calc(12 / 15 * 1rem);
+    border-radius: calc(4 / 15 * 1rem);
+    background: #f4f6fb;
+    color: #000000;
+}
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: calc(4 / 15 * 1rem);
+}
+.arrow-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    width: calc(10 / 15 * 1rem);
+}
+.arrow {
+    height: 50px;
+    width: 100%;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-right: 50px solid #f4f6fb;
 }
