@@ -60,9 +60,6 @@
     </mat-card-content>
 </mat-card>
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
-    <mat-tab label="Llaves y Cronograma">
-        <app-event-bracket></app-event-bracket>
-    </mat-tab>
     <mat-tab label="Informacion">
         <div class="row">
             <div class="col-sm-8">
@@ -270,10 +267,11 @@
     <mat-tab label="Atletas">
         <app-event-list-athlete-inscription></app-event-list-athlete-inscription>
     </mat-tab>
-    <mat-tab label="Combates"></mat-tab>
+    <!-- <mat-tab label="Combates"></mat-tab> -->
     <mat-tab label="Llaves y Cronograma">
-        <app-event-bracket></app-event-bracket>
+        <!-- <app-event-bracket></app-event-bracket> -->
+        <app-event-schedules></app-event-schedules>
     </mat-tab>
-    <mat-tab label="Resultados"></mat-tab>
+    <!-- <mat-tab label="Resultados"></mat-tab> -->
 
 </mat-tab-group>

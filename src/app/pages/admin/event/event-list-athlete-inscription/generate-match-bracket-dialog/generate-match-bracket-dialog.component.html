@@ -26,14 +26,21 @@
             <div class="col-sm-6 col-lg-12">
 
                 <div class="row">
+                    
                     <div class="col-sm-6 col-lg-6">
+                        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nro de Cuadrilatero</mat-label>
+                            
                         <mat-form-field appearance="outline" class="w-100">
-                            <input type="text" matInput formControlName="quadrilateral"
-                                placeholder="Nro Cuadrilatero" />
+                            <!-- <input type="text" matInput formControlName="quadrilateral"/> -->
+                            <mat-select formControlName="quadrilateral" value="quadrilateral" placeholder="Seleccione Opcion">
+                                <!-- <mat-option *ngFor="let category of categories" [value]="category.id">{{category.description}}</mat-option> -->
+                            </mat-select>   
                         </mat-form-field>
                     </div>
-
+                        
                     <div class="col-sm-6 col-lg-6">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tiempo de Combate</mat-label>
                         <mat-form-field appearance="outline" class="w-100">
                             <input type="time" matInput formControlName="match_timer" placeholder="Tiempo de Combate" min="1:00" max="10:00"/>
                         </mat-form-field>
@@ -41,6 +48,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-lg-12">
+                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de Llaves</mat-label>
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-select formControlName="type_bracket" value="type_bracket" placeholder="Seleccione Opcion">
                         <mat-option value="single_elimination">Single Elimination</mat-option>

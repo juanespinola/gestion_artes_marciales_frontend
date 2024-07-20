@@ -34,7 +34,7 @@ $breakpoint-lg: 72em;
 }
 
 .tournament-bracket__round-title {
-    color: #9e9e9e;
+    color: #6e6d6d;
     font-size: 0.95rem;
     font-weight: 400;
     text-align: center;
@@ -170,7 +170,7 @@ $breakpoint-lg: 72em;
 .tournament-bracket__match {
     display: flex;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #F5F5F5;
     padding: 1em;
     border: 1px solid transparent;
     border-radius: 0.1em;
@@ -333,7 +333,7 @@ $breakpoint-lg: 72em;
 
 .tournament-bracket__caption {
     font-size: 0.8rem;
-    color: #BDBDBD;
+    color: #5a5a5a;
     font-weight: 300;
     padding-bottom: 0.75em;
 }
@@ -448,7 +448,7 @@ $breakpoint-lg: 72em;
     left: 50%;
     transform: translateX(50%) translateY(-25%);
     padding: 10px;
-    z-index: 1000;
+    z-index: 4;
 }
 
 .bracket-match-dropdown {
@@ -457,7 +457,7 @@ $breakpoint-lg: 72em;
     gap: calc(2 / 15 * 1rem);
     padding: calc(8 / 15 * 1rem) calc(12 / 15 * 1rem);
     border-radius: calc(4 / 15 * 1rem);
-    background: #f4f6fb;
+    background: #cecfd3;
     color: #000000;
 }
 .actions {
@@ -477,5 +477,5 @@ $breakpoint-lg: 72em;
     width: 100%;
     border-top: 50px solid transparent;
     border-bottom: 50px solid transparent;
-    border-right: 50px solid #f4f6fb;
+    border-right: 50px solid #cecfd3;
 }

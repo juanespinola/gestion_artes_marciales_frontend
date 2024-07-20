@@ -125,7 +125,7 @@ export class EventListAthleteInscriptionComponent {
           // console.log(res)
           this.entriescategories = res;
         },
-        error:(error) => {
+        error:(error:any) => {
           console.log(error)
           this.alertsService.showAlert("Error!", error.statusText, 'error')
         }

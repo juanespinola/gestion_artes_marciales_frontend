@@ -57,6 +57,7 @@ export class EventFormComponent {
       status_event_id: ['', Validators.required],
       inscription_fee: ['', Validators.required],
       available_slots: ['', Validators.required],
+      quantity_quadrilateral: ['', Validators.required],
     });
     this.getLocations();
     this.getStatusEvent();
@@ -80,7 +81,8 @@ export class EventFormComponent {
             type_event_id: res.type_event_id,
             status_event_id: res.status_event_id,
             inscription_fee: res.inscription_fee,
-            available_slots: res.available_slots
+            available_slots: res.available_slots,
+            quantity_quadrilateral: res.quantity_quadrilateral
           })
           
         },
@@ -130,13 +132,13 @@ export class EventFormComponent {
     if(id){
       this.apiService.putData(this.collection, id, this.formGroup.value)
       .subscribe((res:any) => {
-        this.router.navigate([this.collection])
+        this.router.navigate(['admin',this.collection])
       });
       
     } else {
       this.apiService.postData(this.collection, this.formGroup.value)
       .subscribe((res:any) => {
-        this.router.navigate([this.collection])
+        this.router.navigate(["admin",this.collection])
       });
     }
   }
