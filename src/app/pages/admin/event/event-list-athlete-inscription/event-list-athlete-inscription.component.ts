@@ -42,6 +42,9 @@ export class EventListAthleteInscriptionComponent {
   listEntryCategories:any = [];
   listFilterAthlete: any = [];
   selection = new SelectionModel<any>(true, []);
+
+  event:any;
+  
   constructor(
     public dialog: MatDialog, 
     private apiService: ApiService,
@@ -92,12 +95,11 @@ export class EventListAthleteInscriptionComponent {
     }
 
     ngOnInit(){
-      // accordion().openAll()
-      
+
     }
 
     ngAfterViewInit() {
-     
+      this.getEvent()
       this.getAll()
     }
 
@@ -114,6 +116,19 @@ export class EventListAthleteInscriptionComponent {
       this.router.navigate(["admin","event","add"]);
     }
     
+    getEvent(){
+      let event_id = this.route.snapshot.params['id'];
+      this.apiService.getData(`event/${event_id}`)
+      .subscribe({
+        next:(res:any) => {
+          this.event = res;
+        },
+        error:(error:any) => {
+          console.log(error)
+          this.alertsService.showAlert("Error!", error.statusText, 'error')
+        }
+      })
+    }
 
     getAll() {
       let event_id = this.route.snapshot.params['id'];
@@ -122,7 +137,6 @@ export class EventListAthleteInscriptionComponent {
       })
       .subscribe({
         next:(res:any) => {
-          // console.log(res)
           this.entriescategories = res;
         },
         error:(error:any) => {
@@ -147,7 +161,7 @@ export class EventListAthleteInscriptionComponent {
       this.listEntryCategories = array
       return this.listEntryCategories
     }
-    // @if(listAthlete.id == inscription.tariff_inscription.entry_category_id){
+    
 
     getSubKeys(key: any): any {
       return key;
@@ -181,6 +195,7 @@ export class EventListAthleteInscriptionComponent {
         data: {
           athlete: athlete.inscriptions,
           entry_category_id: athlete.entry_category_id,
+          event: this.event,
           event_id, 
         }
       })

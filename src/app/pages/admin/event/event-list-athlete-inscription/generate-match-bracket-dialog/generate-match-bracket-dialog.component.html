@@ -1,4 +1,4 @@
-<h5 mat-dialog-title class="mat-subtitle-1">Cargar</h5>
+<h5 mat-dialog-title class="mat-subtitle-1">Generar Llaves</h5>
 <mat-dialog-content style="max-width: 1200px" class="mat-typography m-t-24">
     <form [formGroup]="formGroup">
         <div class="row">
@@ -34,7 +34,7 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <!-- <input type="text" matInput formControlName="quadrilateral"/> -->
                             <mat-select formControlName="quadrilateral" value="quadrilateral" placeholder="Seleccione Opcion">
-                                <!-- <mat-option *ngFor="let category of categories" [value]="category.id">{{category.description}}</mat-option> -->
+                                <mat-option *ngFor="let quadrilateral of listQuadrilateral" [value]="quadrilateral.id">{{quadrilateral.description}}</mat-option>
                             </mat-select>   
                         </mat-form-field>
                     </div>

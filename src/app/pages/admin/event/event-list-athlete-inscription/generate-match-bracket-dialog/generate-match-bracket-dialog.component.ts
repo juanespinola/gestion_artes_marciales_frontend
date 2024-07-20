@@ -25,6 +25,8 @@ export class GenerateMatchBracketDialogComponent {
   dataSource: any;
   headers: any[] = [];
 
+  listQuadrilateral:any;
+
   constructor
   (
     public dialogRef: MatDialogRef<GenerateMatchBracketDialogComponent>, 
@@ -49,8 +51,10 @@ export class GenerateMatchBracketDialogComponent {
       athlete: [this.data.athlete],
       event_id: this.data.event_id,
       entry_category_id: this.data.entry_category_id,
-      match_timer: ['', Validators.required]
+      match_timer: ['', Validators.required],
     });
+
+    this.generateRingMat()
   }
 
   onSubmit(){
@@ -66,9 +70,13 @@ export class GenerateMatchBracketDialogComponent {
       complete: () => {
         this.dialogRef.close({ event: "success" })
       }
+    });   
+  }
+
+  generateRingMat(){
+    let lengthQuadrilateral = this.data.event.quantity_quadrilateral;
+    this.listQuadrilateral = Array.from({ length: lengthQuadrilateral }, (_, i) => {
+      return { id: 1 + i, description: `Mat ${1 + i}` };
     });
-
-    
-
   }
 }

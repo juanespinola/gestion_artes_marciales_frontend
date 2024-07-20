@@ -1,1 +1,42 @@
-<p>event-schedules works!</p>
+<mat-accordion multi>
+    <mat-card class="cardWithShadow">
+
+        <mat-card-content class="p-24">
+
+            <div *ngFor="let entrycategory of entriescategories | keyvalue">
+                <h2>{{entrycategory.key == false ? "Mayores" : "Menores"}} </h2>
+                <div *ngFor="let gender of getSubKeys(entrycategory.value) | keyvalue">
+                    <h3>Género: {{gender.key}} </h3>
+                    <div *ngFor="let belt of getSubKeys(gender.value) | keyvalue">
+                        <mat-expansion-panel class="cardWithShadow">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="f-w-600">
+                                    Cinturon: {{belt.key}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div *ngFor="let category of getSubKeys(belt.value) | keyvalue">
+                                <mat-expansion-panel class="cardWithShadow">
+
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title class="f-w-600">
+                                            Categoria: {{ category.key }}
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div *ngFor="let inscription of getSubKeys(category.value)">
+                                        <!-- {{inscription | json}} -->
+                                        <button mat-flat-button color="primary" (click)="matchBrackets(inscription.id)">Llave</button>
+                                    </div>
+                                </mat-expansion-panel>
+
+                            </div>
+
+                        </mat-expansion-panel>
+
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</mat-accordion>
