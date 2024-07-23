@@ -45,6 +45,7 @@ import { NewComponent } from './pages/admin/new/new.component';
 import { NewFormComponent } from './pages/admin/new/new-form/new-form.component';
 import { NewDetailComponent } from './pages/athlete/federations/new-detail/new-detail.component';
 import { EventBracketComponent } from './pages/athlete/events/event-bracket/event-bracket.component';
+import { EventMatchbracketDetailComponent } from './pages/athlete/events/event-matchbracket-detail/event-matchbracket-detail.component';
 
 export const routes: Routes = [
   // {
@@ -79,7 +80,7 @@ export const routes: Routes = [
           { path: "", component: EventDetailComponent },
           { path: "registerevent", component: RegisterEventComponent },
           { path: "payment", component: PaymentComponent },
-          { path: "prueba", component: EventBracketComponent },
+          { path: "prueba", component: EventMatchbracketDetailComponent },
           { path: "pruebaa", component: AthleteEventListAthleteInscriptionComponent }
         ]
        },

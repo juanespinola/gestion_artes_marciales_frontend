@@ -50,7 +50,6 @@ export class EventDetailComponent {
     this.apiService.getData(`events/${this.event_id}/eventdetail`)
     .subscribe({
       next: (res:any) => {
-        console.log(res)
         this.event = res;        
       },
       error: (err) => console.log(err),

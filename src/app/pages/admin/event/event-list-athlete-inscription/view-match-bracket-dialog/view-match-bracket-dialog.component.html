@@ -23,7 +23,7 @@
                                 </thead>
                                 <tbody class="tournament-bracket__content">
                                     @if(!matchbracket.athlete_id_winner || !matchbracket.athlete_id_loser){
-                                        <tr class="tournament-bracket__team tournament-bracket__team{{matchbracket.athlete_id_winner == matchbracket?.athlete_one?.id && '--winner'}}" >
+                                        <tr class="tournament-bracket__team tournament-bracket__team{{ (matchbracket.athlete_id_winner == matchbracket?.athlete_one?.id) && matchbracket?.athlete_id_winner ? '--winner': ''}}" >
                                             <td class="tournament-bracket__country">
                                                 <abbr class="tournament-bracket__code" title="Canada">{{matchbracket?.athlete_one?.name ? matchbracket?.athlete_one?.name : "BYE"}}</abbr>
                                                 <span class="tournament-bracket__flag flag-icon flag-icon-ca"
@@ -33,7 +33,7 @@
                                                 <span class="tournament-bracket__number">{{matchbracket.score_one_athlete}}</span>
                                             </td>
                                         </tr>
-                                        <tr class="tournament-bracket__team tournament-bracket__team{{matchbracket.athlete_id_winner == matchbracket?.athlete_two?.id && '--winner'}}">
+                                        <tr class="tournament-bracket__team tournament-bracket__team{{ (matchbracket.athlete_id_winner == matchbracket?.athlete_two?.id) && matchbracket?.athlete_id_winner  ? '--winner': '' }}">
                                             <td class="tournament-bracket__country">
                                                 <abbr class="tournament-bracket__code" title="Kazakhstan">{{matchbracket?.athlete_two?.name ? matchbracket?.athlete_two?.name : "BYE"}}</abbr>
                                                 <span class="tournament-bracket__flag flag-icon flag-icon-kz"

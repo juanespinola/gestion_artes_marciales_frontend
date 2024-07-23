@@ -1,69 +1,75 @@
-<div class="tournament-bracket tournament-bracket--rounded">
-    @for(groupbracket of groupbrackets; track groupbracket){
-    <div class="tournament-bracket__round tournament-bracket__round--{{groupbracket.phase}}">
-        <h3 class="tournament-bracket__round-title">{{groupbracket.phase}}</h3>
-        <ul class="tournament-bracket__list">
-            @for(bracket of brackets; track bracket){
-            @if(groupbracket.phase == bracket.bracket.phase){
-            <li class="tournament-bracket__item">
-                <div class="tournament-bracket__match" tabindex="0">
-                    <table class="tournament-bracket__table">
-                        <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-18">{{bracket.match_day ? bracket.match_day:"Sin definir"}} - {{bracket.match_time ? bracket.match_time : "Sin definir"}}</time>
-                        </caption>
-                        <thead class="sr-only">
-                            <tr>
-                                <th>Country</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tournament-bracket__content">
-                            @if(!bracket.athlete_id_winner || !bracket.athlete_id_loser){
-                            <tr class="tournament-bracket__team tournament-bracket__team{{(bracket?.athlete_id_winner == bracket?.athlete_one?.id) && bracket?.athlete_id_winner ? '--winner' : ''}}">
-                                <td class="tournament-bracket__country">
-                                    <abbr class="tournament-bracket__code" >{{bracket?.athlete_one?.name ? bracket?.athlete_one?.name : "BYE"}}</abbr>
-                                    <span class="tournament-bracket__flag flag-icon flag-icon-ca"
-                                        aria-label="Flag"></span>
-                                </td>
-                                <!-- <td class="tournament-bracket__score">
+<div class="p-24">
+    <div class="tournament-bracket tournament-bracket--rounded">
+        @for(groupbracket of groupbrackets; track groupbracket){
+        <div class="tournament-bracket__round tournament-bracket__round--{{groupbracket.phase}}">
+            <h3 class="tournament-bracket__round-title">{{groupbracket.phase}}</h3>
+            <ul class="tournament-bracket__list">
+                @for(bracket of brackets; track bracket){
+                @if(groupbracket.phase == bracket.bracket.phase){
+                <li class="tournament-bracket__item">
+                    <div class="tournament-bracket__match" tabindex="0">
+                        <table class="tournament-bracket__table">
+                            <caption class="tournament-bracket__caption">
+                                <time datetime="1998-02-18">{{bracket.match_day ? bracket.match_day:"Sin definir"}} -
+                                    {{bracket.match_time ? bracket.match_time : "Sin definir"}}</time>
+                            </caption>
+                            <thead class="sr-only">
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tournament-bracket__content">
+                                @if(!bracket.athlete_id_winner || !bracket.athlete_id_loser){
+                                <tr
+                                    class="tournament-bracket__team tournament-bracket__team{{(bracket?.athlete_id_winner == bracket?.athlete_one?.id) && bracket?.athlete_id_winner ? '--winner' : ''}}">
+                                    <td class="tournament-bracket__country">
+                                        <abbr class="tournament-bracket__code">{{bracket?.athlete_one?.name ?
+                                            bracket?.athlete_one?.name : "BYE"}}</abbr>
+                                        <span class="tournament-bracket__flag flag-icon flag-icon-ca"
+                                            aria-label="Flag"></span>
+                                    </td>
+                                    <!-- <td class="tournament-bracket__score">
                                     <span class="tournament-bracket__number">{{bracket.score_one_athlete}}</span>
                                 </td> -->
-                            </tr>
-                            <tr class="tournament-bracket__team tournament-bracket__team{{(bracket?.athlete_id_winner == bracket?.athlete_two?.id) && bracket?.athlete_id_winner !== null ? '--winner': ''}}">
-                                <td class="tournament-bracket__country">
-                                    <abbr class="tournament-bracket__code">{{bracket?.athlete_two?.name ? bracket?.athlete_two?.name : "BYE"}}</abbr>
-                                    <span class="tournament-bracket__flag flag-icon flag-icon-kz"
-                                        aria-label="Flag"></span>
-                                </td>
-                                <!-- <td class="tournament-bracket__score">
+                                </tr>
+                                <tr
+                                    class="tournament-bracket__team tournament-bracket__team{{(bracket?.athlete_id_winner == bracket?.athlete_two?.id) && bracket?.athlete_id_winner !== null ? '--winner': ''}}">
+                                    <td class="tournament-bracket__country">
+                                        <abbr class="tournament-bracket__code">{{bracket?.athlete_two?.name ?
+                                            bracket?.athlete_two?.name : "BYE"}}</abbr>
+                                        <span class="tournament-bracket__flag flag-icon flag-icon-kz"
+                                            aria-label="Flag"></span>
+                                    </td>
+                                    <!-- <td class="tournament-bracket__score">
                                     <span class="tournament-bracket__number">{{bracket.score_two_athlete}}</span>
                                 </td> -->
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <div class="bracket-match-dropdown-container">
-                        <div class="arrow-wrapper">
-                            <div class="arrow"></div>
-                        </div>
-                        <div class="bracket-match-dropdown">
-                            <span>{{groupbracket.phase}}</span>
-                            <span>{{bracket?.type_victory?.description ? bracket?.type_victory?.description : "Sin Estado"}}</span>
-                            <span>{{bracket.score_one_athlete}} – {{bracket.score_two_athlete}}</span>
-                            <span> Tiempo: {{bracket.match_timer}}</span>
-                            <span class="mute">{{bracket.match_time}}</span>
-                            <div class="actions">
-                                <button class="button" mat-flat-button color="primary">Detalles</button>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="bracket-match-dropdown-container">
+                            <div class="arrow-wrapper">
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="bracket-match-dropdown">
+                                <span>{{groupbracket.phase}}</span>
+                                <span>{{bracket?.type_victory?.description ? bracket?.type_victory?.description : "Sin
+                                    Estado"}}</span>
+                                <span>{{bracket.score_one_athlete}} – {{bracket.score_two_athlete}}</span>
+                                <span> Tiempo: {{bracket.match_timer}}</span>
+                                <span class="mute">{{bracket.match_time}}</span>
+                                <div class="actions">
+                                    <button class="button" mat-flat-button color="primary" (click)="detailMatchBracket(bracket)">Detalles</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            }
+                </li>
+                }
+                }
+            </ul>
+        </div>
         }
-        </ul>
     </div>
-    }
 </div>
-
- 

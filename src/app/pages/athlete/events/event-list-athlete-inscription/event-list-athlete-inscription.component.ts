@@ -7,6 +7,7 @@ import { ApiService } from '../../../../utils/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertsService } from '../../../../services/alerts.service';
 import moment from 'moment';
+import { EventBracketComponent } from '../event-bracket/event-bracket.component';
 
 @Component({
   selector: 'app-event-list-athlete-inscription',
@@ -49,6 +50,7 @@ export class EventListAthleteInscriptionComponent {
 
       this.footers = [
         'athlete',
+        'age',
       ]
 
     }
@@ -106,7 +108,22 @@ export class EventListAthleteInscriptionComponent {
       return athlete.length
     }
 
-
+    matchBrackets(entry_category_id:any){
+      const dialogRef = this.dialog.open(EventBracketComponent, {
+        data: {
+          entry_category_id,
+          event_id:this.event_id
+        },
+        height: "90%",
+        width: "80%"
+      })
+      dialogRef.afterClosed()
+        .subscribe((result: any) => {
+          // if (result.event == 'success') {
+          //   this.getAll();
+          // }
+        })
+    }
 
     
 }
