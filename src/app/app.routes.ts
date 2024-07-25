@@ -80,7 +80,7 @@ export const routes: Routes = [
           { path: "", component: EventDetailComponent },
           { path: "registerevent", component: RegisterEventComponent },
           { path: "payment", component: PaymentComponent },
-          { path: "prueba", component: EventMatchbracketDetailComponent },
+          { path: "prueba", component: EventBracketComponent },
           { path: "pruebaa", component: AthleteEventListAthleteInscriptionComponent }
         ]
        },

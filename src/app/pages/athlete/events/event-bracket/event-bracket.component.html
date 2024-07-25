@@ -1,3 +1,4 @@
+@if(brackets.length > 0){
 <div class="p-24">
     <div class="tournament-bracket tournament-bracket--rounded">
         @for(groupbracket of groupbrackets; track groupbracket){
@@ -29,21 +30,15 @@
                                         <span class="tournament-bracket__flag flag-icon flag-icon-ca"
                                             aria-label="Flag"></span>
                                     </td>
-                                    <!-- <td class="tournament-bracket__score">
-                                    <span class="tournament-bracket__number">{{bracket.score_one_athlete}}</span>
-                                </td> -->
                                 </tr>
                                 <tr
-                                    class="tournament-bracket__team tournament-bracket__team{{(bracket?.athlete_id_winner == bracket?.athlete_two?.id) && bracket?.athlete_id_winner !== null ? '--winner': ''}}">
+                                    class="tournament-bracket__team tournament-bracket__team{{(bracket?.athlete_id_winner == bracket?.athlete_two?.id) && bracket?.athlete_id_winner  ? '--winner': ''}}">
                                     <td class="tournament-bracket__country">
                                         <abbr class="tournament-bracket__code">{{bracket?.athlete_two?.name ?
                                             bracket?.athlete_two?.name : "BYE"}}</abbr>
                                         <span class="tournament-bracket__flag flag-icon flag-icon-kz"
                                             aria-label="Flag"></span>
                                     </td>
-                                    <!-- <td class="tournament-bracket__score">
-                                    <span class="tournament-bracket__number">{{bracket.score_two_athlete}}</span>
-                                </td> -->
                                 </tr>
                                 }
                             </tbody>
@@ -60,7 +55,8 @@
                                 <span> Tiempo: {{bracket.match_timer}}</span>
                                 <span class="mute">{{bracket.match_time}}</span>
                                 <div class="actions">
-                                    <button class="button" mat-flat-button color="primary" (click)="detailMatchBracket(bracket)">Detalles</button>
+                                    <button class="button" mat-flat-button color="primary"
+                                        (click)="detailMatchBracket(bracket)">Detalles</button>
                                 </div>
                             </div>
                         </div>
@@ -73,3 +69,18 @@
         }
     </div>
 </div>
+} @else {
+    <div class="w-100 p-24 h-100">
+
+        <mat-card class="cardWithShadow p-24 h-100">
+            <mat-card-content class="d-flex h-100 justify-content-center">
+                <!-- <div class="row"> -->
+                    <div class="d-flex align-items-center">
+                        <mat-card-title class="f-s-18 m-b-0 m-t-16">Las llaves aún no han sido generadas</mat-card-title>
+                    </div>
+                <!-- </div> -->
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+}

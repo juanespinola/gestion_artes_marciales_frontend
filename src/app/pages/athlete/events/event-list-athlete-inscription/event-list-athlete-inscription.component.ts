@@ -102,7 +102,6 @@ export class EventListAthleteInscriptionComponent {
       return moment().diff(birthdate, 'years')
     }
 
-    
 
     getTotalAthlete(athlete: any){
       return athlete.length

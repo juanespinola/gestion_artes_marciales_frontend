@@ -36,7 +36,7 @@ export class EventBracketComponent {
   }
 
   ngOnInit() {
-    console.log(this.data)
+    // console.log(this.data)
   }
 
 
@@ -46,8 +46,8 @@ export class EventBracketComponent {
     })
     .subscribe({
       next: (res:any) => {
-        // console.log(res)
         this.brackets = res;        
+        console.log(this.brackets)
       },
       error: (err) => console.log(err),
       complete: () => {}
@@ -60,7 +60,7 @@ export class EventBracketComponent {
     })
     .subscribe({
       next: (res:any) => {
-        console.log(res)
+        // console.log(res)
         this.groupbrackets = res;        
       },
       error: (err) => console.log(err),
