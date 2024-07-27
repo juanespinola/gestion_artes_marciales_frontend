@@ -11,6 +11,7 @@ import { ComponentsModule } from './pages/admin/components/components.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from './pages/admin/components/material.module';
+import { NavigationService } from './services/navigation.service';
 
 
 
@@ -32,5 +33,8 @@ import { MaterialModule } from './pages/admin/components/material.module';
 export class AppComponent {
   title = 'gestion_artes_marciales_frontend';
 
+  constructor(public navigationService: NavigationService){
+    this.navigationService.startSaveHistory()
+  }
 
 }

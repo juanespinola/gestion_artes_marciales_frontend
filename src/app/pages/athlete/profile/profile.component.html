@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-8">
             <h4 class="page-title m-0 f-s-20 f-w-600 m-b-16">
-                El usuario
+                Bienvenido {{athlete.name}}
             </h4>
             <div class="d-flex align-items-center overflow-hidden">
             </div>
@@ -13,4 +13,241 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="row" [formGroup]="formGroup">
+
+    <div class="col-sm-6 col-lg-6">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Detalles del Atleta</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombres y Apellidos</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="name" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Email</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput type="email" formControlName="email" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nuevo Password</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput type="password" formControlName="password" placeholder="Nuevo Password" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de Nacimiento</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="birthdate" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Género</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="gender" value="gender" placeholder="Seleccione Opcion">
+                                <mat-option value="masculino">Masculino</mat-option>
+                                <mat-option value="femenino">Femenino</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de Documento</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="type_document_id" value="type_document_id"
+                                placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let typeDocument of typesDocument"
+                                    [value]="typeDocument.id">{{typeDocument.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nro de Documento</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="document" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Imagen de Perfil</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                        <div class="w-100">
+                            <input type="file" />
+                        </div>
+                        <!-- </mat-form-field> -->
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+
+    </div>
+
+    <div class="col-sm-6 col-lg-6">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Contacto y Residencia</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="phone" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">País</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="country_id" value="country_id" placeholder="Seleccione Opcion"
+                                (selectionChange)="getCities($event.value)">
+                                <mat-option *ngFor="let country of countries"
+                                    [value]="country.id">{{country.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Ciudad</mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="city_id" value="city_id" placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let city of cities"
+                                    [value]="city.id">{{city.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Nivel de Cinturón</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="belt_id" value="belt_id" placeholder="Seleccione Opcion"
+                                [disabled]="true">
+                                <mat-option *ngFor="let belt of belts" [value]="belt.id">{{belt.color}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Historial de Cinturón</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <div class="row m-b-4">
+                    <div class="col-sm-12">
+                        <mat-list>
+                            @for (belthistory of beltshistory; track belthistory) {
+                            <mat-list-item>
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-12">
+                                        <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+                                            <label class="text-center ">
+                                                {{ belthistory.belt.color }}
+                                            </label>
+                                            <button mat-icon-button class="m-r-10 cursor-pointer" (click)="viewBeltHistoryDialog(belthistory)">
+                                                <i-tabler name="pencil" class="icon-18"></i-tabler>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            }
+                        </mat-list>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="col-sm-5 col-lg-5">
+                        <button class="w-100 d-flex justify-content-center align-items-center" mat-flat-button
+                            color="primary" (click)="addBeltHistoryDialog()">
+                            <i-tabler name="plus" class="icon-18"></i-tabler>
+                            Cambiar Cinturón
+                        </button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+    <div class="col-sm-6 col-lg-6">
+        <mat-card class="cardWithShadow">
+            <mat-card-content>
+                <div class="d-flex align-items-center">
+                    <div class="col-sm-6 col-lg-3">
+                        <button class="w-100" mat-flat-button color="primary">Guardar</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
 </div>

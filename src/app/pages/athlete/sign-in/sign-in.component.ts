@@ -6,6 +6,7 @@ import { ApiService } from '../../../utils/api.service';
 import { SessionService } from '../../../services/session.service';
 import { AlertsService } from '../../../services/alerts.service';
 import { Location } from '@angular/common';
+import { NavigationService } from '../../../services/navigation.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -33,10 +34,12 @@ export class SignInComponent {
     private sessionService: SessionService,
     private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private navigationService: NavigationService
   ){}
 
   ngOnInit() {
+    // console.log(this.navigationService.getPreviousUrl().includes('/event/'))
     this.getFederations();
 
     this.formGroup = this.formBuilder.group({
@@ -57,7 +60,13 @@ export class SignInComponent {
       error: (err) => {
         this.alertsService.showAlert("Error!", err.error.message, 'error')
       },
-      complete: () => this.location.back()
+      complete: () => {
+        if(this.navigationService.getPreviousUrl() && this.navigationService.getPreviousUrl().includes('/event/') ){
+          this.location.back()
+        } else {
+          this.router.navigate(['federation',this.sessionService.getUser().federation.id]);
+        }
+      }
       
     });
   }
@@ -66,7 +75,6 @@ export class SignInComponent {
     this.apiService.getData("athlete/federations")
     .subscribe({
       next: (res:any) => {
-        console.log(res)
         this.federations = res
       },
       error: (err) => console.log(err),

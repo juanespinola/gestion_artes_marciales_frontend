@@ -1,0 +1,52 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Historial de Cinturones</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+            <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                        Cinturón
+                    </mat-label>
+                </div>
+                <div class="col-sm-8">
+                    <span class="w-100">
+                        {{belthistory.belt.color}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                        Fecha de obtención
+                    </mat-label>
+                </div>
+                <div class="col-sm-8">
+                    <span class="w-100">
+                        {{belthistory.achieved}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                        Otorgado por
+                    </mat-label>
+                </div>
+                <div class="col-sm-8">
+                    <span class="w-100">
+                        {{belthistory.promoted_by}}
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-end">
+                <div class="col-sm-12">
+                    <button mat-flat-button color="warn" mat-dialog-close class="w-100">Cancelar</button>
+                </div>
+            </div>
+    </mat-card-content>
+</mat-card>

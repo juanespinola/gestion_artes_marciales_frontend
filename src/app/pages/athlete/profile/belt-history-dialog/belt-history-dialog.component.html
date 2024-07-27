@@ -1,0 +1,57 @@
+<mat-card class="cardWithShadow theme-card" [formGroup]="formGroup">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Editar</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+            <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                        Cinturón
+                    </mat-label>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-select formControlName="belt_id" value="belt_id" placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let belt of belts" [value]="belt.id">{{belt.color}}</mat-option>
+                            </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                        Fecha de obtención
+                    </mat-label>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input matInput [matDatepicker]="achieved_picker" formControlName="achieved" placeholder="Opcional"/>
+                        <mat-datepicker-toggle matIconSuffix [for]="achieved_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #achieved_picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                        Otorgado por
+                    </mat-label>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input matInput formControlName="promoted_by" placeholder="Opcional"/>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-end">
+                <div class="col-sm-12">
+                    <button mat-flat-button color="primary" mat-dialog-close cdkFocusInitial type="submit" class="button" (click)="addBeltHistory()">Guardar</button>
+                    <button mat-flat-button color="warn" mat-dialog-close  class="button" class="m-l-8">Cancelar</button>
+                </div>
+            </div>
+    </mat-card-content>
+</mat-card>
