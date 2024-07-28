@@ -20,7 +20,6 @@ export class BeltHistoryDetailDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.belthistory = this.data.belthistory
-    console.log(this.belthistory)
   }
   
 }

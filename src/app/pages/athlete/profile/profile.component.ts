@@ -30,6 +30,7 @@ export class ProfileComponent {
   typesDocument:any = [];
   belts:any = [];
   beltshistory:any = [];
+  academies:any = [];
 
 
   constructor( 
@@ -47,6 +48,7 @@ export class ProfileComponent {
     this.getTypesDocument()
     this.getBelts()
     this.getBeltsHistory()
+    this.getAcademies()
   }
 
   ngOnInit() {
@@ -64,6 +66,7 @@ export class ProfileComponent {
       city_id: ['', Validators.required],
       type_document_id: ['', Validators.required],
       belt_id: ['', Validators.required],
+      academy_id: ['', Validators.required],
     });
   }
 
@@ -82,7 +85,8 @@ export class ProfileComponent {
           country_id: res.country_id,
           city_id: res.city_id,
           type_document_id: res.type_document_id,
-          belt_id:res.belt_id
+          belt_id:res.belt_id,
+          academy_id:res.academy_id
         });
 
         this.getCities(res.city_id)
@@ -152,6 +156,17 @@ export class ProfileComponent {
       });
   }
 
+  getAcademies(){
+    this.apiService.getData('athlete/academies')
+      .subscribe({
+        next: (res:any) => {
+          this.academies = res;
+        },
+        error: (err) => console.log(err),
+        complete: () => {}
+      });
+  }
+
 
   addBeltHistoryDialog(){
     const dialogRef = this.dialog.open(BeltHistoryDialogComponent, {
@@ -178,4 +193,14 @@ export class ProfileComponent {
         
       })
   }
+
+  onSubmit() {
+    console.log(this.formGroup.value)
+      this.apiService.postData("athlete/profile", this.formGroup.value)
+      .subscribe((res:any) => {
+        console.log(res)
+        // this.router.navigate([])
+      });
+  }
+
 }
