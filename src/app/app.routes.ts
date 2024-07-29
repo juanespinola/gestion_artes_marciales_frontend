@@ -46,6 +46,8 @@ import { NewFormComponent } from './pages/admin/new/new-form/new-form.component'
 import { NewDetailComponent } from './pages/athlete/federations/new-detail/new-detail.component';
 import { EventBracketComponent } from './pages/athlete/events/event-bracket/event-bracket.component';
 import { EventMatchbracketDetailComponent } from './pages/athlete/events/event-matchbracket-detail/event-matchbracket-detail.component';
+import { RequestComponent } from './pages/admin/request/request.component';
+import { RequestFormComponent } from './pages/admin/request/request-form/request-form.component';
 
 export const routes: Routes = [
   // {
@@ -230,6 +232,14 @@ export const routes: Routes = [
           { path: "", component: NewComponent, },
           { path: "edit/:id", component: NewFormComponent },
           { path: "add", component: NewFormComponent },
+        ]
+      },
+      {
+        path: APP_ROUTES.REQUEST,
+        children: [
+          { path: "", component: RequestComponent, },
+          { path: "edit/:id", component: RequestFormComponent },
+          { path: "add", component: RequestFormComponent },
         ]
       },
     ]

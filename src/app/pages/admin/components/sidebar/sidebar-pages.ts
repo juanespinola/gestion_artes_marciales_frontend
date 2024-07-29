@@ -76,5 +76,10 @@ export const navItems: NavItem[] = [
     route: admin_path+APP_ROUTES.NEW,
     // permission: 'statusevent.access'
   },
-  
+  {
+    displayName: 'Solicitudes',
+    iconName: 'aperture',
+    route: admin_path+APP_ROUTES.REQUEST,
+    // permission: 'statusevent.access'
+  },
 ];
