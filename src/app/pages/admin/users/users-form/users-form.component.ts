@@ -47,7 +47,7 @@ export class UsersFormComponent {
     this.formGroup = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required],
+      // password: ['', Validators.required],
       rol: this.rolCtrl,
     });
 
@@ -100,20 +100,20 @@ export class UsersFormComponent {
       this.apiService.putData(this.collection, id, this.formGroup.value)
       .subscribe((res:any) => {
         console.log(res)
-        this.router.navigate(["users"])
+        this.router.navigate(["admin","users"])
       });
       
     } else {
       this.apiService.postData(this.collection, this.formGroup.value)
       .subscribe((res:any) => {
         console.log(res)
-        this.router.navigate(["users"])
+        this.router.navigate(["admin", "users"])
       });
     }
   }
 
   onBack(){
-    this.router.navigate(['users']);
+    this.router.navigate(["admin", 'users']);
   }
 
 

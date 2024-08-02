@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Nueva Solicitud</h2>
+
+<mat-dialog-content style="max-width: 500px" class="mat-typography m-t-24"  [formGroup]="formGroup">
+
+    <div class="row">
+
+        <div class="col-sm-6 col-lg-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput [matDatepicker]="date_request" placeholder=" - " formControlName="date_request" />
+                <mat-datepicker-toggle matIconSuffix [for]="date_request"></mat-datepicker-toggle>
+                <mat-datepicker #date_request></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-12">
+            <mat-form-field appearance="outline" class="w-100">
+            <mat-select formControlName="request_type_id" placeholder="Seleccione Opción">
+                <mat-option *ngFor="let typerequest of typesrequest" [value]="typerequest.id">{{typerequest.description}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-12">
+            <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editorRequestText"> </ngx-editor-menu>
+                <ngx-editor 
+                    [editor]="editorRequestText" 
+                    [placeholder]="'Type here...'" 
+                    formControlName="request_text"
+                >
+                </ngx-editor>
+            </div>
+        </div>
+        
+        
+    </div>
+</mat-dialog-content>
+
+
+<div mat-dialog-actions class="p-24 p-t-0">
+    <button mat-flat-button color="primary" mat-dialog-close cdkFocusInitial (click)="onSubmit()">
+        Aceptar
+    </button>
+    <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>
+</div>

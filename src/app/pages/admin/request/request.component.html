@@ -1,1 +1,139 @@
-<p>request works!</p>
+<div class="row">
+    <div class="col-12">
+        <mat-card class="mat-card-top cardWithShadow position-relative">
+            <mat-sidenav-container [ngClass]="{
+            'side-panel-opened': sidePanelOpened,
+            'side-panel-closed': !sidePanelOpened
+          }" style="min-height: 80vh">
+                <!-- --------------------------------------------------------------------------- -->
+                <!-- Sidebar -->
+                <!-- --------------------------------------------------------------------------- -->
+                <mat-sidenav #chatnav right class="app-left-sidebar" [mode]="isOver() ? 'over' : 'side'"
+                    [opened]="!isOver()" (open)="sidePanelOpened = true" (close)="sidePanelOpened = false"
+                    position="start">
+                    <mat-toolbar class="bg-white">
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="f-w-500 f-s-18 m-0 mat-subtitle-1">Solicitudes</p>
+                            </div>
+                        </div>
+                    </mat-toolbar>
+                    <mat-nav-list>
+                        <mat-list-item (click)="selectionlblClick('all')" class="all"
+                            [class.bg-light-primary]="selectedCategory === 'all'">
+                            <div class="d-flex align-items-center">
+                                <span class="mat-subtitle-2">Todos</span>
+                                <div class="m-l-auto">
+                                    <span
+                                        class="icon-27 bg-primary text-white rounded d-flex align-items-center justify-content-center">
+                                        1 </span>
+                                </div>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item [class.bg-light-primary]="selectedCategory === 'uncomplete'"
+                            class="incomplete font-normal" (click)="selectionlblClick('uncomplete')">
+                            <div class="d-flex align-items-center">
+                                <span class="mat-subtitle-2">Pendientes</span>
+                                <div class="m-l-auto">
+                                    <span
+                                        class="icon-27 bg-error text-white rounded d-flex align-items-center justify-content-center">{{
+                                        3 }}</span>
+                                </div>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item [class.bg-light-primary]="selectedCategory === 'complete'"
+                            class="complete font-normal" (click)="selectionlblClick('complete')">
+                            <div class="d-flex align-items-center">
+                                <span class="mat-subtitle-2">Respondidos</span>
+                                <div class="m-l-auto">
+                                    <span
+                                        class="icon-27 bg-success text-white rounded d-flex align-items-center justify-content-center">{{2
+                                        }}</span>
+                                </div>
+                            </div>
+                        </mat-list-item>
+                    </mat-nav-list>
+                </mat-sidenav>
+                <!-- --------------------------------------------------------------------------- -->
+                <!-- Detail View -->
+                <!-- --------------------------------------------------------------------------- -->
+                <mat-toolbar class="bg-white">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="d-flex align-items-center">
+                            <button mat-icon-button (click)="chatnav.toggle()" class="ml-1 shadow-none">
+                                <i-tabler name="align-left" class="icon-20"></i-tabler>
+                            </button>
+                            <!-- <mat-checkbox (change)="allTodos()" color="primary">Mark All</mat-checkbox> -->
+                        </div>
+                        
+                        @if(!user.association_id){
+                        <div class="m-l-auto">
+                            <span class="bg-primary text-white p-8 rounded f-s-14">{{ 2 }} Pendientes de
+                                Respuesta</span>
+                        </div>
+                        }
+                        @if(user.association_id){
+                            <div class="m-l-auto">
+                                <button mat-flat-button color="primary" (click)="createRequestAutorization()">
+                                    Nueva Solicitud
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </mat-toolbar>
+                <mat-divider></mat-divider>
+                <div class="p-16 bg-white">
+                </div>
+                <mat-divider></mat-divider>
+                <mat-card-content class="p-x-0" style="min-height: 70vh">
+                    @for(req of requests; track req; let i = $index) {
+                    <div class="todo-item p-y-12 p-x-8 b-b-1">
+                        <div class="d-flex align-items-center w-100">
+
+                            <div class="col-sm-10 col-lg-10">
+                                <div class="row justify-content-between align-items-center">
+
+                                    <div class="col-sm-4 col-lg-4">
+                                        <span class="f-s-16 f-w-500 p-l-32">Solicitud de {{
+                                            req.typerequest.description
+                                            }}</span>
+                                        <p class="m-t-0 f-s-14 m-l-24 p-l-8">
+                                            {{ req.date_request | date }}
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-4">
+                                        <span class="f-s-16 f-w-500">{{ req.association.description }}</span>
+                                    </div>
+
+                                    <div class="col-sm-4 col-lg-4">
+                                        <span class="f-s-16 f-w-500">{{ req.status }}</span>
+                                    </div>
+                            
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-sm-2 col-lg-2">
+                                <div class="w-100">
+                                    <div class="d-flex align-items-start">
+                                        @if(!user.association_id){
+                                        <div class="m-l-auto px-3 mr-2 d-flex">
+                                            <button mat-icon-button class="d-flex justify-content-center" (click)="updateRequest(req.id)">
+                                                <i-tabler name="pencil" class="icon-18 d-flex"></i-tabler>
+                                            </button>
+                                            <button mat-icon-button class="d-flex justify-content-center">
+                                                <i-tabler name="trash" class="icon-18 d-flex"></i-tabler>
+                                            </button>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </mat-card-content>
+            </mat-sidenav-container>
+        </mat-card>
+    </div>
+</div>

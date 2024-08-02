@@ -1,1 +1,138 @@
-<p>request-form works!</p>
+<mat-card class="cardWithShadow" >
+    <mat-card-content class="p-24">
+        <form [formGroup]="formGroup">
+            <span>
+                <div class="row m-b-24">
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <h4 class="mat-subtitle-2 f-s-18 f-w-600">
+                            #
+                            <span>{{ formRequest.get('id') }}</span>
+                        </h4>
+                    </div>
+                    <div class="col-sm-8 text-right">
+                        <button mat-stroked-button color="warn" class="m-r-10" (click)="onBack()">
+                            Cancelar
+                        </button>
+                        @if(formRequest.get('status') !== 'pendiente' || formRequest.get('status') !== 'respuesta' ){
+                        <button mat-flat-button color="primary" (click)="onSubmit()">
+                            Guardar
+                        </button>
+                        }
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="row p-y-24 justify-content-between">
+                    <div class="col-sm-4">
+                        <span class="f-w-600 f-s-15 mat-body-1 d-block m-b-8">
+                            Estado de Solicitud:
+                        </span>
+                        <mat-form-field appearance="outline" class="w-100 theme-select">
+                            <mat-select formControlName="status" value="status" >
+                                <mat-option value="pendiente"> Pendiente </mat-option>
+                                <mat-option value="respuesta"> Respuesta </mat-option>
+                                <mat-option value="aprobado"> Aprobado </mat-option>
+                                <mat-option value="rechazado"> Rechazado </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="f-w-600 f-s-15 mat-body-1 d-block m-b-8">
+                            Fecha Solicitud:
+                        </span>
+                        <h6 class="m-t-5 m-b-0 f-w-500 f-s-14 mat-body-2">
+                            {{ formRequest.get('date_request') }}
+                        </h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="f-w-600 f-s-15 mat-body-1 d-block m-b-8">
+                            Fecha Respuesta:
+                        </span>
+                        <h6 class="m-t-5 m-b-0 f-w-500 f-s-14 mat-body-2">
+                            <mat-form-field appearance="outline" class="w-50">
+                                <input matInput 
+                                    [matDatepicker]="date_response" 
+                                    placeholder=" - " 
+                                    formControlName="date_response" 
+                                />
+                                <mat-datepicker-toggle matIconSuffix [for]="date_response"></mat-datepicker-toggle>
+                                <mat-datepicker #date_response ></mat-datepicker>
+                            </mat-form-field>
+                        </h6>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="row p-y-24 justify-content-between">
+                    <div class="col-sm-4">
+                        <span class="f-w-600 f-s-15 mat-body-1 d-block m-b-8">
+                            Solicitado por:
+                        </span>
+                        <h6 class="m-t-5 m-b-0 f-w-500 f-s-14 mat-body-2">
+                            {{ formRequest.get('requested_by') }}
+                        </h6>
+                    </div>
+
+                    @if(formRequest.get('status') == 'aprobado'){
+                    <div class="col-sm-4">
+                        <span class="f-w-600 f-s-15 mat-body-1 d-block m-b-8">
+                            Aprobado por:
+                        </span>
+                        <h6 class="m-t-5 m-b-0 f-w-500 f-s-14 mat-body-2">
+                            {{ formRequest.get('approved_by') }}
+                        </h6>
+                    </div>
+                    }
+                    @if(formRequest.get('status') == 'rechazado'){
+                    <div class="col-sm-4">
+                        <span class="f-w-600 f-s-15 mat-body-1 d-block m-b-8">
+                            Rechazado por:
+                        </span>
+                        <h6 class="m-t-5 m-b-0 f-w-500 f-s-14 mat-body-2">
+                            {{ formRequest.get('rejected_by') }}
+                        </h6>
+                    </div>
+                    }
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="row m-y-24 p-t-24">
+
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Solicitud</mat-label>
+                        </div>
+                        <div class="NgxEditor__Wrapper">
+                            <ngx-editor-menu [editor]="editorRequestText"> </ngx-editor-menu>
+                            <ngx-editor 
+                                [editor]="editorRequestText" 
+                                [placeholder]="'Type here...'" 
+                                formControlName="request_text"
+                            >
+                            </ngx-editor>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Respuesta</mat-label>
+                        </div>
+                        <div class="NgxEditor__Wrapper">
+                            <ngx-editor-menu [editor]="editorResponseText"> </ngx-editor-menu>
+                            <ngx-editor 
+                                [editor]="editorResponseText" 
+                                [placeholder]="'Type here...'"
+                                formControlName="response_text"
+                            ></ngx-editor>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </span>
+        </form>
+    </mat-card-content>
+</mat-card>
