@@ -165,15 +165,15 @@ export class HeaderComponent {
     {
      
       img: '/assets/images/svgs/icon-inbox.svg',
-      title: 'My Inbox',
-      subtitle: 'Messages & Email',
-      link: '/apps/email/inbox',
+      title: 'Mis Cuotas',
+      subtitle: 'Cuotas y Pagos',
+      link: '/membership',
     },
     {
       img: '/assets/images/svgs/icon-tasks.svg',
-      title: 'My Tasks',
-      subtitle: 'To-do and Daily Tasks',
-      link: '/apps/taskboard',
+      title: 'Mis Eventos',
+      subtitle: 'Eventos Participados',
+      link: '/participated_events',
     },
   ];
 
