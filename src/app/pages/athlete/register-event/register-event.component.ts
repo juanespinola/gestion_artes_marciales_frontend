@@ -129,7 +129,7 @@ export class RegisterEventComponent {
         this.entryForPaymentCtrl.setValue(this.selectEntryForPayment)
         this.alertsService.showAlert("Correcto!", "Categoría eliminada correctamente!", 'success')
     } else {
-      this.alertsService.showAlert("Error!", "ategoría no encontrada", 'error')
+      this.alertsService.showAlert("Error!", "Categoría no encontrada", 'error')
     }
 
   }

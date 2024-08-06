@@ -1,0 +1,67 @@
+<mat-card class="m-20 cardWithShadow h-100">
+    <mat-card-content class="h-100">
+        <div class="row">
+            <div class="col-lg-8 col-sm-8">
+                <mat-card class="cardWithShadow theme-card">
+                    <mat-card-header>
+                        <mat-card-title class="m-b-0">Seleccione un metodo de pago</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="b-t-1">
+                        <div class="p-12">
+                            <mat-radio-group class="m-t-8 " [(ngModel)]="selectedPaymentMethod">
+                                <mat-radio-button value="vpos" color="primary">Pago con Tarjeta </mat-radio-button>
+                                <mat-radio-button value="transferencia" color="primary">Transferencia</mat-radio-button>
+                            </mat-radio-group>
+                            @if(selectedPaymentMethod == "vpos"){
+                            <div id="iframe-container" class="d-flex h-100"></div>
+                            } @else if(selectedPaymentMethod == "transferencia"){
+                            <div>transferencia</div>
+                            }
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <mat-card class="cardWithShadow theme-card">
+                    <mat-card-header>
+                        <mat-card-title class="m-b-0">Registro</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="b-t-1">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+                                    <!-- <button mat-icon-button (click)="deleteSelectEntry(selectEntry)" class="m-r-2 cursor-pointer">
+                                        <i-tabler name="trash" class="icon-18"></i-tabler>
+                                    </button> -->
+                                    <label>
+                                        Concepto: {{payment.description}}
+                                    </label>
+                                    <label>
+                                        {{payment.amount_fee}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+                                    <label for="">Total: </label>
+                                    <label for="">{{payment.total}} gs</label>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-footer class="p-24">
+
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-sm-12">
+                                <button mat-flat-button color="primary" type="submit" (click)="goToPayment()">Ir a Pagar</button>
+                                <button mat-flat-button color="warn" class="m-l-8" (click)="onBack()">Cancelar</button>
+                            </div>
+                        </div>
+                    </mat-card-footer>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

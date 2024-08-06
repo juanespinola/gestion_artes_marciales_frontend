@@ -50,6 +50,7 @@ import { RequestComponent } from './pages/admin/request/request.component';
 import { RequestFormComponent } from './pages/admin/request/request-form/request-form.component';
 import { MembershipComponent } from './pages/athlete/membership/membership.component';
 import { ParticipatedEventsComponent } from './pages/athlete/participated-events/participated-events.component';
+import { CheckoutComponent } from './pages/athlete/checkout/checkout.component';
 
 export const routes: Routes = [
   // {
@@ -84,7 +85,6 @@ export const routes: Routes = [
         children: [
           { path: "", component: EventDetailComponent },
           { path: "registerevent", component: RegisterEventComponent },
-          { path: "payment", component: PaymentComponent },
           { path: "prueba", component: EventBracketComponent },
           { path: "pruebaa", component: AthleteEventListAthleteInscriptionComponent }
         ]
@@ -92,6 +92,8 @@ export const routes: Routes = [
       { path: "profile", component: ProfileComponent },
       { path: "membership", component: MembershipComponent },
       { path: "participated_events", component: ParticipatedEventsComponent },
+      { path: "checkout", component: CheckoutComponent },
+      { path: "payment", component: PaymentComponent },
       { path: '', redirectTo: 'federations', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },
       
