@@ -15,7 +15,33 @@
                             @if(selectedPaymentMethod == "vpos"){
                             <div id="iframe-container" class="d-flex h-100"></div>
                             } @else if(selectedPaymentMethod == "transferencia"){
-                            <div>transferencia</div>
+                            <div class="p-24">
+                                <mat-card class="cardWithShadow theme-card">
+                                    <mat-card-header>
+                                        <mat-card-title class="m-b-0">Formulario de Transferencia</mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content class="b-t-1">
+                                        <label for="">
+                                            Cuenta de Transferencia
+
+                                            Necesitamos crear una tabla donde pueda registrarse las cuentas de federacion y asociacion
+                                        </label>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 d-flex align-items-center">
+                                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                                    Nro de Comprobante
+                                                </mat-label>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div appearance="outline" class="w-100">
+                                                    <input [(ngModel)]="payment_number" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>    
+                            </div>
                             }
                         </div>
                     </mat-card-content>
@@ -30,9 +56,6 @@
                         <div class="row">
                             <div class="col-sm-12 col-lg-12">
                                 <div class="d-flex align-items-center w-100 h-100 justify-content-between">
-                                    <!-- <button mat-icon-button (click)="deleteSelectEntry(selectEntry)" class="m-r-2 cursor-pointer">
-                                        <i-tabler name="trash" class="icon-18"></i-tabler>
-                                    </button> -->
                                     <label>
                                         Concepto: {{payment.description}}
                                     </label>

@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../utils/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertsService } from '../../../services/alerts.service';
 import { SessionService } from '../../../services/session.service';
 import { PaymentComponent } from '../payment/payment.component';
@@ -18,14 +18,16 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './membership.component.scss'
 })
 export class MembershipComponent {
-  collection = 'users';
+  collection:string = '';
   headers: any[] = [];
+  headers_inscription: any[] = [];
   columns: any[] = [];
   filters: any[] = [];
   athlete:any;
   elements:any;
   dataSource: any;
   dataSourcePayment: any;
+  dataSourceInscriptions: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,17 +37,30 @@ export class MembershipComponent {
     private route: Router,
     private alertsService: AlertsService, 
     private sessionService: SessionService,
-    private dialog: MatDialog
+    private activatedRoute: ActivatedRoute
     ){
+
+
     this.collection = "athlete/getathletemembershipfee"
     this.headers = ["#","description", "end_date_fee", "amount_fee",'status', "actions"];
+    this.headers_inscription = ["#","description", "amount_fee",'status', "actions"];
     
     this.athlete = this.sessionService.getUser();
   }
 
   ngAfterViewInit() {
+
+    if(this.activatedRoute.snapshot.queryParams['status']){
+      if(this.activatedRoute.snapshot.queryParams['status'] == "payment_fail") {
+        this.alertsService.showAlert("Error!", "Pago Rechazado", 'error')
+      } else {
+        this.alertsService.showAlert("Correcto!", "Pago Confirmado", 'success')
+      }
+    }
+
     this.getAll()
     this.getAthleteMembershipfeePayment()
+    this.getAthleteInscriptionPayment()
   }
 
   getAll() {
@@ -68,36 +83,18 @@ export class MembershipComponent {
     });
   }
 
-  checkout(id:any){
-    this.route.navigate(['checkout'], {state : {
-      membership_id: id
-    } });
-    // this.apiService.putData(this.collection, id, {
-      
-    // })
-    // .subscribe({
-    //   next:(res:any) => {
-    //     console.log(res)
-    //   },
-    //   error:(error:any) => {
-    //     console.log(error)
-    //     this.alertsService.showAlert("Error!", error.statusText, 'error')
-    //   }
-    // });
-
-    // const dialogRef = this.dialog.open(PaymentComponent, {
-    //   data: {
-        
-    //   },
-    //   height: "80%",
-    //   width: "80%",
-    // })
-    // dialogRef.afterClosed()
-    //   .subscribe((result: any) => {
-        
-    //   })
-
-    
+  checkout(id:any, payment_for:any){
+    if(payment_for == 'membresia'){
+      this.route.navigate(['checkout'], {state : {
+          membership_id: id
+        } 
+      });
+    } else if(payment_for == 'inscription') {
+      this.route.navigate(['checkout'], {state : {
+          inscription_id: id
+        } 
+      });
+    }
   }
 
 
@@ -113,6 +110,24 @@ export class MembershipComponent {
         this.dataSourcePayment = new MatTableDataSource(res)
         this.dataSourcePayment.sort = this.sort;
         this.dataSourcePayment.paginator = this.paginator;
+      },
+      error:(error:any) => {
+        console.log(error)
+        this.alertsService.showAlert("Error!", error.statusText, 'error')
+      }
+    });
+  }
+
+  getAthleteInscriptionPayment(){
+    this.apiService.postData("athlete/getathleteinscriptionpayment", {
+      athlete_id: this.athlete.id,
+    })
+    .subscribe({
+      next:(res:any) => {
+        // console.log(res)
+        this.dataSourceInscriptions = new MatTableDataSource(res)
+        this.dataSourceInscriptions.sort = this.sort;
+        this.dataSourceInscriptions.paginator = this.paginator;
       },
       error:(error:any) => {
         console.log(error)

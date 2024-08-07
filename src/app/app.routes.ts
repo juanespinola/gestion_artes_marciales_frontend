@@ -51,6 +51,7 @@ import { RequestFormComponent } from './pages/admin/request/request-form/request
 import { MembershipComponent } from './pages/athlete/membership/membership.component';
 import { ParticipatedEventsComponent } from './pages/athlete/participated-events/participated-events.component';
 import { CheckoutComponent } from './pages/athlete/checkout/checkout.component';
+import { DashboardComponent } from './pages/athlete/dashboard/dashboard.component';
 
 export const routes: Routes = [
   // {
@@ -94,7 +95,8 @@ export const routes: Routes = [
       { path: "participated_events", component: ParticipatedEventsComponent },
       { path: "checkout", component: CheckoutComponent },
       { path: "payment", component: PaymentComponent },
-      { path: '', redirectTo: 'federations', pathMatch: 'full' },
+      { path: "dashboard", component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },
       
     ]
