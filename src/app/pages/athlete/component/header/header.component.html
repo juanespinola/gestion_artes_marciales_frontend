@@ -26,21 +26,33 @@
     <i-tabler name="search" class="icon-20 d-flex"></i-tabler>
   </button> -->
 
-  <div class="d-none d-lg-flex">
-    <!-- --------------------------------------------------------------- -->
-    <!--  Links -->
-    <!-- --------------------------------------------------------------- -->
+  <div class="d-none d-lg-flex justify-content-between w-100">
+
     @if(federation_id){
       <button mat-button class="m-x-8 f-s-16 f-w-500" (click)="goToEvents()">
           Eventos
       </button>
     }
-    @if(!athlete){
-      <button mat-button color="primary" class="m-l-10">Sign Up</button>
-    }
-    @if(federation_id && !athlete){
-        <button mat-flat-button color="primary" class="m-l-10" (click)="navigateLoginAthlete()">Login</button>
-    }
+
+    <button mat-button class="m-x-8 f-s-16 f-w-500" (click)="goToRanking()">
+      Ranking
+    </button>
+
+    <button mat-button class="m-x-8 f-s-16 f-w-500" (click)="goToListAthletes()">
+      Atletas
+    </button>
+
+
+    <div class="row m-r-4">
+      @if(!athlete){
+        <button mat-button color="primary" class="m-l-10">Sign Up</button>
+      }
+      @if(federation_id && !athlete){
+          <button mat-flat-button color="primary" class="m-l-10" (click)="navigateLoginAthlete()">Login</button>
+      }
+    </div>
+
+    
 
     <!-- @if(athlete){
         <button mat-flat-button color="primary" class="m-l-10" (click)="navigateProfileAthlete(athlete)">Mi Perfil</button>

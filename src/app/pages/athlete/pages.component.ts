@@ -143,4 +143,17 @@ export class PagesComponent {
       this.htmlElement.classList.add('light-theme');
     }
   }
+
+  goToEvents(){
+    // this.router.navigate(['federations', this.federation_id, 'events'], {state: { federation_id: this.federation_id}})
+    this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
+  }
+
+  goToRanking(){
+    this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
+  }
+
+  goToListAthletes(){
+    this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
+  }
 }

@@ -289,9 +289,12 @@ export class HeaderComponent {
     this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
   }
 
-  navigateProfileAthlete(athlete:any){
-    // this.router.navigate(['athlete', 'sign-in']);
-    console.log(athlete)
+  goToRanking(){
+    this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
+  }
+
+  goToListAthletes(){
+    this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
   }
 
   logout(){
