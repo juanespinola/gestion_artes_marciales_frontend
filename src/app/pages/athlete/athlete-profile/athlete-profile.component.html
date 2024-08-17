@@ -1,0 +1,152 @@
+<div class="row">
+    <div class="w-100">
+        <mat-card class="cardWithShadow">
+            <mat-card-content class="text-center p-24">
+                <img src="{{ athlete?.profile.profile_image ? athlete?.profile.profile_image : 'https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg' }}"
+                    class="rounded-circle border p-5" width="100" />
+                <h4 mat-card-title class="card-title m-t-16 m-b-0">
+                    {{ athlete?.profile.name }}
+                </h4>
+                <span class="f-s-12">Nacionalidad: {{ athlete?.profile.country }} - Edad: {{
+                    getAge(athlete?.profile.birthdate) }}</span>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="w-100">
+        <mat-card class="cardWithShadow">
+            <mat-card-content class="p-24">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <div class="rounded p-24 m-t-24">
+                            <div class="belt-container">
+                                <div class="belt belt-jiu-jitsu belt-white"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <span class="f-s-24">
+                            Cinturón: {{athlete?.profile.belt}}
+                        </span>
+                        <p>
+                            Promovido por : Fulano
+                        </p>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="w-100">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header class="m-b-0">
+                <mat-card-title>Academia</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1 p-24">
+                <div class="row">
+                    <div class="col-sm-2 col-lg-12 text-center">
+                        <div class="row d-flex justify-content-between m-x-2">
+                            <div>
+                                <img src="https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg"
+                                    alt="" class="rounded-circle border p-5" width="100" />
+                                <h5 mat-card-title class="card-title m-t-8 m-b-0 f-s-16">
+                                    Academia
+                                </h5>
+                            </div>
+                            <!-- <div>
+                                <img src="https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg"
+                                    alt="" class="rounded-circle border p-5" width="100" />
+                                <h5 mat-card-title class="card-title m-t-8 m-b-0 f-s-16">
+                                    Academia
+                                </h5>
+                            </div>
+                            <div>
+                                <img src="https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg"
+                                    alt="" class="rounded-circle border p-5" width="100" />
+                                <h5 mat-card-title class="card-title m-t-8 m-b-0 f-s-16">
+                                    Academia
+                                </h5>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="w-100">
+        <mat-card class="cardWithShadow theme-card">
+            <div class="table-responsive">
+                <table mat-table [dataSource]="dataSource" matSort class="w-100">
+
+                    <ng-container matColumnDef="#">
+
+                        <th mat-header-cell *matHeaderCellDef></th>
+
+                        <td class="p-y-8" mat-cell *matCellDef="let element">
+
+                            <mat-card-header class="m-b-0">
+                                <div class="w-100 d-flex justify-content-between">
+                                    <span>{{ element.description }}</span>
+                                    <span>Fecha del evento</span>
+                                </div>
+                            </mat-card-header>
+                            <mat-card-content class="b-t-1 p-24">
+                                <div class="row">
+
+                                    <div class="col-sm-6 col-lg-6">
+                                        <h2>Categoria</h2>
+                                        <div class="b-b-1 p-y-8">
+                                            <mat-list>
+                                                <mat-list-item>
+                                                    <div>
+                                                        gano | contra quien | victoria por
+                                                    </div>
+                                                </mat-list-item>
+                                                <mat-list-item>
+                                                    gano | contra quien | victoria por
+                                                </mat-list-item>
+                                                <mat-list-item>
+                                                    gano | contra quien | victoria por
+                                                </mat-list-item>
+                                            </mat-list>
+                                        </div>
+
+                                        <div class="p-y-8">
+                                            Win Gold {{ element.wins }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-lg-6">
+                                        <div class="row">
+                                            <button class="w-100 h-100 p-0">
+                                                <img src="https://cloudfront-us-east-1.images.arcpublishing.com/metroworldnews/DR4BZQ466JFDFPWA5R3J5LTIY4.jpg"
+                                                    alt="" class="w-100 h-100">
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </mat-card-content>
+
+                        </td>
+
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="headers"></tr>
+                    <tr mat-row *matRowDef="let row; columns: headers"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[3, 5, 10, 20]" showFirstLastButtons class="b-t-1"
+                    aria-label="Select page"></mat-paginator>
+            </div>
+        </mat-card>
+    </div>
+</div>

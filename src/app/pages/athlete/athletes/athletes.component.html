@@ -1,0 +1,62 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="row justify-content-between">
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <input type="text" matInput class="p-b-0" placeholder="Search here..." (keyup)="applyFilter($event)" />
+          <mat-icon matSuffix>
+            <i-tabler name="search" class="icon-20"></i-tabler>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+<div class="row">
+  @for(athlete of athletes; track athlete) {
+  <div class="col-sm-6 col-lg-4">
+    <mat-card class="cardWithShadow" (click)="getAthleteProfile(athlete.id)">
+      <mat-card-content class="text-center p-t-24">
+        <img
+          src="{{ athlete.profile_image ? athlete.profile_image : 'https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg' }}"
+          class="rounded-circle" width="80" />
+        <h4 mat-card-title class="card-title m-t-16 m-b-0">
+          {{ athlete.name }}
+        </h4>
+        <div>
+          <span class="f-s-14">
+            Total de Medallas
+          </span>
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="row">
+        <div class="col-4 p-y-12">
+          <div
+            class="mat-subtitle-2 text-decoration-none f-s-14 f-w-500 d-flex justify-content-center align-items-center">
+            <img src="assets/images/svgs/gold-medal.svg" class="icon-18 m-r-4" width="20" height="20" />
+            {{ athlete.gold }}
+          </div>
+        </div>
+        <div class="col-4 p-y-12">
+          <div
+            class="mat-subtitle-2 text-decoration-none f-s-14 f-w-500 d-flex justify-content-center align-items-center">
+            <img src="assets/images/svgs/silver-medal.svg" class="icon-18 m-r-4" width="20" height="20" />
+            {{ athlete.silver }}
+          </div>
+        </div>
+        <div class="col-4 p-y-12">
+          <div
+            class="mat-subtitle-2 text-decoration-none f-s-14 f-w-500 d-flex justify-content-center align-items-center">
+            <img src="assets/images/svgs/bronze-medal.svg" class="icon-18 m-r-4" width="20" height="20" />
+            {{ athlete.bronze }}
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  }
+</div>

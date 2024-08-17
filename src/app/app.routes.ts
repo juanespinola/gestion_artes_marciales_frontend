@@ -52,6 +52,8 @@ import { MembershipComponent } from './pages/athlete/membership/membership.compo
 import { ParticipatedEventsComponent } from './pages/athlete/participated-events/participated-events.component';
 import { CheckoutComponent } from './pages/athlete/checkout/checkout.component';
 import { DashboardComponent } from './pages/athlete/dashboard/dashboard.component';
+import { AthletesComponent } from './pages/athlete/athletes/athletes.component';
+import { AthleteProfileComponent } from './pages/athlete/athlete-profile/athlete-profile.component';
 
 export const routes: Routes = [
   // {
@@ -89,7 +91,17 @@ export const routes: Routes = [
           { path: "prueba", component: EventBracketComponent },
           { path: "pruebaa", component: AthleteEventListAthleteInscriptionComponent }
         ]
-       },
+      },
+
+      { 
+        path: "athletes", 
+        children: [
+          { path:"", component: AthletesComponent },
+          { path: "profile/:athlete_id", component: AthleteProfileComponent },
+        ]
+      },
+      
+
       { path: "profile", component: ProfileComponent },
       { path: "membership", component: MembershipComponent },
       { path: "participated_events", component: ParticipatedEventsComponent },

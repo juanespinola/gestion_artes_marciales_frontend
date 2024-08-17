@@ -1,0 +1,75 @@
+  .belt-container {
+    width:17px
+  }
+   .belt {
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:17px;
+  }
+   .belt:after {
+    content:"";
+    position:absolute;
+    background:#000;
+    top:17px;
+    height:38px;
+    width:100%
+  }
+   .belt.belt-black:after,
+   .belt.belt-1st-degree-black:after,
+   .belt.belt-2nd-degree-black:after,
+   .belt.belt-3rd-degree-black:after,
+   .belt.belt-4th-degree-black:after,
+   .belt.belt-5th-degree-black:after,
+   .belt.belt-6th-degree-black:after {
+    background:#ee2656
+  }
+   .belt .degrees {
+    border-top:3px solid #fff;
+    border-bottom:3px solid #fff;
+    position:relative;
+    z-index:1;
+    top:17px;
+    height:38px;
+    padding-top:4px
+  }
+   .belt .degrees .degree {
+    background:#fff;
+    width:100%;
+    height:2px;
+    margin-bottom:2px;
+    position:relative
+  }
+  .belt-white {
+    background:#fff
+  }
+  .belt-grey {
+    background:#b4b4b4
+  }
+  .belt-yellow {
+    background:#ead218
+  }
+  .belt-orange {
+    background:#e2871c
+  }
+  .belt-green {
+    background:#67c75a
+  }
+  .belt-blue {
+    background:#2650ff
+  }
+  .belt-purple {
+    background:#b03bc2
+  }
+  .belt-brown {
+    background:#6f3519
+  }
+  .belt-black,
+  .belt-1st-degree-black,
+  .belt-2nd-degree-black,
+  .belt-3rd-degree-black,
+  .belt-4th-degree-black,
+  .belt-5th-degree-black,
+  .belt-6th-degree-black {
+    background:#000;
+  }
