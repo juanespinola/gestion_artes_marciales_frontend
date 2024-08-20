@@ -2,13 +2,13 @@
     <div class="w-100">
         <mat-card class="cardWithShadow">
             <mat-card-content class="text-center p-24">
-                <img src="{{ athlete?.profile.profile_image ? athlete?.profile.profile_image : 'https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg' }}"
+                <img src="{{ athlete?.profile_image ? athlete?.profile_image : 'https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg' }}"
                     class="rounded-circle border p-5" width="100" />
                 <h4 mat-card-title class="card-title m-t-16 m-b-0">
-                    {{ athlete?.profile.name }}
+                    {{ athlete?.name }}
                 </h4>
-                <span class="f-s-12">Nacionalidad: {{ athlete?.profile.country }} - Edad: {{
-                    getAge(athlete?.profile.birthdate) }}</span>
+                <span class="f-s-12">Nacionalidad: {{ athlete?.country.description }} - Edad: {{
+                    getAge(athlete?.birthdate) }}</span>
             </mat-card-content>
         </mat-card>
     </div>
@@ -30,7 +30,7 @@
 
                     <div class="col-lg-5">
                         <span class="f-s-24">
-                            Cinturón: {{athlete?.profile.belt}}
+                            Cinturón: {{athlete?.belt?.color}}
                         </span>
                         <p>
                             Promovido por : Fulano
@@ -95,34 +95,51 @@
 
                             <mat-card-header class="m-b-0">
                                 <div class="w-100 d-flex justify-content-between">
-                                    <span>{{ element.description }}</span>
-                                    <span>Fecha del evento</span>
+                                    <span>{{ element.event.description }}</span>
+                                    <span>{{ element.event.initial_date }}</span>
                                 </div>
                             </mat-card-header>
                             <mat-card-content class="b-t-1 p-24">
                                 <div class="row">
 
                                     <div class="col-sm-6 col-lg-6">
-                                        <h2>Categoria</h2>
+                                        <h2>{{ element.tariff_inscription.entry_category.name }}</h2>
                                         <div class="b-b-1 p-y-8">
-                                            <mat-list>
-                                                <mat-list-item>
-                                                    <div>
-                                                        gano | contra quien | victoria por
+                                            <mat-list
+                                                *ngFor="let item of element.tariff_inscription.entry_category.match_bracket">
+                                                <mat-list-item class="row">
+                                                    <div class="d-flex align-items-center">
+                                                        @if(item.athlete_id_winner == element.athlete_id){
+                                                        <span
+                                                            class="bg-success rounded-pill p-x-8 f-w-600 text-white f-s-12 p-y-4">Win</span>
+                                                        } @else {
+                                                        <span
+                                                            class="bg-error rounded-pill p-x-8 f-w-600 text-white f-s-12 p-y-4">Lose</span>
+                                                        }
+                                                        <span
+                                                            class="p-x-8 f-w-600 text-white f-s-16 p-y-4">{{item.one_athlete_id
+                                                            == element.athlete_id ? item.athlete_two.name :
+                                                            item.athlete_one.name }}</span>
+                                                        Fase: {{ item.brackets.phase }} |
+                                                        @if(item.athlete_id_winner == element.athlete_id){
+                                                            Win By {{item.type_victory.description}} 
+                                                            {{item.type_victory.description == 'Points' ? 
+                                                                item.score_one_athlete + " - " + item.score_two_athlete : ""
+                                                            }}
+                                                        } @else {
+                                                            Lose By {{item.type_victory.description}}
+                                                            {{item.type_victory.description == 'Points' ?
+                                                                item.score_two_athlete + " - " + item.score_one_athlete : ""
+                                                            }}
+                                                        }
                                                     </div>
-                                                </mat-list-item>
-                                                <mat-list-item>
-                                                    gano | contra quien | victoria por
-                                                </mat-list-item>
-                                                <mat-list-item>
-                                                    gano | contra quien | victoria por
                                                 </mat-list-item>
                                             </mat-list>
                                         </div>
 
-                                        <div class="p-y-8">
+                                        <!-- <div class="p-y-8">
                                             Win Gold {{ element.wins }}
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-sm-4 col-lg-6">
                                         <div class="row">
@@ -134,6 +151,7 @@
                                     </div>
 
                                 </div>
+
                             </mat-card-content>
 
                         </td>

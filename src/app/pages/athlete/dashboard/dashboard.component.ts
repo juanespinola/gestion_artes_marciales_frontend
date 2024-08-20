@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from '../../../services/session.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  athlete:any 
+  constructor(private sessionService: SessionService){
+    this.athlete = this.sessionService.getUser();
+  }
 }

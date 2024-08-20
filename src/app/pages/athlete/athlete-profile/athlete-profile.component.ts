@@ -22,6 +22,7 @@ export class AthleteProfileComponent {
   athlete_id:any;
   dataSource: any;
   headers: any[] = [];
+  event_id:any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -45,7 +46,7 @@ export class AthleteProfileComponent {
       next: (res:any) => {
         console.log(res)
         this.athlete = res
-        this.dataSource = new MatTableDataSource(res.history_match)
+        this.dataSource = new MatTableDataSource(res.inscriptions)
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
@@ -53,6 +54,17 @@ export class AthleteProfileComponent {
       complete: () => {}
     });
 
+  }
+
+  getAthleteEventMatchWinLoseInformation(){
+    this.apiService.getData(`athleteeventmatchwinlose/${this.athlete_id}`)
+    .subscribe({
+      next: (res:any) => {
+        console.log(res)
+      },
+      error: (err) => console.log(err),
+      complete: () => {}
+    })
   }
 
   getAge(birthdate: any) : any {

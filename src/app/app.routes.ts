@@ -108,7 +108,7 @@ export const routes: Routes = [
       { path: "checkout", component: CheckoutComponent },
       { path: "payment", component: PaymentComponent },
       { path: "dashboard", component: DashboardComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: '', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },
       
     ]
