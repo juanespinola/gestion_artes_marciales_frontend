@@ -1,0 +1,122 @@
+<mat-accordion multi>
+    <mat-card class="cardWithShadow">
+
+        <mat-card-content class="p-24">
+
+            <div *ngFor="let entrycategory of entriescategories | keyvalue">
+                <h2>{{entrycategory.key == false ? "Mayores" : "Menores"}} </h2>
+                <div *ngFor="let gender of getSubKeys(entrycategory.value) | keyvalue">
+                    <h3>Género: {{gender.key}} </h3>
+                    <div *ngFor="let belt of getSubKeys(gender.value) | keyvalue">
+                        <mat-expansion-panel class="cardWithShadow" [expanded]="true">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="f-w-600">
+                                    Cinturon: {{belt.key}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div *ngFor="let category of getSubKeys(belt.value) | keyvalue">
+                                <mat-expansion-panel class="cardWithShadow" [expanded]="true">
+
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title class="f-w-600">
+                                            Categoria: {{ category.key }}
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div *ngFor="let inscription of getSubKeys(category.value)">
+                                       <div *ngIf="convertMatTable(inscription.inscriptions)" >
+
+                                        <div class="table-responsive">
+                                            <table mat-table [dataSource]="dataSource" matSort class="w-100">
+    
+                                                <ng-container matColumnDef="#">
+                                                    <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">#</th>
+                                                    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                                                </ng-container>
+    
+                                                <ng-container matColumnDef="athlete">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                                        class="f-s-16 f-w-600"> Atleta </th>
+                                                    <td mat-cell *matCellDef="let element"> {{ element.athlete.name }} </td>
+                                                    <td mat-footer-cell *matFooterCellDef class="p-l-0 f-w-600">Total Atletas: {{ getTotalAthlete(inscription.inscriptions) }}</td>
+                                                </ng-container>
+    
+                                                <ng-container matColumnDef="age">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                                        class="f-s-16 f-w-600"> Edad </th>
+                                                    <td mat-cell *matCellDef="let element"> {{ getAge(element.athlete.birthdate) }} </td>
+                                                </ng-container>
+    
+                                                <ng-container matColumnDef="team">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                                        class="f-s-16 f-w-600"> Equipo / Academia</th>
+                                                    <td mat-cell *matCellDef="let element"> {{ element.athlete.association_id }} </td>
+                                                </ng-container>
+    
+                                                <ng-container matColumnDef="weight">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                                        class="f-s-16 f-w-600">Peso en Torneo</th>
+                                                    <td mat-cell *matCellDef="let element"> 
+                                                        {{ element.event_weight ? element.event_weight : "Sin Pesar" }}
+                                                    </td>
+                                                </ng-container>
+    
+    
+                                                <ng-container matColumnDef="actions">
+                                                    <th mat-header-cell *matHeaderCellDef
+                                                        class="f-s-16 f-w-600 text-center">
+                                                        Actions</th>
+                                                    <td mat-cell *matCellDef="let element;" class="action-link text-center">
+                                                        <button mat-icon-button class="cursor-pointer" (click)="updateWeight(element.id)">
+                                                            @if(element.valid_weight){
+                                                                <i-tabler name="weight" class="icon-18" style="color: darkgreen; stroke: 50px"></i-tabler>
+                                                            } @else {
+                                                                <i-tabler name="weight" class="icon-18" style="color: crimson; stroke: 50px;"></i-tabler>
+                                                            }
+                                                        </button>
+                                                        <button mat-icon-button class="cursor-pointer">
+                                                            @if(element.payment_id){
+                                                                <i-tabler name="currency-dollar" class="icon-18" style="color: darkgreen; stroke: 50px"></i-tabler>
+                                                            } @else {
+                                                                <i-tabler name="currency-dollar" class="icon-18" style="color: crimson; stroke: 50px;"></i-tabler>
+                                                            }
+                                                        </button>
+                                                    </td>
+                                                    <td mat-footer-cell *matFooterCellDef class="p-l-0 f-w-600">
+                                                           
+                                                        
+                                                            <button mat-flat-button color="primary" (click)="generateMatchBrackets(inscription)">
+                                                                Generar Llaves
+                                                            </button>
+                                                        
+                                                            <button mat-flat-button color="primary" (click)="viewMatchBrackets(inscription)" class="m-l-2">
+                                                                Ver Llaves
+                                                            </button>
+                                                        
+                                                    </td>
+                                                </ng-container>
+    
+    
+                                                <tr mat-header-row *matHeaderRowDef="headers"></tr>
+                                                <tr mat-row *matRowDef="let row; columns: headers"></tr>
+    
+                                                <tr mat-footer-row *matFooterRowDef="footers; sticky: true"></tr>
+                                            </table>
+                                        </div>
+
+                                       </div>
+                                    </div>
+
+                                </mat-expansion-panel>
+                            </div>
+
+
+                        </mat-expansion-panel>
+                    </div>
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</mat-accordion>

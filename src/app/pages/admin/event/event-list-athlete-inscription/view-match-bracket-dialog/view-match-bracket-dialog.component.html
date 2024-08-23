@@ -1,13 +1,13 @@
 <mat-card class="cardWithShadow theme-card">
     <mat-card-header>
-        <mat-card-title class="m-b-0">Lista de Combates</mat-card-title>
+        <mat-card-title class="m-b-0 mat-subtitle-2">Lista de Combates</mat-card-title>
     </mat-card-header>
     <mat-card-content class="b-t-1">
 
         <div class="tournament-bracket tournament-bracket--rounded">
             @for(matchbracket of matchbrackets; track matchbracket) {
             <div class="tournament-bracket__round tournament-bracket__round--bronze" >
-                <h3 class="tournament-bracket__round-title">{{ matchbracket.bracket.phase }}</h3>
+                <h3 class="tournament-bracket__round-title">{{ matchbracket?.bracket.phase }}</h3>
                 <ul class="tournament-bracket__list">
                     <li class="tournament-bracket__item" (click)="chargeResult(matchbracket)">
                         <div class="tournament-bracket__match" tabindex="0">
@@ -22,7 +22,7 @@
                                     </tr> -->
                                 </thead>
                                 <tbody class="tournament-bracket__content">
-                                    @if(!matchbracket.athlete_id_winner || !matchbracket.athlete_id_loser){
+                                    <!-- @if(!matchbracket.athlete_id_winner || !matchbracket.athlete_id_loser){ -->
                                         <tr class="tournament-bracket__team tournament-bracket__team{{ (matchbracket.athlete_id_winner == matchbracket?.athlete_one?.id) && matchbracket?.athlete_id_winner ? '--winner': ''}}" >
                                             <td class="tournament-bracket__country">
                                                 <abbr class="tournament-bracket__code" title="Canada">{{matchbracket?.athlete_one?.name ? matchbracket?.athlete_one?.name : "BYE"}}</abbr>
@@ -43,7 +43,7 @@
                                                 <span class="tournament-bracket__number">{{matchbracket.score_two_athlete}}</span>
                                             </td>
                                         </tr>
-                                        }
+                                        <!-- } -->
                                 </tbody>
                             </table>
                         </div>

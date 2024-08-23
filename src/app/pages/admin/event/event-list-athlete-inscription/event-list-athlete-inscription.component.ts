@@ -15,6 +15,75 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { UpdateMatchBracketDialogComponent } from './update-match-bracket-dialog/update-match-bracket-dialog.component';
 import { ViewMatchBracketDialogComponent } from './view-match-bracket-dialog/view-match-bracket-dialog.component';
 
+interface Belt {
+  id: number;
+  color: string;
+  federation_id: number;
+}
+
+interface EntryCategory {
+  id: number;
+  name: string;
+  min_age: number;
+  max_age: number;
+  min_weight: string;
+  max_weight: string;
+  belt_id: number;
+  gender: string;
+  clothes: string;
+  event_id: number;
+  minor_category: boolean;
+  belt: Belt;
+  match_bracket: any[];
+}
+
+interface TariffInscription {
+  id: number;
+  entry_category_id: number;
+  price: number;
+  entry_category: EntryCategory;
+  inscriptions: Athlete[];
+}
+
+interface Athlete {
+  id: number;
+  name: string;
+  email: string;
+  email_verified_at: string | null;
+  country_id: number;
+  city_id: number;
+  type_document_id: number;
+  document: string;
+  phone: string;
+  gender: string;
+  birthdate: string;
+  profile_image: string | null;
+  belt_id: number | null;
+  type: string;
+  academy_id: number | null;
+}
+
+interface Registration {
+  id: number;
+  athlete_id: number;
+  event_weight: number | null;
+  valid_weight: boolean;
+  status: string;
+  athlete: Athlete;
+  tariff_inscription: TariffInscription;
+ 
+}
+
+
+interface Data {
+  [minor: string]: {
+    [gender: string]: {
+      [beltColor: string]: {
+        [categoryName: string]: Registration[];
+      };
+    };
+  };
+}
 
 @Component({
   selector: 'app-event-list-athlete-inscription',
@@ -35,10 +104,13 @@ export class EventListAthleteInscriptionComponent {
   footers: any[] = [];
   filters: any[] = [];
 
+  totalAthlete: number = 0;
+  matchbrackets: number = 0;
+
   elements:any;
   dataSource: any;
 
-  entriescategories:any = [];
+  entriescategories:Data = {};
   listEntryCategories:any = [];
   listFilterAthlete: any = [];
   selection = new SelectionModel<any>(true, []);
@@ -95,12 +167,13 @@ export class EventListAthleteInscriptionComponent {
     }
 
     ngOnInit(){
-
+      this.getEvent()
+      this.getAll()
     }
 
     ngAfterViewInit() {
-      this.getEvent()
-      this.getAll()
+      
+     
     }
 
     applyFilter(filterValue: string): void {
@@ -137,7 +210,9 @@ export class EventListAthleteInscriptionComponent {
       })
       .subscribe({
         next:(res:any) => {
+          // console.log(res);
           this.entriescategories = res;
+          this.convertData(res)
         },
         error:(error:any) => {
           console.log(error)
@@ -147,7 +222,8 @@ export class EventListAthleteInscriptionComponent {
     }
 
     convertMatTable(inscriptions:any){
-      this.dataSource = new MatTableDataSource(inscriptions)
+      console.log(inscriptions)
+      this.dataSource = new MatTableDataSource(inscriptions.athlete)
       return this.dataSource
     }
     
@@ -189,12 +265,17 @@ export class EventListAthleteInscriptionComponent {
       return athlete.length
     }
 
-    generateMatchBrackets(athlete:any) {
+    checkMathBracket(registration:any){
+      return registration.match_bracket.length == 0 ? true:false
+    }
+
+    generateMatchBrackets(inscriptions:any) {
+
       let event_id = this.route.snapshot.params['id'];
       const dialogRef = this.dialog.open(GenerateMatchBracketDialogComponent, {
         data: {
-          athlete: athlete.inscriptions,
-          entry_category_id: athlete.entry_category_id,
+          athlete: inscriptions.tariff_inscription.inscriptions,
+          entry_category_id: inscriptions.tariff_inscription.entry_category_id,
           event: this.event,
           event_id, 
         }
@@ -207,11 +288,11 @@ export class EventListAthleteInscriptionComponent {
         })
     }
 
-    viewMatchBrackets(athlete: any){
+    viewMatchBrackets(inscriptions: any){
       let event_id = this.route.snapshot.params['id'];
       const dialogRef = this.dialog.open(ViewMatchBracketDialogComponent, {
         data: {
-          entry_category_id: athlete.entry_category_id,
+          entry_category_id: inscriptions.tariff_inscription.entry_category_id,
           event_id, 
         },
         width: "80%",
@@ -223,6 +304,62 @@ export class EventListAthleteInscriptionComponent {
           //   this.getAll();
           // }
         })
+    }
+
+    convertData(entriescategories:Data){
+      // let data: Data = this.entriescategories;
+      
+      Object.keys(entriescategories).forEach(minorCategoryKey => {
+        const minorCategory = entriescategories[minorCategoryKey];
+        
+        Object.keys(minorCategory).forEach(genderKey => {
+          const genderCategory = minorCategory[genderKey];
+          
+          Object.keys(genderCategory).forEach(beltColorKey => {
+            const beltCategory = genderCategory[beltColorKey];
+            
+            Object.keys(beltCategory).forEach(categoryNameKey => {
+              const registrations = beltCategory[categoryNameKey];
+              
+              registrations.forEach((registration:Registration) => {
+                //   // Aquí puedes procesar cada registro
+                // this.dataSource = new MatTableDataSource(registration.tariff_inscription.inscriptions)
+                // console.log(registration.tariff_inscription.inscriptions);
+                
+                
+              });
+            });
+          });
+        });
+      });
+      
+    }
+
+    getMinorCategory(): string[] {
+      return Object.keys(this.entriescategories);
+    }
+    
+    getGenders(year: string): string[] {
+      return Object.keys(this.entriescategories[year]);
+    }
+    
+    getBeltColors(year: string, gender: string): string[] {
+      return Object.keys(this.entriescategories[year][gender]);
+    }
+    
+    getCategoryNames(year: string, gender: string, beltColor: string): string[] {
+      return Object.keys(this.entriescategories[year][gender][beltColor]);
+    }
+    
+    getRegistrations(year: string, gender: string, beltColor: string, categoryName: string): Registration[] {
+      // this.dataSource = new MatTableDataSource(this.entriescategories[year][gender][beltColor][categoryName]);
+      // console.log(this.entriescategories[year][gender][beltColor][categoryName])
+      return this.entriescategories[year][gender][beltColor][categoryName];
+    }
+
+    getInscriptions(inscriptions: any){
+      this.dataSource = new MatTableDataSource(inscriptions)
+      return inscriptions;
     }
 
 }
