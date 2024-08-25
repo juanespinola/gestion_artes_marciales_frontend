@@ -283,7 +283,7 @@ export class EventListAthleteInscriptionComponent {
       dialogRef.afterClosed()
         .subscribe((result: any) => {
           // if (result.event == 'success') {
-          //   this.getAll();
+            this.getAll();
           // }
         })
     }

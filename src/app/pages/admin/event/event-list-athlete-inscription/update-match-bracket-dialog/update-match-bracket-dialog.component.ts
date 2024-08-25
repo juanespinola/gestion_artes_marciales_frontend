@@ -30,13 +30,12 @@ export class UpdateMatchBracketDialogComponent {
     private formBuilder: FormBuilder,
     private alertsService: AlertsService,
   ){
-    console.log(data)
     this.matchbracket = data.matchbracket
     this.getTypeVictory();
   }
 
   ngOnInit() {
-    
+    // en caso que el athlete_id_one or two sea null, que pase directamente
     this.formGroup = this.formBuilder.group({
       match_bracket_id: [this.matchbracket.id],
       score_one_athlete: [this.matchbracket.score_one_athlete, Validators.required],
@@ -44,14 +43,16 @@ export class UpdateMatchBracketDialogComponent {
       quadrilateral: [this.matchbracket.quadrilateral, Validators.required],
       match_timer: [this.matchbracket.match_timer, Validators.required],
       victory_type_id: ['', Validators.required],
-      athlete_id_winner: ['', Validators.required]
+      athlete_id_winner: ['', Validators.required],
+      athlete_id_loser: [(this.athlete_id_winner == this.matchbracket.athlete_one.id) ? this.matchbracket?.athlete_one?.id : this.matchbracket?.athlete_two?.id]
     });
   }
 
   onSubmit(){
+    
     this.apiService.postData('matchbracket/nextphase', this.formGroup.value)
     .subscribe( (res:any) => {
-         
+        this.updateRanking(res.data)
     });
 
     this.dialogRef.close({
@@ -76,15 +77,52 @@ export class UpdateMatchBracketDialogComponent {
   setWinner(athlete_winner:any, athlete_name:any){
     
     if(athlete_winner){
-      console.log('estamos')
       this.athlete_name = athlete_name;
-      // this.athlete_winner = athlete_id_winner;
-      // this.formGroup.setValue({ athlete_id_winner: athlete_winner })
     } else {
-      console.log('ep')
       this.athlete_name = "BYE";
       this.athlete_id_winner = null;
     }
-    console.log(this.formGroup)
   }
+
+  updateRanking(obj:any){
+    console.log(obj)
+    if(obj.athlete_id_winner){
+      console.log(obj.athlete_id_winner)
+      this.apiService.postData("ranking", {
+        athlete_id: obj.athlete_id_winner,
+        event_id:  obj.event_id,
+        entry_category_id:  obj.entry_category_id,
+        type: "win"        
+      })
+      .subscribe({
+        next: (res:any) => {
+          console.log(res)
+        },
+        error: (error: any) => {
+          console.log(error)
+        }
+      })
+    }
+
+    if(obj.athlete_id_loser){
+      console.log(obj.athlete_id_loser)
+      this.apiService.postData("ranking", {
+        athlete_id: obj.athlete_id_loser,
+        event_id:  obj.event_id,
+        entry_category_id:  obj.entry_category_id,
+        type: "lose"
+      })
+      .subscribe({
+        next: (res:any) => {
+          console.log(res)
+        },
+        error: (error: any) => {
+          console.log(error)
+        }
+      })
+    }
+    
+  }
+
+
 }

@@ -58,9 +58,9 @@ export class ViewMatchBracketDialogComponent {
     })
     dialogRef.afterClosed()
       .subscribe((result: any) => {
-        // if (result.event == 'success') {
-        //   this.getAll();
-        // }
+        if (result.event == 'success') {
+          this.getMatchBrackets();
+        }
       })
   }
 
