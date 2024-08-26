@@ -2,13 +2,13 @@
 <div class="p-24">
     <div class="tournament-bracket tournament-bracket--rounded">
         @for(groupbracket of groupbrackets; track groupbracket){
-        <div class="tournament-bracket__round tournament-bracket__round--{{groupbracket.phase}}">
-            <h3 class="tournament-bracket__round-title">{{groupbracket.phase}}</h3>
+        <div class="tournament-bracket__round tournament-bracket__round--{{groupbracket?.phase}}">
+            <h3 class="tournament-bracket__round-title mat-subtitle-2">{{groupbracket?.phase}}</h3>
             <ul class="tournament-bracket__list">
                 @for(bracket of brackets; track bracket){
                 @if(groupbracket.phase == bracket.bracket.phase){
                 <li class="tournament-bracket__item">
-                    <div class="tournament-bracket__match" tabindex="0">
+                    <div class="tournament-bracket__match b-2" tabindex="0">
                         <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
                                 <time datetime="1998-02-18">{{bracket.match_day ? bracket.match_day:"Sin definir"}} -
@@ -21,7 +21,7 @@
                                 </tr>
                             </thead>
                             <tbody class="tournament-bracket__content">
-                                @if(!bracket.athlete_id_winner || !bracket.athlete_id_loser){
+                                <!-- @if(!bracket.athlete_id_winner || !bracket.athlete_id_loser){ -->
                                 <tr
                                     class="tournament-bracket__team tournament-bracket__team{{(bracket?.athlete_id_winner == bracket?.athlete_one?.id) && bracket?.athlete_id_winner ? '--winner' : ''}}">
                                     <td class="tournament-bracket__country">
@@ -40,7 +40,7 @@
                                             aria-label="Flag"></span>
                                     </td>
                                 </tr>
-                                }
+                                <!-- } -->
                             </tbody>
                         </table>
                         <div class="bracket-match-dropdown-container">
@@ -70,17 +70,17 @@
     </div>
 </div>
 } @else {
-    <div class="w-100 p-24 h-100">
+<div class="w-100 p-24 h-100">
 
-        <mat-card class="cardWithShadow p-24 h-100">
-            <mat-card-content class="d-flex h-100 justify-content-center">
-                <!-- <div class="row"> -->
-                    <div class="d-flex align-items-center">
-                        <mat-card-title class="f-s-18 m-b-0 m-t-16">Las llaves aún no han sido generadas</mat-card-title>
-                    </div>
-                <!-- </div> -->
-            </mat-card-content>
-        </mat-card>
+    <mat-card class="cardWithShadow p-24 h-100">
+        <mat-card-content class="d-flex h-100 justify-content-center">
+            <!-- <div class="row"> -->
+            <div class="d-flex align-items-center">
+                <mat-card-title class="f-s-18 m-b-0 m-t-16">Las llaves aún no han sido generadas</mat-card-title>
+            </div>
+            <!-- </div> -->
+        </mat-card-content>
+    </mat-card>
 
-    </div>
+</div>
 }

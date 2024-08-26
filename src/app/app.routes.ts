@@ -54,6 +54,7 @@ import { CheckoutComponent } from './pages/athlete/checkout/checkout.component';
 import { DashboardComponent } from './pages/athlete/dashboard/dashboard.component';
 import { AthletesComponent } from './pages/athlete/athletes/athletes.component';
 import { AthleteProfileComponent } from './pages/athlete/athlete-profile/athlete-profile.component';
+import { RankingComponent } from './pages/athlete/ranking/ranking.component';
 
 export const routes: Routes = [
   // {
@@ -101,7 +102,7 @@ export const routes: Routes = [
         ]
       },
       
-
+      { path: "ranking", component: RankingComponent },
       { path: "profile", component: ProfileComponent },
       { path: "membership", component: MembershipComponent },
       { path: "participated_events", component: ParticipatedEventsComponent },

@@ -170,11 +170,11 @@ $breakpoint-lg: 72em;
 .tournament-bracket__match {
     display: flex;
     width: 100%;
-    background-color: #F5F5F5;
+    // background-color: #F5F5F5;
     padding: 1em;
     border: 1px solid transparent;
     border-radius: 0.1em;
-    box-shadow: 0 2px 0 0 #e5e5e5;
+    // box-shadow: 0 2px 0 0 #e5e5e5;
     outline: none;
     cursor: pointer;
     transition: padding 0.2s ease-in-out, border 0.2s linear;

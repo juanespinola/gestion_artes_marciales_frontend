@@ -1,0 +1,96 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="d-flex align-items-center">
+            <mat-card-title class="m-b-0">Ranking</mat-card-title>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div class="row">
+    <div class="col-sm-6 col-lg-6" *ngFor="let entrycategory of athleteRanking">
+        @if(entrycategory?.minor_category){
+        <mat-card class="cardWithShadow card2 position-relative theme-card">
+            <mat-card-header class="m-b-0">
+                <mat-card-title>{{entrycategory?.gender}} Mayores - {{entrycategory?.belt.color}} - {{
+                    entrycategory?.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                @if(entrycategory?.ranking.length > 0){
+                <mat-list *ngFor="let ran of entrycategory?.ranking; index as i">
+                    <mat-list-item class="b-1">
+                        {{i+1}}- {{ran?.athlete.name}}
+                    </mat-list-item>
+                </mat-list>
+                } @else {
+                <div>
+                    No hay datos
+                </div>
+                }
+            </mat-card-content>
+        </mat-card>
+        } @else {
+        <mat-card class="cardWithShadow card2 position-relative theme-card">
+            <mat-card-header class="m-b-0">
+                <mat-card-title>{{entrycategory?.gender}} | Menores | {{entrycategory?.belt.color}} | {{
+                    entrycategory?.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                @if(entrycategory?.ranking.length > 0){
+                <div class="m-t-32">
+                    <div class="d-flex align-items-center m-b-24"
+                        *ngFor="let ran of entrycategory?.ranking; index as i">
+                        <img class="rounded-circle border p-5" width="50"
+                            src="{{ ran?.athlete.profile_image ? ran?.athlete.profile_image : 'https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg' }}"
+                            alt="icon" />
+
+                        <div class="m-l-16 m-r-8">
+                            <h6 class="mat-subtitle-1 f-s-16 f-w-600">{{i+1}}. {{ran?.athlete.name}}</h6>
+                        </div>
+                        <div class="m-l-16 m-r-8">
+                            <span class="f-w-600 f-s-14">Points {{ran?.event_points}} </span>
+                        </div>
+                        <div class="m-l-16 m-r-8">
+                            <span class="f-w-600 f-s-14">Wins {{ran?.victories}} </span>
+                        </div>
+                        <div class="m-l-16 m-r-8">
+                            <span class="f-w-600 f-s-14">Losses {{ran?.defeats}}</span>
+                        </div>
+                        <div class="m-l-16 m-r-8">
+                            <div
+                                class="mat-subtitle-2 text-decoration-none f-s-14 f-w-500 d-flex justify-content-center align-items-center">
+                                <img src="assets/images/svgs/gold-medal.svg" class="icon-18 m-r-4" width="20"
+                                    height="20" />
+                                {{ ran?.gold }}
+                            </div>
+                        </div>
+                        <div class="m-l-16 m-r-8">
+                            <div
+                                class="mat-subtitle-2 text-decoration-none f-s-14 f-w-500 d-flex justify-content-center align-items-center">
+                                <img src="assets/images/svgs/silver-medal.svg" class="icon-18 m-r-4" width="20"
+                                    height="20" />
+                                {{ ran?.silver }}
+                            </div>
+                        </div>
+                        <div class="m-l-16 m-r-8">
+                            <div
+                                class="mat-subtitle-2 text-decoration-none f-s-14 f-w-500 d-flex justify-content-center align-items-center">
+                                <img src="assets/images/svgs/bronze-medal.svg" class="icon-18 m-r-4" width="20"
+                                    height="20" />
+                                {{ ran?.bronze }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button mat-stroked-button color="primary" class="w-100 m-t-8">
+                    Ver Ranking Completo
+                </button>
+                } @else {
+                <div>
+                    No hay datos
+                </div>
+                }
+            </mat-card-content>
+        </mat-card>
+        }
+    </div>
+</div>

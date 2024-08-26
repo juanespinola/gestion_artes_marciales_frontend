@@ -52,7 +52,7 @@ export class UpdateMatchBracketDialogComponent {
     
     this.apiService.postData('matchbracket/nextphase', this.formGroup.value)
     .subscribe( (res:any) => {
-        this.updateRanking(res.data)
+        // this.updateRanking(res.data)
     });
 
     this.dialogRef.close({

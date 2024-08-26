@@ -1,7 +1,7 @@
 <mat-card class="cardWithShadow theme-card">
     <mat-card-header class="d-flex justify-content-center text-center">
-        <mat-card-title class="f-s-18 m-b-0 m-t-16">{{ matchbracket?.bracket.phase}}</mat-card-title>
-        <mat-card-subtitle class="f-s-15 mat-body-1">{{ matchbracket?.entry_category?.name}}</mat-card-subtitle>
+        <mat-card-title class="f-s-18 m-b-0 m-t-16 mat-subtitle-2">{{ matchbracket?.bracket.phase}}</mat-card-title>
+        <mat-card-subtitle class="f-s-15 mat-body-1 mat-subtitle-2">{{ matchbracket?.entry_category?.name}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="b-t-1">
 
@@ -10,20 +10,18 @@
                 
                 <div class="col-sm-6 col-lg-4">
                     <mat-card class="cardWithShadow">
-                        <mat-card-content class="text-center p-y-24">
+                        <mat-card-content class="text-center p-y-24 mat-subtitle-2">
                             <img src="{{ matchbracket?.athlete_one?.profile_image ? matchbracket?.athlete_one?.profile_image : 'https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg' }}" class="rounded-circle" width="80" />
                             <mat-card-title class="f-s-18 m-b-0 m-t-16">{{ matchbracket?.athlete_one?.name }}</mat-card-title>
-                            <!-- <mat-card-subtitle class="f-s-12 mat-body-1">{{ matchbracket.post }}</mat-card-subtitle> -->
                         </mat-card-content>
                        
                     </mat-card>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                     <mat-card class="cardWithShadow">
-                        <mat-card-content class="text-center p-y-24">
+                        <mat-card-content class="text-center p-y-24 mat-subtitle-2">
                             <img src="{{ matchbracket?.athlete_two?.profile_image ? matchbracket?.athlete_two?.profile_image : 'https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg'}}" class="rounded-circle" width="80" />
                             <mat-card-title class="f-s-18 m-b-0 m-t-16">{{ matchbracket?.athlete_two?.name }}</mat-card-title>
-                            <!-- <mat-card-subtitle class="f-s-12 mat-body-1">{{ matchbracket.post }}</mat-card-subtitle> -->
                         </mat-card-content>
                        
                     </mat-card>
@@ -37,21 +35,21 @@
                 <div class="col-sm-4 col-lg-4">
                     <div class="d-flex justify-content-center p-12"> 
                         <div class="text-center">
-                            <span class="f-s-18"> prueba</span>
+                            <!-- <span class="f-s-18 mat-subtitle-2"> prueba</span> -->
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                     <div class="d-flex justify-content-center p-12" > 
                         <div class="text-center">
-                            <span class="f-s-18">{{matchbracket?.match_timer}}</span>
+                            <span class="f-s-18 mat-subtitle-2">{{matchbracket?.match_timer}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                     <div class="d-flex justify-content-center p-12"> 
                         <div class="text-center">
-                            <span class="f-s-18"> prueba</span>
+                            <!-- <span class="f-s-18 mat-subtitle-2"> prueba</span> -->
                         </div>
                     </div>
                 </div>    
@@ -61,23 +59,23 @@
         <div class="row">
             <div class="d-flex justify-content-between w-100">
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{matchbracket?.score_one_athlete}}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{matchbracket?.score_one_athlete}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                     <div class="d-flex justify-content-center p-12 cardWithShadow" > 
                         <div class="text-center">
-                            <span class="f-s-18"> Puntaje</span>
+                            <span class="f-s-18 mat-subtitle-2"> Puntaje</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{matchbracket?.score_two_athlete}}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{matchbracket?.score_two_athlete}}</span>
                         </div>
                     </div>
                 </div>    
@@ -87,23 +85,23 @@
         <div class="row">
             <div class="d-flex justify-content-between w-100">
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{ getAge(matchbracket?.athlete_one?.birthdate) }}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{ getAge(matchbracket?.athlete_one?.birthdate) }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                     <div class="d-flex justify-content-center p-12 cardWithShadow" > 
                         <div class="text-center">
-                            <span class="f-s-18"> Edad</span>
+                            <span class="f-s-18 mat-subtitle-2"> Edad</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{ getAge(matchbracket?.athlete_two?.birthdate) }}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{ getAge(matchbracket?.athlete_two?.birthdate) }}</span>
                         </div>
                     </div>
                 </div>    
@@ -113,23 +111,23 @@
         <div class="row">
             <div class="d-flex justify-content-between w-100">
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{matchbracket?.athlete_one?.city_id}}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{matchbracket?.athlete_one?.city_id}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                     <div class="d-flex justify-content-center p-12 cardWithShadow" > 
                         <div class="text-center">
-                            <span class="f-s-18"> Pais</span>
+                            <span class="f-s-18 mat-subtitle-2"> Pais</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{matchbracket?.athlete_two?.city_id}}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{matchbracket?.athlete_two?.city_id}}</span>
                         </div>
                     </div>
                 </div>    
@@ -139,23 +137,23 @@
         <div class="row">
             <div class="d-flex justify-content-between w-100">
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{matchbracket?.athlete_one?.academy?.description ? matchbracket?.athlete_one?.academy?.description:"-"}}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{matchbracket?.athlete_one?.academy?.description ? matchbracket?.athlete_one?.academy?.description:"-"}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                     <div class="d-flex justify-content-center p-12 cardWithShadow" > 
                         <div class="text-center">
-                            <span class="f-s-18"> Equipo / Academia</span>
+                            <span class="f-s-18 mat-subtitle-2"> Equipo / Academia</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
-                    <div class="d-flex justify-content-center b-2 p-12"> 
+                    <div class="d-flex justify-content-center p-12 cardWithShadow"> 
                         <div class="text-center">
-                            <span class="f-s-18"> {{matchbracket?.athlete_two?.academy?.description ? matchbracket?.athlete_two?.academy?.description:"-"}}</span>
+                            <span class="f-s-18 mat-subtitle-2"> {{matchbracket?.athlete_two?.academy?.description ? matchbracket?.athlete_two?.academy?.description:"-"}}</span>
                         </div>
                     </div>
                 </div>    

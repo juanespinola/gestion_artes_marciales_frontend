@@ -290,7 +290,7 @@ export class HeaderComponent {
   }
 
   goToRanking(){
-    this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
+    this.router.navigate(['ranking'], {state: { federation_id: this.federation_id }})
   }
 
   goToListAthletes(){
