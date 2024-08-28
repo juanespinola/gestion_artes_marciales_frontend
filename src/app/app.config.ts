@@ -56,13 +56,13 @@ export interface AppSettings {
 
 export const defaults: AppSettings = {
   dir: 'ltr',
-  theme: 'dark',
+  theme: 'light',
   sidenavOpened: false,
   sidenavCollapsed: false,
-  boxed: true,
+  boxed: false,
   horizontal: false,
-  cardBorder: false,
-  activeTheme: 'purple_theme',
+  cardBorder: true,
+  activeTheme: 'blue_theme',
   language: 'en-us',
   navPos: 'side',
 };

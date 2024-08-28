@@ -19,28 +19,32 @@ export class PaymentComponent {
   window:any = window
   response_bancard: any ;
 
-  response_payment: string= ''
+  response_payment: any
 
   constructor(){
-    this.response_bancard = history.state.response_bancard;
+    this.response_bancard = history?.state.response_bancard;
 
-    
+    console.log(this.response_bancard)
   }
 
-  ngAfterViewInit() {
-    this.process_id = this.response_bancard.process_id
+  ngOnInit(): void {
+    
     if (this.window.Bancard && this.window.Bancard.Checkout) {
-      if(this.process_id){
-        this.window.Bancard.Checkout.createForm('iframe-container', this.process_id, { })
+      if(this.response_bancard?.process_id){
+        this.window.Bancard.Checkout.createForm('iframe-container', this.response_bancard.process_id, { })
+      } else if (this.response_bancard?.data_error){
+        this.response_payment = this.response_bancard.data_error 
       }
     } else {
       console.error('Bancard Checkout library is not loaded');
     }
 
-    if(!this.process_id){
+    if(!this.response_bancard){
       this.response_payment = "Transferencia Realizada, estaremos confirmando tu Pago! Muchas gracias";
-      
-      
     }
+
   }
+
+  // ngAfterViewInit() {
+  // }
 }

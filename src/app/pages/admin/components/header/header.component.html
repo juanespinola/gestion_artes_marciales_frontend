@@ -1,4 +1,4 @@
-<mat-toolbar class="topbar">
+<mat-toolbar class="topbar bg-primary">
     <!-- --------------------------------------------------------------- -->
     <!-- Desktop Menu -->
     @if(showToggle) {
@@ -28,7 +28,7 @@
     <!-- --------------------------------------------------------------- -->
     <!-- langugage Dropdown -->
     <!-- --------------------------------------------------------------- -->
-    <button [matMenuTriggerFor]="flags" mat-icon-button class="m-r-5">
+    <!-- <button [matMenuTriggerFor]="flags" mat-icon-button class="m-r-5">
         <img [src]="selectedLanguage.icon" class="rounded object-cover icon-20" />
     </button>
     <mat-menu #flags="matMenu" class="cardWithShadow">
@@ -40,12 +40,12 @@
             </div>
         </button>
         }
-    </mat-menu>
+    </mat-menu> -->
 
     <!-- --------------------------------------------------------------- -->
     <!-- Notification Dropdown -->
     <!-- --------------------------------------------------------------- -->
-    <button mat-icon-button [matMenuTriggerFor]="notificationmenu" aria-label="Notifications">
+    <!-- <button mat-icon-button [matMenuTriggerFor]="notificationmenu" aria-label="Notifications">
         <mat-icon matBadge="1" matBadgeOverlap="false" matBadgeColor="warn" class="header-badge">message</mat-icon>
     </button>
     <mat-menu #notificationmenu="matMenu" class="topbar-dd cardWithShadow">
@@ -74,12 +74,12 @@
                 See all notifications
             </button>
         </div>
-    </mat-menu>
+    </mat-menu> -->
 
     <!-- --------------------------------------------------------------- -->
     <!-- Messages Dropdown -->
     <!-- --------------------------------------------------------------- -->
-    <button mat-icon-button [matMenuTriggerFor]="msgmenu" aria-label="Messages">
+    <!-- <button mat-icon-button [matMenuTriggerFor]="msgmenu" aria-label="Messages">
         <mat-icon matBadge="2" matBadgeOverlap="false" matBadgeColor="warn" class="header-badge">email</mat-icon>
     </button>
     <mat-menu #msgmenu="matMenu" class="topbar-dd cardWithShadow">
@@ -109,11 +109,12 @@
                 See all messages
             </button>
         </div>
-    </mat-menu>
+    </mat-menu> -->
 
     <!-- --------------------------------------------------------------- -->
     <!-- profile Dropdown -->
     <!-- --------------------------------------------------------------- -->    
+    @if(user){
     <button mat-icon-button [matMenuTriggerFor]="profilemenu" aria-label="Notifications">
         <img src="/assets/images/profile/user-1.jpg" class="rounded-circle object-cover icon-35 profile-dd" width="35" />
       </button>
@@ -125,11 +126,11 @@
             <div class="d-flex align-items-center p-b-24 b-b-1 m-t-16">
               <img src="/assets/images/profile/user-1.jpg" class="rounded-circle" width="95" />
               <div class="m-l-16">
-                <h6 class="f-s-14 f-w-600 m-0 mat-subtitle-1">Mathew Anderson</h6>
-                <span class="f-s-14 d-block m-b-4">Designer</span>
+                <h6 class="f-s-14 f-w-600 m-0 mat-subtitle-1">{{user?.name}}</h6>
+                <!-- <span class="f-s-14 d-block m-b-4"></span> -->
                 <span class="d-flex align-items-center">
                   <i-tabler name="mail" class="icon-15 m-r-4"></i-tabler>
-                  info&#64;modernize.com
+                {{user?.email}}
                 </span>
               </div>
             </div>
@@ -153,7 +154,7 @@
             } -->
   
             <!-- upgrade -->
-            <div class="p-24 overflow-hidden bg-light-primary rounded position-relative m-y-16">
+            <!-- <div class="p-24 overflow-hidden bg-light-primary rounded position-relative m-y-16">
               <div class="d-flex align-items-center">
                 <div>
                   <h5 class="f-s-18 m-0 f-w-600 m-b-12 mat-subtitle-1">
@@ -166,7 +167,7 @@
                   <img src="/assets/images/backgrounds/unlimited-bg.png" alt="upgrade-bg" class="upgrade-bg" />
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
   
           <div class="p-y-12 p-x-32">
@@ -175,4 +176,5 @@
         </div>
         </ng-scrollbar>
       </mat-menu>
+    }
 </mat-toolbar>

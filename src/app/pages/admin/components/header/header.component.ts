@@ -52,7 +52,7 @@ export class HeaderComponent {
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleMobileFilterNav = new EventEmitter<void>();
   @Output() toggleCollapsed = new EventEmitter<void>();
-
+  @Input() user:any = {};
   showFiller = false;
 
   public selectedLanguage: any = {

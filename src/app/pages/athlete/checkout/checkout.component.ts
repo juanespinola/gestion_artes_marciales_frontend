@@ -120,7 +120,7 @@ export class CheckoutComponent {
             if(this.selectedPaymentMethod == 'vpos'){
               this.router.navigate(["payment"], { state: { response_bancard: res.data } })
             } else if(this.selectedPaymentMethod == 'transferencia') {
-              this.router.navigate(["payment"], { state: { response_bancard: res.data } })
+              this.router.navigate(["payment"])
             }
           },
           error: (error: any) => {

@@ -3,7 +3,7 @@ import { MaterialModule } from '../../components/material.module';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../utils/api.service';
-import { Editor, NgxEditorModule } from 'ngx-editor';
+import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
 
 @Component({
   selector: 'app-event-form-content',
@@ -22,6 +22,13 @@ export class EventFormContentComponent {
   formGroup: FormGroup;
   editor: Editor;
   html = '';
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  ]
 
 
   constructor(
@@ -67,7 +74,6 @@ export class EventFormContentComponent {
   }
 
   onSubmit() {
-    console.log(this.formGroup)
     let id = this.route.snapshot.params['id']
     if (id) {
       this.apiService.putData('eventcontent', id, this.formGroup.value)

@@ -176,22 +176,22 @@ export const routes: Routes = [
       //     { path: "add", component: SportFormComponent },
       //   ]
       // },
-      {
-        path: APP_ROUTES.CATEGORY,
-        children: [
-          { path: "", component: CategoryComponent, },
-          { path: "edit/:id", component: CategoryFormComponent },
-          { path: "add", component: CategoryFormComponent },
-        ]
-      },
-      {
-        path: APP_ROUTES.GROUP_CATEGORY,
-        children: [
-          { path: "", component: GroupCategoryComponent, },
-          { path: "edit/:id", component: GroupCategoryFormComponent },
-          { path: "add", component: GroupCategoryFormComponent },
-        ]
-      },
+      // {
+      //   path: APP_ROUTES.CATEGORY,
+      //   children: [
+      //     { path: "", component: CategoryComponent, },
+      //     { path: "edit/:id", component: CategoryFormComponent },
+      //     { path: "add", component: CategoryFormComponent },
+      //   ]
+      // },
+      // {
+      //   path: APP_ROUTES.GROUP_CATEGORY,
+      //   children: [
+      //     { path: "", component: GroupCategoryComponent, },
+      //     { path: "edit/:id", component: GroupCategoryFormComponent },
+      //     { path: "add", component: GroupCategoryFormComponent },
+      //   ]
+      // },
       {
         path: APP_ROUTES.EVENT,
         children: [

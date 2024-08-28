@@ -23,18 +23,6 @@ export const navItems: NavItem[] = [
     route: admin_path+APP_ROUTES.USERS,
     permission: 'user.access'
   },
-  // {
-  //   displayName: 'Categorias',
-  //   iconName: 'shopping-cart',
-  //   route: admin_path+APP_ROUTES.CATEGORY,
-  //   permission: 'category.access'
-  // },
-  // {
-  //   displayName: 'Reglas Categorias',
-  //   iconName: 'aperture',
-  //   route: admin_path+APP_ROUTES.GROUP_CATEGORY,
-  //   permission: 'groupcategory.access'
-  // },
   {
     displayName: 'Federaciones',
     iconName: 'aperture',
@@ -57,6 +45,7 @@ export const navItems: NavItem[] = [
     displayName: 'Lugares',
     iconName: 'aperture',
     route: admin_path+APP_ROUTES.LOCATION,
+    permission: 'place.access'
   },
   {
     displayName: 'Tipos de Eventos',
@@ -74,12 +63,12 @@ export const navItems: NavItem[] = [
     displayName: 'Noticias',
     iconName: 'aperture',
     route: admin_path+APP_ROUTES.NEW,
-    // permission: 'statusevent.access'
+    permission: 'new.access'
   },
   {
     displayName: 'Solicitudes',
     iconName: 'aperture',
     route: admin_path+APP_ROUTES.REQUEST,
-    // permission: 'statusevent.access'
+    permission: 'request.access'
   },
 ];

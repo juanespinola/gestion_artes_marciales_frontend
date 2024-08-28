@@ -1,43 +1,44 @@
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
     <mat-tab label="Contenido">
-<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
-    <mat-card-header>
-        <mat-card-title class="m-b-0">Editar</mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="b-t-1">
+        <mat-card [formGroup]="formGroup" class="theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Editar</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
 
-        <div class="row">
-            <div class="col-sm-12 d-flex align-items-center">
-                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
-                    Descripcion
-                </mat-label>
-            </div>
-            <div class="col-sm-12">
-                <mat-form-field appearance="outline" class="w-100">
-                    <input matInput formControlName="description" />
-                </mat-form-field>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-sm-12 d-flex align-items-center">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                            Descripcion
+                        </mat-label>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="description" />
+                        </mat-form-field>
+                    </div>
+                </div>
 
-        <div class="row justify-content-end">
-            <div class="col-sm-12">
-                <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
-                    (click)="onSubmit()">Guardar</button>
-                <button mat-flat-button color="warn" class="button" class="m-l-8" (click)="onBack()">Cancelar</button>
-            </div>
-        </div>
+                <div class="row justify-content-end">
+                    <div class="col-sm-12">
+                        <button mat-flat-button color="primary" type="submit" class="button"
+                            [disabled]="!formGroup.valid" (click)="onSubmit()">Guardar</button>
+                        <button mat-flat-button color="warn" class="button" class="m-l-8"
+                            (click)="onBack()">Cancelar</button>
+                    </div>
+                </div>
 
-    </mat-card-content>
-</mat-card>
+            </mat-card-content>
+        </mat-card>
 
-</mat-tab>
+    </mat-tab>
 
-<mat-tab label="Autoridades">
-    <app-association-form-authorities></app-association-form-authorities>
-</mat-tab>
+    <mat-tab label="Autoridades">
+        <app-association-form-authorities></app-association-form-authorities>
+    </mat-tab>
 
-<mat-tab label="Contactos">
-    <app-association-form-contacts></app-association-form-contacts>
-</mat-tab>
+    <mat-tab label="Contactos">
+        <app-association-form-contacts></app-association-form-contacts>
+    </mat-tab>
 
 </mat-tab-group>

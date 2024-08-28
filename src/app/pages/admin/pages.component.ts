@@ -35,7 +35,7 @@ const BELOWMONITOR = 'screen and (max-width: 1023px)';
 
 export class PagesComponent {
   navItems = navItems;
-  
+  user: any;
   @ViewChild('leftsidenav')
   public sidenav: MatSidenav;
   resView = false;
@@ -63,6 +63,7 @@ export class PagesComponent {
     private sessionService: SessionService
   ) {
     this.sessionService.isAuthenticated()
+    this.user = this.sessionService.getUser();
 
     this.htmlElement = document.querySelector('html')!;
     this.layoutChangesSubscription = this.breakpointObserver
