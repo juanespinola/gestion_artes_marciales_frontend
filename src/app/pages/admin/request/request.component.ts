@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../components/material.module';
 import { ComponentsModule } from '../components/components.module';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ApiService } from '../../../utils/api.service';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
@@ -28,6 +28,7 @@ export class RequestComponent {
   requests: any = []
   user:any;
   typesrequest:any = [];
+  copyData:any = [];
 
 
   constructor(public fb: UntypedFormBuilder,
@@ -45,6 +46,7 @@ export class RequestComponent {
     .subscribe({
       next: (res:any) => {
         this.requests = res
+        this.copyData = res
       },
       error: (err) => console.log(err),
       complete: () => {}
@@ -61,30 +63,30 @@ export class RequestComponent {
 
   ngOnInit(): void {
     this.getAllRequest()
-    // this.inputFg = this.fb.group({
-    //   mess: [],
-    // });
   }
 
-
-  allTodos(): void {
-    // tslint:disable-next-line - Disables all
-    // this.todos.forEach(
-    //   (todo) => (todo.completionStatus = (<HTMLInputElement>event!.target).checked),
-    // );
-  }
 
   selectionlblClick(val: string): void {
-    // if (val === 'all') {
-    //   this.copyTodos = this.todos;
-    //   this.selectedCategory = 'all';
-    // } else if (val === 'uncomplete') {
-    //   this.copyTodos = this.todos.filter((todo) => !todo.completionStatus);
-    //   this.selectedCategory = 'uncomplete';
-    // } else if (val === 'complete') {
-    //   this.copyTodos = this.todos.filter((x) => x.completionStatus);
-    //   this.selectedCategory = 'complete';
-    // }
+
+    
+    switch (val) {
+      case "all":
+        this.requests = this.copyData
+      break;
+      case "pendiente":
+        this.requests = this.copyData.filter( (filter:any) => filter.status == 'pendiente')
+      break;
+      case "respuesta":
+        this.requests = this.copyData.filter( (filter:any) => filter.status == 'respuesta')
+      break;
+      case "aprobado":
+        this.requests = this.copyData.filter( (filter:any) => filter.status == 'aprobado')
+      break;
+      case "rechazado":
+        this.requests = this.copyData.filter( (filter:any) => filter.status == 'rechazado')
+      break;
+    }
+   
   }
 
   updateRequest(id:any): void {
@@ -96,8 +98,8 @@ export class RequestComponent {
     // this.todos.splice(id, 1);
   }
 
-  remainingList() {
-    // return this.todos.filter((todo) => !todo.completionStatus).length;
+  remainingList(status:any) {
+    return this.requests.filter((filter:any) => (filter.status == status)).length;
   }
 
   createRequestAutorization(){
@@ -115,5 +117,7 @@ export class RequestComponent {
         }
       })
   }
+
+
 
 }

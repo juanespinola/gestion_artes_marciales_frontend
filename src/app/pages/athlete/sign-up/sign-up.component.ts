@@ -1,54 +1,60 @@
 import { Component } from '@angular/core';
+import { MaterialModule } from '../component/material.module';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../utils/api.service';
 import { SessionService } from '../../../services/session.service';
 import { AlertsService } from '../../../services/alerts.service';
-import { MaterialModule } from '../components/material.module';
-import { APP_ROUTES } from '../../../routes';
+import { NavigationService } from '../../../services/navigation.service';
+
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-sign-up',
   standalone: true,
   imports: [
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
   ],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss'
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.scss'
 })
-export class SignInComponent {
-
+export class SignUpComponent {
+  
   formGroup: FormGroup;
-  collection: string = 'login'
 
-  constructor (
+  constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private apiService: ApiService, 
     private router: Router,
     private sessionService: SessionService,
-    private alertsService: AlertsService
-  ){}
+    private alertsService: AlertsService,
+    private activatedRoute: ActivatedRoute,
+    private navigationService: NavigationService
+  ){
+
+    
+  }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
     });
   }
 
+
   onSubmit() {
-    this.apiService.postData(this.collection, this.formGroup.value)
+    this.apiService.postData("athlete/register", this.formGroup.value)
     .subscribe({
       next: (res:any) => {
         console.log(res)
-        this.sessionService.setItem('token', res.token)
-        this.sessionService.setItem('user', JSON.stringify(res.user) )
+
       },
-      error: (err) => console.log(err),
-      complete: () => this.router.navigate([APP_ROUTES.DASHBOARD])
-    });
-  }
+      error: (err) => {
+        this.alertsService.showAlert("Error!", err.error.message, 'error')
+      },
+
+    })
+    }
 
 }

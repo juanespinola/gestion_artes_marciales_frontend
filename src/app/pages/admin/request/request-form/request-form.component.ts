@@ -54,10 +54,14 @@ export class RequestFormComponent {
       date_response: ['', Validators.required],
       response_text: ['', Validators.required],
       request_text: [''],
-      
+      federation_id: null,
+      association_id: null,
+      athlete_id: null,
+      approved_by: null,
+      requested_by: null,
+      rejected_by: null,
     });
     this.createForm();
-    console.log(this.formRequest)
   }
 
   ngOnDestroy(): void {
@@ -71,25 +75,27 @@ export class RequestFormComponent {
       this.apiService.getData(this.collection + `/${id}`)
         .subscribe({
           next: (res: any) => {
-            console.log(res)
+            // console.log(res)
             this.formGroup.patchValue({
               status: res.status,
               // date_request: res.date_request,
               request_text: res.request_text,
               response_text: res.response_text,
-              date_response: moment(res.date_response)
+              date_response: moment(res.date_response),
+              federation_id: res.federation_id,
+              association_id: res.association_id,
+              athlete_id: res?.athlete_id,
             })
 
             this.formRequest.append('id', res.id)
             this.formRequest.append('status', res.status)   
             this.formRequest.append('date_request', res.date_request)   
-            // this.formRequest.append('date_response', res.date_response ? moment(res.date_response) : moment(new Date()).format('l') )   
             this.formRequest.append('requested_by', res.requested_by) 
             this.formRequest.append('approved_by', res.approved_by) 
             this.formRequest.append('rejected_by', res.rejected_by) 
+            // this.formRequest.append('athlete_id', res.athlete_id)
             // this.editorRequestText.setContent(res.request_text)
             // this.editorResponseText.setContent(res.response_text)
-            
 
 
           },
@@ -102,7 +108,7 @@ export class RequestFormComponent {
   changeStatus(){
     switch (this.formGroup.value.status) {
       case "aprobado":
-        console.log('a')
+        console.log(this.user)
         this.formGroup.patchValue({
           approved_by: this.user.id,
           rejected_by: null,
@@ -120,12 +126,10 @@ export class RequestFormComponent {
 
   onSubmit(){
    // no cambia porque en la vista no estan los formcontrolname, fijarse
-
-   // fuerza kp, vos podes
     let id = this.route.snapshot.params['id'];
     this.changeStatus()
-    console.log(this.formGroup)
     if(id){
+      console.log(this.formGroup.value)
       this.apiService.putData(this.collection, id, this.formGroup.value)
       .subscribe((res:any) => {
         console.log(res)

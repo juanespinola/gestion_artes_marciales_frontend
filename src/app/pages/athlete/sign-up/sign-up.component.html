@@ -1,0 +1,42 @@
+<div class="blank-layout-container justify-content-center align-items-center">
+    <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+        <div class="col-lg-4 d-flex align-items-center">
+            <mat-card class="cardWithShadow boxed-auth">
+                <mat-card-content class="p-32">            
+                    <form class="m-t-30" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Username</mat-label>
+                        <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input matInput formControlName="email" />
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Username</mat-label>
+                        <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input matInput formControlName="email" />
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Username</mat-label>
+                        <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input matInput formControlName="email" />
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Username</mat-label>
+                        <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input matInput formControlName="email" />
+                        </mat-form-field>
+
+                        <!-- <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="federation_id" value="federation_id" placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let federation of federations" [value]="federation.id">{{federation.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+
+                        <button mat-flat-button color="primary" class="w-100" [disabled]="!formGroup.valid">
+                            Registrarse
+                        </button>
+
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

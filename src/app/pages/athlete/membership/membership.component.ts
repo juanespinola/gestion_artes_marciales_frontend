@@ -9,6 +9,8 @@ import { AlertsService } from '../../../services/alerts.service';
 import { SessionService } from '../../../services/session.service';
 import { PaymentComponent } from '../payment/payment.component';
 import { MatDialog } from '@angular/material/dialog';
+import { RequestMembershipDialogComponent } from './request-membership-dialog/request-membership-dialog.component';
+
 
 @Component({
   selector: 'app-membership',
@@ -37,7 +39,8 @@ export class MembershipComponent {
     private route: Router,
     private alertsService: AlertsService, 
     private sessionService: SessionService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog:MatDialog
     ){
 
 
@@ -46,6 +49,7 @@ export class MembershipComponent {
     this.headers_inscription = ["#","description", "amount_fee",'status', "actions"];
     
     this.athlete = this.sessionService.getUser();
+    console.log(this.athlete)
   }
 
   ngAfterViewInit() {
@@ -106,7 +110,8 @@ export class MembershipComponent {
     })
     .subscribe({
       next:(res:any) => {
-        // console.log(res)
+        console.log(res)
+      
         this.dataSourcePayment = new MatTableDataSource(res)
         this.dataSourcePayment.sort = this.sort;
         this.dataSourcePayment.paginator = this.paginator;
@@ -138,5 +143,26 @@ export class MembershipComponent {
 
   paymentDetail(id:any){
 
+  }
+
+
+  requestMembership(){
+    const dialogRef = this.dialog.open(RequestMembershipDialogComponent, {
+      data: {
+        'requested_by' : this.athlete.name,
+        'date_request': new Date(),
+        'request_text': "Solicitud de Membresia",
+        'status' : 'pendiente',
+        'athlete_id': this.athlete.id,
+        'federation_id': this.athlete.federation.id,
+        'association_id': this.athlete.federation.association.id,
+      }
+    })
+    dialogRef.afterClosed()
+      .subscribe((result: any) => {
+        if (result.event == 'success') {
+          // this.getAthleteMembershipfeePayment()
+        }
+      });
   }
 }

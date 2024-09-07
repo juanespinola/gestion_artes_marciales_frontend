@@ -81,5 +81,9 @@ export class SignInComponent {
       complete: () => {}
     })
   }
+
+  navigateSignUp(){
+    this.router.navigate(['athlete/register']);
+  }
   
 }

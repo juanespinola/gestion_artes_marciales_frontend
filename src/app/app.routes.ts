@@ -4,6 +4,7 @@ import { FederationFormComponent } from './pages/admin/federation/federation-for
 import { SignInComponent } from './pages/admin/sign-in/sign-in.component';
 import { SignInComponent as AthleteSignInComponent } from './pages/athlete/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/admin/sign-up/sign-up.component';
+import { SignUpComponent as AthleteSignUpComponent } from './pages/athlete/sign-up/sign-up.component';
 import { PagesComponent } from './pages/admin/pages.component';
 import { UsersComponent } from './pages/admin/users/users.component';
 import { UsersFormComponent } from './pages/admin/users/users-form/users-form.component';
@@ -33,7 +34,7 @@ import { EventsComponent } from './pages/athlete/events/events.component';
 import { FederationsComponent } from './pages/athlete/federations/federations.component';
 import { EventDetailComponent } from './pages/athlete/events/event-detail/event-detail.component';
 import { EventListEntryCategoriesComponent } from './pages/admin/event/event-list-entry-categories/event-list-entry-categories.component';
-import { EventListClassCategoriesComponent } from './pages/admin/event/event-list-class-categories/event-list-class-categories.component';
+import { ProfileComponent as AdminProfileComponent } from './pages/admin/profile/profile.component';
 import { RegisterEventComponent } from './pages/athlete/register-event/register-event.component';
 import { PagesComponent as AthletePagesComponent } from './pages/athlete/pages.component';
 import { FederationDetailComponent } from './pages/athlete/federations/federation-detail/federation-detail.component';
@@ -45,7 +46,6 @@ import { NewComponent } from './pages/admin/new/new.component';
 import { NewFormComponent } from './pages/admin/new/new-form/new-form.component';
 import { NewDetailComponent } from './pages/athlete/federations/new-detail/new-detail.component';
 import { EventBracketComponent } from './pages/athlete/events/event-bracket/event-bracket.component';
-import { EventMatchbracketDetailComponent } from './pages/athlete/events/event-matchbracket-detail/event-matchbracket-detail.component';
 import { RequestComponent } from './pages/admin/request/request.component';
 import { RequestFormComponent } from './pages/admin/request/request-form/request-form.component';
 import { MembershipComponent } from './pages/athlete/membership/membership.component';
@@ -56,20 +56,11 @@ import { AthletesComponent } from './pages/athlete/athletes/athletes.component';
 import { AthleteProfileComponent } from './pages/athlete/athlete-profile/athlete-profile.component';
 import { RankingComponent } from './pages/athlete/ranking/ranking.component';
 
-export const routes: Routes = [
-  // {
-  //   path: "",
-  //   component: OrganizationComponent,
-  //   children: [
-  //     { path: "federations", component: FederationsComponent },
-  //     { path: "federations/:federation_id", component: FederationsLandingPageComponent },
-  //     { path: "events", component: EventsComponent}, 
-  //     { path: "event/:event_id", component: EventDetailComponent }
-  //   ]
-  // },
 
+export const routes: Routes = [
   // path athlete
   { path: "signin", component: AthleteSignInComponent },
+  { path: "signup", component: AthleteSignUpComponent },
   {
     path: "",
     component: AthletePagesComponent,
@@ -109,7 +100,7 @@ export const routes: Routes = [
       { path: "checkout", component: CheckoutComponent },
       { path: "payment", component: PaymentComponent },
       { path: "dashboard", component: DashboardComponent },
-      { path: '', redirectTo: '', pathMatch: 'full' },
+      { path: '', redirectTo: 'federations', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },
       
     ]
@@ -168,30 +159,6 @@ export const routes: Routes = [
           { path: "add", component: RolFormComponent },
         ]
       },
-      // {
-      //   path: 'sport',
-      //   children: [
-      //     { path: "", component: SportComponent, },
-      //     { path: "edit/:id", component: SportFormComponent },
-      //     { path: "add", component: SportFormComponent },
-      //   ]
-      // },
-      // {
-      //   path: APP_ROUTES.CATEGORY,
-      //   children: [
-      //     { path: "", component: CategoryComponent, },
-      //     { path: "edit/:id", component: CategoryFormComponent },
-      //     { path: "add", component: CategoryFormComponent },
-      //   ]
-      // },
-      // {
-      //   path: APP_ROUTES.GROUP_CATEGORY,
-      //   children: [
-      //     { path: "", component: GroupCategoryComponent, },
-      //     { path: "edit/:id", component: GroupCategoryFormComponent },
-      //     { path: "add", component: GroupCategoryFormComponent },
-      //   ]
-      // },
       {
         path: APP_ROUTES.EVENT,
         children: [
@@ -223,7 +190,6 @@ export const routes: Routes = [
           },
         ]
       },
-
       {
         path: APP_ROUTES.LOCATION,
         children: [
@@ -264,10 +230,16 @@ export const routes: Routes = [
           { path: "add", component: RequestFormComponent },
         ]
       },
+      {
+        path: "profile",
+        children: [
+          { path: "", component: AdminProfileComponent, },
+          // { path: "edit/:id", component: RequestFormComponent },
+          // { path: "add", component: RequestFormComponent },
+        ]
+      },
     ]
 
   },
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
-  { path: '**', redirectTo: 'admin' },
 
 ];

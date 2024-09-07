@@ -10,8 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { CoreService } from '../../../../services/core.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SessionService } from '../../../../services/session.service';
+import { CommonModule } from '@angular/common';
 
 interface notifications {
   id: number;
@@ -38,9 +39,7 @@ interface profiledd {
   selector: 'app-header',
   standalone: true,
   imports: [
-    MaterialModule,
-    NgScrollbarModule,
-    TablerIconsModule
+    RouterModule, CommonModule, NgScrollbarModule, TablerIconsModule, MaterialModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -175,27 +174,12 @@ export class HeaderComponent {
     },
   ];
 
-  profiledd: profiledd[] = [
+  profiledd: any[] = [
     {
-      id: 1,
       img: '/assets/images/svgs/icon-account.svg',
-      title: 'My Profile',
-      subtitle: 'Account Settings',
-      link: '/',
-    },
-    {
-      id: 2,
-      img: '/assets/images/svgs/icon-inbox.svg',
-      title: 'My Inbox',
-      subtitle: 'Messages & Email',
-      link: '/apps/email/inbox',
-    },
-    {
-      id: 3,
-      img: '/assets/images/svgs/icon-tasks.svg',
-      title: 'My Tasks',
-      subtitle: 'To-do and Daily Tasks',
-      link: '/apps/taskboard',
+      title: 'Mi Perfil',
+      subtitle: 'Configuración Cuenta',
+      link: '/admin/profile',
     },
   ];
 

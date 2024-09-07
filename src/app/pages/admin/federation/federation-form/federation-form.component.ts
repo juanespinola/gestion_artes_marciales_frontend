@@ -34,6 +34,7 @@ export class FederationFormComponent {
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       description: ['', Validators.required]
+      // faltaria ponerle una imagen para disenho
     });
     this.createForm();
 

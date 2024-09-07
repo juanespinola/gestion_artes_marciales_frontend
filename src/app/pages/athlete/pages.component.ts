@@ -92,7 +92,7 @@ export class PagesComponent {
       .subscribe((e) => {
         this.content.scrollTo({ top: 0 });
       });
-      this.sessionService.isAuthenticated();
+      // this.sessionService.isAuthenticated();
     this.athlete = this.sessionService.getUser();
     
     

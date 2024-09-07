@@ -136,22 +136,23 @@
             </div>
           </div>
           <div class="p-x-32">
-            <!-- @for(profile of profiledd; track profile.title) {
-            <a class="p-y-16 text-decoration-none d-block text-hover-primary" [routerLink]="[profile.link]">
-              <div class="d-flex align-items-center">
-                <button mat-mini-fab class="text-primary bg-light-primary shadow-none rounded">
-                  <img [src]="profile.img" width="20" />
-                </button>
-  
-                <div class="m-l-16">
-                  <h5 class="f-s-14 f-w-600 m-0 textprimary mat-subtitle-1 hover-text">
-                    {{ profile.title }}
-                  </h5>
-                  <span class="mat-body-1">{{ profile.subtitle }}</span>
+            @for(profile of profiledd; track profile.title) {
+              <a class="p-y-16 text-decoration-none d-block text-hover-primary" [routerLink]="[profile.link]">
+                <div class="d-flex align-items-center">
+                  <button mat-mini-fab class="text-primary bg-light-primary shadow-none rounded">
+                    <img [src]="profile.img" width="20" />
+                  </button>
+    
+                  <div class="m-l-16">
+                    <h5 class="f-s-14 f-w-600 m-0 textprimary mat-subtitle-1 hover-text">
+                      {{ profile.title }}
+                    </h5>
+                    <span class="mat-body-1">{{ profile.subtitle }}</span>
+                  </div>
                 </div>
-              </div>
-            </a>
-            } -->
+              </a>
+              }
+    
   
             <!-- upgrade -->
             <!-- <div class="p-24 overflow-hidden bg-light-primary rounded position-relative m-y-16">

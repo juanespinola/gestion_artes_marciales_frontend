@@ -41,6 +41,7 @@ export class SessionService {
   }
 
   logout(){
+    console.log('as')
     localStorage.clear()
     this.router.navigate([APP_ROUTES.ADMIN_SIGNIN])
   }
