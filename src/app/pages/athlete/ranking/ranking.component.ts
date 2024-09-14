@@ -23,7 +23,9 @@ export class RankingComponent {
   }
 
   getRanking() {
-    this.apiService.getData('getAthleteRanking')
+    this.apiService.postData('getAthleteRanking', {
+      event_id: '2' // queda hacer un select de los ultimos 5 eventos
+    })
     .subscribe({
       next: (res:any) => {
         this.athleteRanking = res
