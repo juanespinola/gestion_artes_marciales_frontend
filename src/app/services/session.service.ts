@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { APP_ROUTES } from '../routes';
+import { ApiService } from '../utils/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private apiService: ApiService) {
   }
   // Set a value in local storage
   setItem(key: string, value: string): void {
@@ -41,11 +44,19 @@ export class SessionService {
   }
 
   logout(){
+    this.apiService.getData('logout')
+    .subscribe( (res:any) => {
+        console.log(res)
+    });
     localStorage.clear()
     this.router.navigate([APP_ROUTES.ADMIN_SIGNIN])
   }
 
   logoutAthlete(){
+    this.apiService.getData('athlete/logout')
+    .subscribe( (res:any) => {
+        console.log(res)
+    });
     localStorage.clear()
     this.router.navigate([APP_ROUTES.ATHLETE_SIGNIN])
   }

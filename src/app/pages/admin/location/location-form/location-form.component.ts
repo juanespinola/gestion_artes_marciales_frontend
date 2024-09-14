@@ -61,19 +61,19 @@ export class LocationFormComponent {
       this.apiService.putData(this.collection, id, this.formGroup.value)
       .subscribe((res:any) => {
         console.log(res)
-        this.router.navigate([this.collection])
+        this.router.navigate(["admin", this.collection])
       });
       
     } else {
       this.apiService.postData(this.collection, this.formGroup.value)
       .subscribe((res:any) => {
         console.log(res)
-        this.router.navigate([this.collection])
+        this.router.navigate(["admin", this.collection])
       });
     }
   }
 
   onBack(){
-    this.router.navigate([this.collection]);
+    this.router.navigate(["admin", this.collection]);
   }
 }
