@@ -33,7 +33,7 @@ export class FederationsComponent {
     this.apiService.getData('federations')
     .subscribe({
       next: (res:any) => {
-        // console.log(res)
+        console.log(res)
         this.federations = res
       },
       error: (err) => console.log(err),
