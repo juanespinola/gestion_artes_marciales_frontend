@@ -15,20 +15,37 @@ import { ApiService } from '../../../utils/api.service';
 export class RankingComponent {
 
   athleteRanking: any;
-  constructor(private apiService: ApiService){
+  pastevents:any; 
+  federation_id:any;
+  event_id:any
 
+  constructor(private apiService: ApiService){
+    this.federation_id = history.state?.federation_id
   }
   ngOnInit(){
-    this.getRanking()
+    this.getEvents()
+    // this.getRanking()
   }
 
-  getRanking() {
+  getRanking(event_id:any) {
     this.apiService.postData('getAthleteRanking', {
-      event_id: '2' // queda hacer un select de los ultimos 5 eventos
+      event_id // queda hacer un select de los ultimos 5 eventos
     })
     .subscribe({
       next: (res:any) => {
         this.athleteRanking = res
+      },
+      error: (err) => console.log(err),
+      complete: () => {}
+    });
+  }
+
+
+  getEvents(){
+    this.apiService.getData(`pastevents/${this.federation_id}`)
+    .subscribe({
+      next: (res:any) => {
+        this.pastevents = res
       },
       error: (err) => console.log(err),
       complete: () => {}

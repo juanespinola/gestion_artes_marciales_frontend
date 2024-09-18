@@ -6,6 +6,26 @@
     </mat-card-content>
 </mat-card>
 
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="row">
+            <div class="col-sm-4 d-flex align-items-center">
+                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                    Estado
+                </mat-label>
+            </div>
+            <div class="col-sm-8">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-select formControlName="event_id" value="event_id" placeholder="Seleccione Opcion" (selectionChange)="getRanking(event_id)">
+                        <mat-option *ngFor="let pastevent of pastevents" [value]="pastevent.id">{{pastevent.description}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
 <div class="row">
     <div class="col-sm-6 col-lg-6" *ngFor="let entrycategory of athleteRanking">
         @if(entrycategory?.minor_category){
