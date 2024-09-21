@@ -26,13 +26,13 @@
                                                 Nombre: {{entry.name}}
                                             </label> 
                                             <label class="w-100 text-center">
-                                                Peso: {{entry.weight ?  entry.weight : "Sin Limites"}} 
+                                                Peso: Entre {{ entry.min_weight ? entry.min_weight : "" }} / {{entry.max_weight ?  entry.max_weight : "Sin Limites"}} kg.
                                             </label>
                                             <label class="w-100 text-center">
                                                 Sexo: {{entry.gender == 'masculino' ? "Masculino" : "Femenino"}}
                                             </label>
                                             <label class="w-100 text-center">
-                                                Edad Hasta: {{entry.age}}
+                                                Edad: Entre {{entry.min_age}} / {{entry.max_age}} años.
                                             </label>
                                             <label class="w-100 text-center">
                                                 Indumentaria: {{entry.clothes}}

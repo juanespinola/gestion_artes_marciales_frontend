@@ -44,10 +44,12 @@ export class EventFormEntryCategoriesComponent {
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       name: ['', Validators.required],
-      age: ['', Validators.required],
-      weight: [''],
+      min_age: ['', Validators.required],
+      max_age: ['', Validators.required],
+      min_weight: [''],
+      max_weight: [''],
       belt_id: ['', Validators.required],
-      sex: ['', Validators.required],
+      gender: ['', Validators.required],
       clothes: ['', Validators.required],
       event_id: this.local_data.event_id
     });
