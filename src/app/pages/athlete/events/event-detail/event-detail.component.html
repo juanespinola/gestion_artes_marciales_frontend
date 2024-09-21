@@ -42,6 +42,7 @@
                             </small>
                         </div>
                     </div>
+                    @if(event?.inscription_fee > 0){
                     <div class="schedule-item">
                         <span class="title mat-subtitle-2">
                             Costo
@@ -54,6 +55,7 @@
                             </small>
                         </div>
                     </div>
+                    }
                 </div>
             </div>
         </div>
@@ -230,14 +232,14 @@
                                     {{event?.location.description}}
                                 </div>
                                 <div class="d-flex align-items-center ">
-                                    {{event?.location.city_id}} - Pais
+                                    {{event?.location.city.description}} - {{event?.location.city.country.description}}
                                 </div>
                             </div>
                         </div>
                     </mat-card-content>
                 </mat-card>
 
-                <mat-card class="cardWithShadow">
+                <!-- <mat-card class="cardWithShadow">
                     <mat-card-content>
                         <div class="row">
                             <div class="col-sm-8">
@@ -258,7 +260,7 @@
                             </div>
                         </div>
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
             </div>
 
         </div>

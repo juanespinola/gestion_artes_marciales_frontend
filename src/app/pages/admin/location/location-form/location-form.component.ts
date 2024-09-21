@@ -16,8 +16,10 @@ import { MaterialModule } from '../../components/material.module';
   styleUrl: './location-form.component.scss'
 })
 export class LocationFormComponent {
-  collection = "event"
+  collection = "location"
   formGroup: FormGroup;
+  countries: any;
+  cities: any;
 
   categories: any;
 
@@ -31,11 +33,12 @@ export class LocationFormComponent {
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       description: ['', Validators.required],
-      location_id: ['', Validators.required],
-      initial_date: ['', Validators.required],
+      city_id: ['', Validators.required],
+      address: ['', Validators.required],
     });
     
     this.createForm();
+    this.getCountries();
   }
 
   createForm() {
@@ -45,6 +48,8 @@ export class LocationFormComponent {
       .subscribe({
         next: (res:any) => {
           this.formGroup.patchValue(res) 
+          this.getCountries()
+          this.getCities(res.city_id)
         },
         error: (err) => console.log(err),
         complete: () => {}
@@ -75,5 +80,29 @@ export class LocationFormComponent {
 
   onBack(){
     this.router.navigate(["admin", this.collection]);
+  }
+
+  getCities(country_id:any) {
+    this.apiService.postData('athlete/cities', {
+      country_id
+    })
+    .subscribe({
+      next: (res:any) => {
+        this.cities = res
+      },
+      error: (err) => console.log(err),
+      complete: () => {}
+    });
+  }
+
+  getCountries() {
+    this.apiService.getData('athlete/countries')
+      .subscribe({
+        next: (res:any) => {
+          this.countries = res
+        },
+        error: (err) => console.log(err),
+        complete: () => {}
+      });
   }
 }

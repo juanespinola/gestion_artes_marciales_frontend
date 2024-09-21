@@ -7,7 +7,6 @@ import { SessionService } from '../../../../services/session.service';
 import { EventListAthleteInscriptionComponent } from '../event-list-athlete-inscription/event-list-athlete-inscription.component';
 import { EventBracketComponent } from '../event-bracket/event-bracket.component';
 import { EventSchedulesComponent } from '../event-schedules/event-schedules.component';
-import { BracketsManager } from 'brackets-manager';
 
 
 @Component({
@@ -50,6 +49,7 @@ export class EventDetailComponent {
     this.apiService.getData(`events/${this.event_id}/eventdetail`)
     .subscribe({
       next: (res:any) => {
+        console.log(res)
         this.event = res;        
       },
       error: (err) => console.log(err),
@@ -66,10 +66,4 @@ export class EventDetailComponent {
   }
 
 
-  // window.bracketsViewer.render({
-  //   stages: data.stage,
-  //   matches: data.match,
-  //   matchGames: data.match_game,
-  //   participants: data.participant,
-  // });
 }
