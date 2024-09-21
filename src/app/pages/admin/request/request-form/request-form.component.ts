@@ -8,6 +8,7 @@ import moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { SessionService } from '../../../../services/session.service';
+import { AlertsService } from '../../../../services/alerts.service';
 
 @Component({
   selector: 'app-request-form',
@@ -40,7 +41,8 @@ export class RequestFormComponent {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private alertsService: AlertsService
   ) {
     this.editorRequestText = new Editor();
     this.editorResponseText = new Editor();
@@ -52,7 +54,7 @@ export class RequestFormComponent {
       status: ['', Validators.required],
       // date_request: ['', Validators.required],
       date_response: ['', Validators.required],
-      response_text: ['', Validators.required],
+      response_text: [null, Validators.required],
       request_text: [''],
       federation_id: null,
       association_id: null,
@@ -133,6 +135,15 @@ export class RequestFormComponent {
       this.apiService.putData(this.collection, id, this.formGroup.value)
       .subscribe((res:any) => {
         console.log(res)
+        if(res.data == "type_membreship"){
+          this.alertsService.showAlert("Atención", res.messages, "warning")
+        } else if(res.data == "fee_membership") {
+          this.alertsService.showAlert("Correcto!", res.messages, "success")
+        } else if(res.data == "membresia_activa"){
+          this.alertsService.showAlert("Atención", res.messages, "warning")
+        } else {
+          this.alertsService.showAlert("Correcto!", res.messages, "success")
+        }
       });
     }
   }

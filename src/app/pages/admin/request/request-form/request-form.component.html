@@ -14,7 +14,7 @@
                             Cancelar
                         </button>
                         @if(formRequest.get('status') !== 'pendiente' || formRequest.get('status') !== 'respuesta' ){
-                        <button mat-flat-button color="primary" (click)="onSubmit()">
+                        <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!formGroup.valid">
                             Guardar
                         </button>
                         }

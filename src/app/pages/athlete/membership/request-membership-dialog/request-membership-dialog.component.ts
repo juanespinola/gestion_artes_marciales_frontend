@@ -32,7 +32,9 @@ export class RequestMembershipDialogComponent {
     
     this.apiService.postData('requestautorization', this.data)
     .subscribe( (res:any) => {
-      if(res){
+      if(res.data == 'membresia_activa'){
+        this.alertsService.showAlert("Atención!", res.messages, 'warning')
+      } else {
         this.alertsService.showAlert("Correcto!", "Solicitud Generada Correctamente", 'success')
       }
     });

@@ -7,7 +7,7 @@
         <div class="row">
 
             <div class="col-lg-8 col-sm-8">
-
+                @if(entriescategories){
                 <mat-accordion multi>
 
                     <div *ngFor="let entrycategory of entriescategories | keyvalue">
@@ -21,7 +21,7 @@
                             </mat-expansion-panel-header>
 
                             <div *ngFor="let entry of asArray(entrycategory.value)">
-                                <!-- @if(entry.max_weight){ -->
+                              
                                 <mat-list>
                                     <mat-list-item>
                                         <div class="row">
@@ -50,14 +50,25 @@
                                     </mat-list-item>
                                     <mat-divider></mat-divider>
                                 </mat-list>
-                                <!-- } -->
+                             
                             </div>
 
                         </mat-expansion-panel>
                     </div>
 
                 </mat-accordion>
-
+                } 
+                @if(entriescategories <= 0){
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="d-flex align-items-center w-100 h-100 justify-content-between">      
+                                    <label class="w-100 text-center ">
+                                        No tienes categorias disponibles para inscribirte
+                                    </label>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
 
             <div class="col-lg-4 col-sm-4">

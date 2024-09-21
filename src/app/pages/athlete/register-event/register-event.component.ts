@@ -25,7 +25,7 @@ export class RegisterEventComponent {
   collection = APP_ROUTES.ATHLETE_ENTRYCATEGORIES
   formGroup: FormGroup;
 
-  entriescategories:any = [];
+  entriescategories:any;
   entry:any = [];
 
   athlete:any;
@@ -61,8 +61,8 @@ export class RegisterEventComponent {
     this.apiService.getData(this.collection)
     .subscribe({
       next: (res:any) => {
-        console.log( res )
         this.entriescategories = res;
+        console.log( this.entriescategories )
       },
       error: (err) => console.log(err),
       complete: () => {}
