@@ -71,4 +71,10 @@ export const navItems: NavItem[] = [
     route: admin_path+APP_ROUTES.REQUEST,
     permission: 'request.access'
   },
+  {
+    displayName: 'Atletas',
+    iconName: 'aperture',
+    route: admin_path+APP_ROUTES.ATHLETES,
+    // permission: 'request.access'
+  },
 ];

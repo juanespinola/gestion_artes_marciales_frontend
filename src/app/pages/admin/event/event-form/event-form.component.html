@@ -124,6 +124,7 @@
                             </div>
                         </div>
 
+                        @if(this.route.snapshot.params['id']){
                         <div class="row">
                             <div class="col-sm-4 d-flex align-items-center">
                                 <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
@@ -140,7 +141,7 @@
                                 </mat-form-field>
                             </div>
                         </div>
-
+                        }
                         <div class="row">
                             <div class="col-sm-4 d-flex align-items-center">
                                 <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
@@ -148,9 +149,16 @@
                                 </mat-label>
                             </div>
                             <div class="col-sm-8">
-                                <mat-form-field appearance="outline" class="w-100">
+                                <!-- <mat-form-field appearance="outline" class="w-100">
                                     <input matInput formControlName="initial_time" type="time" min="07:00"
-                                        max="22:00" />
+                                        max="22:00" />                                
+                                </mat-form-field> -->
+
+                                <!-- <input [ngxTimepicker]="initial_time" [value]="'initial_time'" [format]="24">
+                                <ngx-mat-timepicker #initial_time></ngx-mat-timepicker> -->
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input [ngxMatTimepicker]="initial_time_input" matInput formControlName="initial_time">
+                                    <ngx-mat-timepicker #initial_time_input></ngx-mat-timepicker>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -162,8 +170,16 @@
                                 </mat-label>
                             </div>
                             <div class="col-sm-8">
-                                <mat-form-field appearance="outline" class="w-100">
+                                <!-- <mat-form-field appearance="outline" class="w-100">
                                     <input matInput formControlName="final_time" type="time" min="07:00" max="22:00" />
+                                </mat-form-field> -->
+                                <!-- <mat-form-field appearance="outline" class="w-100">
+                                    <input [ngxTimepicker]="final_time" [format]="24" matInput formControlName="final_time" [value]="final_time">
+                                    <ngx-material-timepicker #final_time></ngx-material-timepicker>
+                                </mat-form-field> -->
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <input [ngxMatTimepicker]="final_time" matInput formControlName="final_time">
+                                    <ngx-mat-timepicker #final_time></ngx-mat-timepicker>
                                 </mat-form-field>
                             </div>
                         </div>

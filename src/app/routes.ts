@@ -18,9 +18,11 @@ export const APP_ROUTES = {
     ATHLETE_INSCRIPTIONS: 'athlete_inscriptions',
     NEW: 'new',
     REQUEST: 'request',
+    ATHLETES: 'athletes',
     //athlete routes
     DASHBOARD_ATHLETE: "",
     ATHLETE_SIGNIN: 'signin',
     ATHLETE_REGISTER_EVENT: 'registerevent',
     ATHLETE_ENTRYCATEGORIES: 'athlete/entrycategories',
+
 }

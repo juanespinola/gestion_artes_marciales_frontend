@@ -9,7 +9,7 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { EventFormImagesComponent } from '../event-form-images/event-form-images.component';
 import { EventFormContentComponent } from '../event-form-content/event-form-content.component';
 import { EventListEntryCategoriesComponent } from '../event-list-entry-categories/event-list-entry-categories.component';
-
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 
 
 @Component({
@@ -21,7 +21,8 @@ import { EventListEntryCategoriesComponent } from '../event-list-entry-categorie
     ReactiveFormsModule,
     EventFormImagesComponent,
     EventFormContentComponent,
-    EventListEntryCategoriesComponent
+    EventListEntryCategoriesComponent,
+    NgxMatTimepickerModule
   ],
   templateUrl: './event-form.component.html',
   styleUrl: './event-form.component.scss',
@@ -52,9 +53,9 @@ export class EventFormComponent {
       initial_date: ['', Validators.required],
       final_date: ['', Validators.required],
       initial_time: ['', Validators.required],
-      final_time: [''],
+      final_time: ['', Validators.required],
       type_event_id: ['', Validators.required],
-      status_event_id: ['', Validators.required],
+      status_event_id: [''],
       inscription_fee: ['', Validators.required],
       available_slots: ['', Validators.required],
       quantity_quadrilateral: ['', Validators.required],
@@ -128,6 +129,7 @@ export class EventFormComponent {
 
   onSubmit() {
     console.log(this.formGroup.value)
+
     let id = this.route.snapshot.params['id']
     if(id){
       this.apiService.putData(this.collection, id, this.formGroup.value)

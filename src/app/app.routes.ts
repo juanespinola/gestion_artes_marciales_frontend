@@ -55,6 +55,7 @@ import { DashboardComponent } from './pages/athlete/dashboard/dashboard.componen
 import { AthletesComponent } from './pages/athlete/athletes/athletes.component';
 import { AthleteProfileComponent } from './pages/athlete/athlete-profile/athlete-profile.component';
 import { RankingComponent } from './pages/athlete/ranking/ranking.component';
+import { AthleteComponent } from './pages/admin/athlete/athlete.component';
 
 
 export const routes: Routes = [
@@ -234,6 +235,14 @@ export const routes: Routes = [
         path: "profile",
         children: [
           { path: "", component: AdminProfileComponent, },
+          // { path: "edit/:id", component: RequestFormComponent },
+          // { path: "add", component: RequestFormComponent },
+        ]
+      },
+      {
+        path: APP_ROUTES.ATHLETES,
+        children: [
+          { path: "", component: AthleteComponent, },
           // { path: "edit/:id", component: RequestFormComponent },
           // { path: "add", component: RequestFormComponent },
         ]
