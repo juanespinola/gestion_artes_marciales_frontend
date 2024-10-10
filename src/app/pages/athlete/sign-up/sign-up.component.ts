@@ -67,6 +67,7 @@ export class SignUpComponent {
       type_document_id: ['', Validators.required],
       belt_id: ['', Validators.required],
       academy_id: ['', Validators.required],
+      federation_id: ['', Validators.required],
     });
   }
 

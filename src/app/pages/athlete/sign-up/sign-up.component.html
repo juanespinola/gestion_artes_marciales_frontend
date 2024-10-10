@@ -1,4 +1,156 @@
-<div class="blank-layout-container justify-content-center align-items-center">
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Registros del Atleta</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+        <mat-stepper #stepper>
+            <mat-step [stepControl]="formGroup">
+                <form class="m-t-24" [formGroup]="formGroup">
+                    <ng-template matStepLabel>Informacion Personal</ng-template>
+                    <div>
+                        <!-- input -->
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombres y Apellidos
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="name" required />
+                        </mat-form-field>
+                        <!-- input -->
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Email
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="email" required type="email" />
+                        </mat-form-field>
+                        <!-- input -->
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Contraseña
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="password" required type="password" />
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de Nacimiento
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput [matDatepicker]="birthdate_picker" formControlName="birthdate" />
+                            <mat-datepicker-toggle matIconSuffix [for]="birthdate_picker"></mat-datepicker-toggle>
+                            <mat-datepicker #birthdate_picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Género
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="gender" value="gender" placeholder="Seleccione Opcion">
+                                <mat-option value="masculino">Masculino</mat-option>
+                                <mat-option value="femenino">Femenino</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de Documento
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="type_document_id" value="type_document_id"
+                                placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let typeDocument of typesDocument"
+                                    [value]="typeDocument.id">{{typeDocument.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nº de Documento
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="document" />
+                        </mat-form-field>
+
+                    </div>
+                    <div class="text-right">
+                        <button mat-flat-button color="primary" matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="formGroup">
+                <form class="m-t-24" [formGroup]="formGroup">
+                    <ng-template matStepLabel>Contacto y Residencia</ng-template>
+                    <div>
+                        <!-- input -->
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput formControlName="phone" required />
+                        </mat-form-field>
+                        <!-- input -->
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">País
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="country_id" value="country_id" placeholder="Seleccione Opcion"
+                                (selectionChange)="getCities($event.value)">
+                                <mat-option *ngFor="let country of countries"
+                                    [value]="country.id">{{country.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- input -->
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Ciudad
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="city_id" value="city_id" placeholder="Seleccione Opcion">
+                                <mat-option *ngFor="let city of cities"
+                                    [value]="city.id">{{city.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button mat-flat-button color="warn" matStepperPrevious>
+                            Atrás
+                        </button>
+                        <button mat-flat-button color="primary" matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <form class="m-t-24" [formGroup]="formGroup">
+                    <ng-template matStepLabel>Federacion y Cinturón</ng-template>
+                    <div>
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Federacion
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="federation_id" value="federation_id"
+                                placeholder="Seleccione Opcion" (selectionChange)="getBelts($event.value)">
+                                <mat-option *ngFor="let federation of federations"
+                                    [value]="federation.id">{{federation.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nivel de Cinturón
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="belt_id" value="belt_id" placeholder="Seleccione Opcion"
+                                [disabled]="true">
+                                <mat-option *ngFor="let belt of belts" [value]="belt.id">{{belt.color}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Academia
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-select formControlName="academy_id" value="academy_id"
+                                placeholder="Seleccione Opción">
+                                <mat-option *ngFor="let academy of academies"
+                                    [value]="academy.id">{{academy.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="d-flex justify-content-between m-t-16">
+                        <button mat-flat-button color="warn" matStepperPrevious>Atrás</button>
+                        <button mat-flat-button color="primary" (click)="onSubmit()">Finalizar</button>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-stepper>
+    </mat-card-content>
+</mat-card>
+
+
+
+
+<!-- <div class="blank-layout-container justify-content-center align-items-center">
     <div class="position-relative row w-100 h-100 bg-gredient justify-content-center" [formGroup]="formGroup">
 
         <div class="col-sm-6 col-lg-6">
@@ -224,4 +376,4 @@
             </mat-card>
         </div>        
     </div>
-</div>
+</div> -->
