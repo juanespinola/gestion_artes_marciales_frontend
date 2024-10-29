@@ -9,6 +9,7 @@ import { NavigationService } from '../../../services/navigation.service';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { ComponentsModule } from '../component/components.module';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
@@ -36,6 +37,7 @@ export class SignUpComponent {
   academies:any = [];
   belts:any = [];
   federations:any = [];
+  associations:any = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,7 +47,8 @@ export class SignUpComponent {
     private sessionService: SessionService,
     private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private location: Location,
   ){
     this.getCountries();
     this.getTypesDocument()
@@ -62,12 +65,13 @@ export class SignUpComponent {
       phone: ['', Validators.required],
       gender: ['', Validators.required],
       birthdate: ['', Validators.required],
-      country_id: ['', Validators.required],
-      city_id: ['', Validators.required],
-      type_document_id: ['', Validators.required],
-      belt_id: ['', Validators.required],
-      academy_id: ['', Validators.required],
-      federation_id: ['', Validators.required],
+      country_id: [''],
+      city_id: [''],
+      type_document_id: [''],
+      belt_id: [''],
+      academy_id: [''],
+      federation_id: [''],
+      association_id: [''],
     });
   }
 
@@ -76,6 +80,17 @@ export class SignUpComponent {
     .subscribe({
       next: (res:any) => {
         this.federations = res
+      },
+      error: (err) => console.log(err),
+      complete: () => {}
+    })
+  }
+
+  getAssociation(federation_id:any){
+    this.apiService.getData(`athlete/associations/${federation_id}`)
+    .subscribe({
+      next: (res:any) => {
+        this.associations = res
       },
       error: (err) => console.log(err),
       complete: () => {}
@@ -141,20 +156,32 @@ export class SignUpComponent {
       });
   }
 
+  getOptions(federation_id:any){
+    this.getBelts(federation_id)
+    this.getAssociation(federation_id)
+  }
 
   onSubmit() {
-      console.log(this.formGroup.value)
-      // this.apiService.postData("athlete/register", this.formGroup.value)
-      // .subscribe({
-      //   next: (res:any) => {
-      //     console.log(res)
+      this.apiService.postData("athlete/register", this.formGroup.value)
+      .subscribe({
+        next: (res:any) => {
+          console.log(res)
+          // this.sessionService.setItem('token', res.token)
+          // this.sessionService.setItem('user', JSON.stringify(res.user) )
+          this.router.navigate(['signin'])
+        },
+        error: (err) => {
+          this.alertsService.showAlert("Error!", err.error.message, 'error')
+        },
+        complete: () => {
+          // if(this.navigationService.getPreviousUrl() && this.navigationService.getPreviousUrl().includes('/event/') ){
+          //   this.location.back()
+          // } else {
+          //   this.router.navigate(['federation',this.sessionService.getUser().federation.id]);
+          // }
+        }
 
-      //   },
-      //   error: (err) => {
-      //     this.alertsService.showAlert("Error!", err.error.message, 'error')
-      //   },
-
-      // })
+      })
     }
 
 }

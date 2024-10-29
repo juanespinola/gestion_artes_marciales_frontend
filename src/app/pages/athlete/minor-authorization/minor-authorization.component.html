@@ -1,0 +1,56 @@
+<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Autorización de Menor</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+        <div class="m-b-12">
+            <div class="row m-b-12">
+                <div class="col-sm-12 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Descarga el documento, verifica todo lo
+                        indicado y vuelve a subirlo para su verificación</mat-label>
+                </div>
+                <div class="col-sm-12">
+                    <a href="" name="file" download matInput>
+                        <!-- <img src="" alt="Document" width="104" height="142"> -->
+                        Descargar Documento
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="row m-t-12">
+                <div class="col-sm-2 d-flex align-items-center">
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                        Documento
+                    </mat-label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="w-100">
+                        <button mat-flat-button color="primary" class="m-l-16 input-file-button w-100 hide-hint">
+                            <input type="file" name="file" (change)="uploadDocument($event)" />
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="justify-content-end">
+                        <div class="col-sm-12">
+                            <button mat-flat-button color="warn" class="button" class="m-l-8"
+                                (click)="onBack()">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-sm-12">
+                <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
+                    (click)="onSubmit()">Guardar</button>
+                <button mat-flat-button color="warn" class="button" class="m-l-8" (click)="onBack()">Cancelar</button>
+            </div>
+        </div>
+
+
+    </mat-card-content>
+</mat-card>

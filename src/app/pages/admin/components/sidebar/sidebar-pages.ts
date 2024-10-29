@@ -77,4 +77,10 @@ export const navItems: NavItem[] = [
     route: admin_path+APP_ROUTES.ATHLETES,
     // permission: 'request.access'
   },
+  {
+    displayName: 'Autorización de Menores',
+    iconName: 'aperture',
+    route: admin_path+APP_ROUTES.MINOR_AUTHORIZATION,
+    // permission: 'request.access'
+  },
 ];

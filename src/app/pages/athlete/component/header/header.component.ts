@@ -10,13 +10,16 @@ import { navItems } from '../sidebar/sidebar-data';
 import { TranslateService } from '@ngx-translate/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { MaterialModule } from '../material.module';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { CoreService } from '../../../../services/core.service';
 import { APP_ROUTES } from '../../../../routes';
 import { SessionService } from '../../../../services/session.service';
+import { MinorAuthorizationDialogComponent } from '../../minor-authorization/minor-authorization-dialog/minor-authorization-dialog.component';
+import { ApiService } from '../../../../utils/api.service';
+import { NavigationService } from '../../../../services/navigation.service';
 
 
 interface notifications {
@@ -103,10 +106,31 @@ export class HeaderComponent {
     public dialog: MatDialog,
     private translate: TranslateService,
     private router: Router,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private apiService: ApiService,
+    private navigationService: NavigationService
   ) {
     translate.setDefaultLang('en');
     
+  }
+
+  ngOnInit(){
+    //cambiar a pages. para ver si es que mejora , hasta ahora repite las url cada vez que se carga
+    // this.router.events.subscribe((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     console.log(event.url)
+    //     console.log(event.urlAfterRedirects)
+    //     let listaRutas:any = ['profile', 'registerevent'];
+
+    //     let rutas = event.url.split("/")
+
+    //     console.log(rutas)
+    //     if(listaRutas.includes(rutas.at(-1))){
+    //       this.openMinorAuthorizationDialog()
+    //     }
+
+    //   }
+    // });
   }
 
   openDialog() {
@@ -299,6 +323,34 @@ export class HeaderComponent {
 
   logout(){
     this.sessionService.logoutAthlete();
+  }
+
+  openMinorAuthorizationDialog() {
+    this.apiService.getData("athlete/minor_authorization")
+    .subscribe((res:any) => {
+      console.log(res)
+
+      if(!res.minor_verified) {
+        const dialogRef = this.dialog.open(MinorAuthorizationDialogComponent);
+        dialogRef.afterClosed()
+        .subscribe((result) => {
+          if(result.event == 'success'){
+            this.router.navigate(['minor_authorization'])
+          }
+        });
+      }
+    });
+
+    // if(!this.sessionService.getUser().minor_verified){
+    //   const dialogRef = this.dialog.open(MinorAuthorizationDialogComponent);
+    //   dialogRef.afterClosed()
+    //   .subscribe((result) => {
+    //     if(result.event == 'success'){
+    //       this.router.navigate(['minor_authorization'])
+    //     }
+    //   });
+    // }
+    
   }
 }
 

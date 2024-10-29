@@ -26,7 +26,8 @@ const BELOWMONITOR = 'screen and (max-width: 1023px)';
     RouterOutlet,  
     ComponentsModule,
     MaterialModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+
   ],
   templateUrl: './pages.component.html',
   styleUrl: './pages.component.scss',

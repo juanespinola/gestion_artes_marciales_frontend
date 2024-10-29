@@ -31,7 +31,7 @@ export class ProfileComponent {
   belts:any = [];
   beltshistory:any = [];
   academies:any = [];
-
+  minor_verified: any;
 
   constructor( 
     private formBuilder: FormBuilder,
@@ -52,8 +52,6 @@ export class ProfileComponent {
   }
 
   ngOnInit() {
-   
-    console.log(this.athlete);
     this.formGroup = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -74,7 +72,6 @@ export class ProfileComponent {
     this.apiService.getData("athlete/profile")
     .subscribe({
       next: (res:any) => {
-
         this.formGroup.patchValue({
           name: res.name,
           email: res.email,
@@ -86,8 +83,9 @@ export class ProfileComponent {
           city_id: res.city_id,
           type_document_id: res.type_document_id,
           belt_id:res.belt_id,
-          academy_id:res.academy_id
+          academy_id:res.academy_id,
         });
+        this.minor_verified = res.minor_verified
 
         this.getCities(res.city_id)
       },

@@ -1,0 +1,48 @@
+<mat-card [formGroup]="formGroup" class="cardWithShadow theme-card">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Nombre del Menor</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+
+        <div class="row m-b-12">
+            <div class="col-sm-12 d-flex align-items-center">
+                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Documento de Autorización</mat-label>
+            </div>
+            <div class="col-sm-12">
+                <!-- <div class="example-ripple-container cardWithShadow" matRipple t>
+                    Visualizar Documento
+                </div> -->
+                <!-- <input type="file" name="file" (change)="onSubmit($event, 'banner_new_list')" /> -->
+               
+                <a href="{{route_file}}" name="file" matInput target="_blank">
+                    <!-- <img src="{{route_file}}" alt="Document" width="104" height="142"> -->
+                    <!-- <embed src="{{route_file}}" type="application/pdf"  width="104" height="142"> -->
+                    <iframe  
+                        title="PDF Document" 
+                        width="900" 
+                        height="600" 
+                        [src]="route_file | safeUrl"> 
+                    </iframe> 
+                </a>
+               
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-8">
+                <mat-checkbox color="primary" matInput formControlName="authorized">Autorización</mat-checkbox>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-end m-t-16">
+            <div class="col-sm-12">
+                <button mat-flat-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
+                    (click)="onSubmit()">Guardar</button>
+                <button mat-flat-button color="warn" class="button" class="m-l-8" (click)="onBack()">Cancelar</button>
+            </div>
+        </div>
+
+    </mat-card-content>
+</mat-card>

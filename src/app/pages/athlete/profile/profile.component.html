@@ -254,6 +254,27 @@
                 </div>
             </mat-card-content>
         </mat-card>
+
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Estado Permiso de Menor</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        
+                        <span class="m-l-auto">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">
+                                <span class="{{ minor_verified ? 'bg-success':'bg-error' }} rounded-pill p-x-8 f-w-600 text-white f-s-12 p-y-4 w">
+                                    {{minor_verified ? "Verificado" : "No Verificado"}}
+                                </span>
+                            </mat-label>
+                        </span>
+
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
 
 

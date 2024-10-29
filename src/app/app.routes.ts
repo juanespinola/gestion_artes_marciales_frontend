@@ -56,6 +56,9 @@ import { AthletesComponent } from './pages/athlete/athletes/athletes.component';
 import { AthleteProfileComponent } from './pages/athlete/athlete-profile/athlete-profile.component';
 import { RankingComponent } from './pages/athlete/ranking/ranking.component';
 import { AthleteComponent } from './pages/admin/athlete/athlete.component';
+import { MinorAuthorizationComponent } from './pages/admin/minor-authorization/minor-authorization.component';
+import { MinorAuthorizationComponent as MinorAuthorizationAthleteComponent}   from './pages/athlete/minor-authorization/minor-authorization.component';
+import { MinorAuthorizationFormComponent } from './pages/admin/minor-authorization/minor-authorization-form/minor-authorization-form.component';
 
 
 export const routes: Routes = [
@@ -101,6 +104,7 @@ export const routes: Routes = [
       { path: "checkout", component: CheckoutComponent },
       { path: "payment", component: PaymentComponent },
       { path: "dashboard", component: DashboardComponent },
+      { path: "minor_authorization", component: MinorAuthorizationAthleteComponent },
       { path: '', redirectTo: 'federations', pathMatch: 'full' },
       // { path: '**', redirectTo: 'federations' },
       
@@ -245,6 +249,13 @@ export const routes: Routes = [
           { path: "", component: AthleteComponent, },
           // { path: "edit/:id", component: RequestFormComponent },
           // { path: "add", component: RequestFormComponent },
+        ]
+      },
+      {
+        path: APP_ROUTES.MINOR_AUTHORIZATION,
+        children: [
+          { path: "", component: MinorAuthorizationComponent },
+          { path: "edit/:id", component: MinorAuthorizationFormComponent },
         ]
       },
     ]

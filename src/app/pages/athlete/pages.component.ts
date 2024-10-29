@@ -13,6 +13,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NavService } from '../../services/nav.service';
 import { navItems } from '../admin/components/sidebar/sidebar-pages';
 import { ComponentsModule } from './component/components.module';
+import { MinorAuthorizationDialogComponent } from './minor-authorization/minor-authorization-dialog/minor-authorization-dialog.component';
+import { ApiService } from '../../utils/api.service';
+import { MatDialog } from '@angular/material/dialog';
 
 
 const MOBILE_VIEW = 'screen and (max-width: 768px)';
@@ -67,7 +70,9 @@ export class PagesComponent {
     private breakpointObserver: BreakpointObserver,
     private navService: NavService,
     private sessionService: SessionService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiService,
+    private dialog: MatDialog,
   ) {
     this.htmlElement = document.querySelector('html')!;
     this.layoutChangesSubscription = this.breakpointObserver
@@ -103,6 +108,12 @@ export class PagesComponent {
     this.activatedRoute.firstChild?.paramMap.subscribe(params => {
       this.federation_id = params.get('federation_id') ? params.get('federation_id') : history?.state.federation_id
     })
+
+    let listaRutas:any = ['profile', 'registerevent'];
+    let rutas = this.router.url.split("/")
+    if(listaRutas.includes(rutas.at(-1))){
+      this.openMinorAuthorizationDialog()
+    }
   }
 
   ngOnDestroy() {
@@ -155,5 +166,22 @@ export class PagesComponent {
 
   goToListAthletes(){
     this.router.navigate(['events'], {state: { federation_id: this.federation_id }})
+  }
+
+  openMinorAuthorizationDialog() {
+    this.apiService.getData("athlete/minor_authorization")
+    .subscribe((res:any) => {
+      console.log(res)
+
+      if(!res.minor_verified) {
+        const dialogRef = this.dialog.open(MinorAuthorizationDialogComponent);
+        dialogRef.afterClosed()
+        .subscribe((result) => {
+          if(result.event == 'success'){
+            this.router.navigate(['minor_authorization'])
+          }
+        });
+      }
+    });
   }
 }

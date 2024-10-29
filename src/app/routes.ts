@@ -19,6 +19,7 @@ export const APP_ROUTES = {
     NEW: 'new',
     REQUEST: 'request',
     ATHLETES: 'athletes',
+    MINOR_AUTHORIZATION: 'minor_authorization',
     //athlete routes
     DASHBOARD_ATHLETE: "",
     ATHLETE_SIGNIN: 'signin',
