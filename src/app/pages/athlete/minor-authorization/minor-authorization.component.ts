@@ -87,7 +87,7 @@ export class MinorAuthorizationComponent {
     this.apiService.postData(this.collection, this.formData)
     .subscribe((res:any) => {
       console.log(res)
-      this.alertsService.showAlert("Correcto!", "Imagen Subida Correctamente", "success")      
+      this.alertsService.showAlert("Correcto!", res.messages, "success")      
   });
 
   }
