@@ -59,6 +59,8 @@ import { AthleteComponent } from './pages/admin/athlete/athlete.component';
 import { MinorAuthorizationComponent } from './pages/admin/minor-authorization/minor-authorization.component';
 import { MinorAuthorizationComponent as MinorAuthorizationAthleteComponent}   from './pages/athlete/minor-authorization/minor-authorization.component';
 import { MinorAuthorizationFormComponent } from './pages/admin/minor-authorization/minor-authorization-form/minor-authorization-form.component';
+import { SanctionComponent } from './pages/admin/athlete/sanction/sanction.component';
+import { SanctionFormComponent } from './pages/admin/athlete/sanction-form/sanction-form.component';
 
 
 export const routes: Routes = [
@@ -247,8 +249,14 @@ export const routes: Routes = [
         path: APP_ROUTES.ATHLETES,
         children: [
           { path: "", component: AthleteComponent, },
-          // { path: "edit/:id", component: RequestFormComponent },
-          // { path: "add", component: RequestFormComponent },
+          {
+            path: ":athlete_id",
+            children: [
+              { path: "sanction", component: SanctionComponent, },
+              { path: "sanction/edit/:id", component: SanctionFormComponent },
+              { path: "sanction/add", component: SanctionFormComponent },
+            ]
+          },         
         ]
       },
       {

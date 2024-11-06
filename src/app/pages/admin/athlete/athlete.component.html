@@ -55,7 +55,7 @@
 
             
                 <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600 text-center">Actions</th>
+                    <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600 text-center">Actiones</th>
                     <td mat-cell *matCellDef="let element;" class="action-link text-center">
                         <!-- <button mat-icon-button (click)="updateAction(element.id)" class="m-r-10 cursor-pointer">
                             <i-tabler name="edit" class="icon-18"></i-tabler>
@@ -63,8 +63,9 @@
                         <!-- <button mat-icon-button (click)="deleteAction(element.id)" class="m-r-10 cursor-pointer">
                             <i-tabler name="trash" class="icon-18"></i-tabler>
                         </button> -->
-                        <button mat-icon-button (click)="sanctionAction(element.id)" class="m-r-10 cursor-pointer">
-                            <i-tabler name="category" class="icon-18"></i-tabler>
+                        <button mat-flat-button color="primary"  (click)="sanctionAction(element.id)" class="m-r-10 cursor-pointer">
+                            <!-- <i-tabler name="category" class="icon-18"></i-tabler> -->
+                            Sanciones
                         </button>
                         <!-- <button mat-icon-button (click)="athletesRegistrationAction(element.id)" class="m-r-10 cursor-pointer">
                             <i-tabler name="user" class="icon-18"></i-tabler>

@@ -75,16 +75,17 @@ export class AthleteComponent {
 
 
     sanctionAction(athlete_id:any){
-      const dialogRef = this.dialog.open(SanctionDialogComponent, {
-        data: {
-          athlete_id
-        }
-      })
-      dialogRef.afterClosed()
-        .subscribe((result: any) => {
-          if (result.event == 'success') {
-            // this.getAllRequest()
-          }
-        })
+      this.route.navigate(["admin", "athletes", athlete_id, "sanction"]);
+      // const dialogRef = this.dialog.open(SanctionDialogComponent, {
+      //   data: {
+      //     athlete_id
+      //   }
+      // })
+      // dialogRef.afterClosed()
+      //   .subscribe((result: any) => {
+      //     if (result.event == 'success') {
+      //       // this.getAllRequest()
+      //     }
+      //   })
     }
 }
