@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MaterialModule } from '../../admin/components/material.module';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,9 @@ export class PaymentComponent {
 
   response_payment: any
 
-  constructor(){
+  constructor(
+    private router: Router
+  ){
     this.response_bancard = history?.state.response_bancard;
 
     console.log(this.response_bancard)
@@ -43,6 +46,10 @@ export class PaymentComponent {
       this.response_payment = "Transferencia Realizada, estaremos confirmando tu Pago! Muchas gracias";
     }
 
+  }
+
+  goBack(){
+    this.router.navigate(["membership"])
   }
 
   // ngAfterViewInit() {

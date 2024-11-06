@@ -109,14 +109,20 @@ export class CheckoutComponent {
           association_id: this.athlete.federation.association.id,
           inscription_id: this.inscription_id,
           payment_for: "inscription",
-          json_request: this.payment_number,
+          json_request: this.selectedPaymentMethod == "transferencia" ? { 
+            "numero_comprobante": this.payment_number,
+          } : {},
           total_payment: this.payment.total,
         } 
       }
-
+      console.log(this.payment)
       this.apiService.postData("athlete/payment/create", this.payment)
         .subscribe({
           next: (res: any) => {
+            if(res.data == 'existPayment'){
+              this.alertsService.showAlert("Error!", "Pago existente", 'error')
+              return;
+            } 
             if(this.selectedPaymentMethod == 'vpos'){
               this.router.navigate(["payment"], { state: { response_bancard: res.data } })
             } else if(this.selectedPaymentMethod == 'transferencia') {

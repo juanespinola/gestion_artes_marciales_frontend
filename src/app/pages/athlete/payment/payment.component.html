@@ -3,7 +3,15 @@
         <div class="p-24">
         <div id="iframe-container" class="d-flex h-100"></div>
             {{response_payment}}
-            
         </div>
     </mat-card-content>
+
+    <mat-card-footer class="p-24">
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-12">
+                <button mat-flat-button color="primary" type="submit" (click)="goBack()">Volver atras</button>
+            </div>
+        </div>
+    </mat-card-footer>
 </mat-card>
