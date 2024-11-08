@@ -39,7 +39,7 @@ export class SanctionFormComponent {
     this.formGroup = this.formBuilder.group({
       description: ['', Validators.required],
       comments: ['', Validators.required],
-      athlete_id: this.route.snapshot.params['id']
+      athlete_id: this.route.snapshot.params['athlete_id']
     });
     this.createForm();
   }
@@ -71,19 +71,19 @@ export class SanctionFormComponent {
   }
 
   onSubmit() {
-    console.log(this.formGroup)
-    // let id = this.route.snapshot.params['id']
-    // if (id) {
-    //   this.apiService.putData(this.collection, id, this.formGroup.value)
-    //     .subscribe((res: any) => {
-    //       this.router.navigate(['admin', "athletes", this.route.snapshot.params['athlete_id'], this.collection])
-    //     });
-    // } else {
-    //   this.apiService.postData(this.collection, this.formGroup.value)
-    //     .subscribe((res: any) => {
-    //       this.router.navigate(['admin', "athletes", this.route.snapshot.params['athlete_id'], this.collection])
-    //     });
-    // } 
+    console.log(this.formGroup.value)
+    let id = this.route.snapshot.params['id']
+    if (id) {
+      this.apiService.putData(this.collection, id, this.formGroup.value)
+        .subscribe((res: any) => {
+          this.router.navigate(['admin', "athletes", this.route.snapshot.params['athlete_id'], this.collection])
+        });
+    } else {
+      this.apiService.postData(this.collection, this.formGroup.value)
+        .subscribe((res: any) => {
+          this.router.navigate(['admin', "athletes", this.route.snapshot.params['athlete_id'], this.collection])
+        });
+    } 
   }
 
 

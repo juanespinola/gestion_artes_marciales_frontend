@@ -74,9 +74,10 @@ export class SanctionComponent {
 
 
   getAll() {
-    this.apiService.postData(this.collection , {
-      "athlete_id": this.route.snapshot.params['athlete_id']
-    })
+    this.apiService.getData(`${this.collection}/${this.route.snapshot.params['athlete_id']}/athletes`)
+    // this.apiService.postData(this.collection , {
+    //   "athlete_id": this.route.snapshot.params['athlete_id']
+    // })
     .subscribe({
       next:(res:any) => {
         console.log(res)
